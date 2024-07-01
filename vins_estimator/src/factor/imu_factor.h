@@ -33,6 +33,8 @@ class IMUFactor : public ceres::SizedCostFunction<15, 7, 9, 7, 9>
         Eigen::Vector3d Baj(parameters[3][3], parameters[3][4], parameters[3][5]);
         Eigen::Vector3d Bgj(parameters[3][6], parameters[3][7], parameters[3][8]);
 
+        // auto start = std::chrono::steady_clock::now();
+
 //Eigen::Matrix<double, 15, 15> Fd;
 //Eigen::Matrix<double, 15, 12> Gd;
 
@@ -175,6 +177,13 @@ class IMUFactor : public ceres::SizedCostFunction<15, 7, 9, 7, 9>
             }
         }
 
+        // auto end = std::chrono::steady_clock::now();
+        // std::chrono::duration<double> diff = end - start;
+        // std::cout << std::fixed << "sym::imu_factor: " << diff.count() << " s\n";
+        // std::cout << std::fixed << "sym::imu_factor: " << std::chrono::duration_cast<std::chrono::milliseconds>((end - start).count()) << " ms\n";
+        // auto diff = end - start;
+        // std::cout << "imu_factor: " << std::chrono::duration <double, std::milli>(diff).count() << " ms" << std::endl;
+
         return true;
     }
 
@@ -195,6 +204,8 @@ class IMUFactor : public ceres::SizedCostFunction<15, 7, 9, 7, 9>
         Eigen::Vector3d Vj(parameters[3][0], parameters[3][1], parameters[3][2]);
         Eigen::Vector3d Baj(parameters[3][3], parameters[3][4], parameters[3][5]);
         Eigen::Vector3d Bgj(parameters[3][6], parameters[3][7], parameters[3][8]);
+
+        // auto start = std::chrono::steady_clock::now();
 
         // from preintegration
         const Eigen::Matrix3d dp_dba = pre_integration->jacobian.block<3, 3>(O_P, O_BA);
@@ -499,7 +510,7 @@ class IMUFactor : public ceres::SizedCostFunction<15, 7, 9, 7, 9>
         const Scalar _tmp238 = -_tmp164 * _tmp64 + _tmp187 - _tmp232;
         const Scalar _tmp239 = -_tmp173 + _tmp189 + _tmp236;
         const Scalar _tmp240 = _tmp167 + _tmp168 + _tmp228;
-        const Scalar _tmp241 = std::pow(_tmp38, Scalar(2));
+        /*const Scalar _tmp241 = std::pow(_tmp38, Scalar(2));
         const Scalar _tmp242 = std::pow(_tmp4, Scalar(2));
         const Scalar _tmp243 = std::pow(_tmp34, Scalar(2));
         const Scalar _tmp244 = _tmp241 + _tmp242 + _tmp243;
@@ -715,6 +726,7 @@ class IMUFactor : public ceres::SizedCostFunction<15, 7, 9, 7, 9>
         const Scalar _tmp454 = _tmp32 * _tmp79;
         const Scalar _tmp455 = _tmp19 * _tmp77;
         const Scalar _tmp456 = _tmp37 * _tmp81;
+        */
 
         // Output terms (4)
         // if (res != nullptr) {
@@ -915,6 +927,13 @@ class IMUFactor : public ceres::SizedCostFunction<15, 7, 9, 7, 9>
 
             }
         }
+
+        // auto end = std::chrono::steady_clock::now();
+        // std::chrono::duration<double> diff = end - start;
+        // std::cout << std::fixed << "sym::imu_factor: " << diff.count() << " s\n";
+        // std::cout << std::fixed << "sym::imu_factor: " << std::chrono::duration_cast<std::chrono::milliseconds>((end - start).count()) << " ms\n";
+        // auto diff = end - start;
+        // std::cout << "sym::imu_factor: " << std::chrono::duration <double, std::milli>(diff).count() << " ms" << std::endl;
 
         return true;
     }

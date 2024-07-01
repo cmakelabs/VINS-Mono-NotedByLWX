@@ -479,7 +479,10 @@ void Estimator::solveOdometry()
         TicToc t_tri;
         f_manager.triangulate(Ps, tic, ric);
         ROS_DEBUG("triangulation costs %f", t_tri.toc());
+        // TicToc t_opt;
         optimization();
+        // std::cout << "opt:" << t_opt.toc() << std::endl;
+        // std::cout << "sym opt:" << t_opt.toc() << std::endl;
     }
 }
 
@@ -765,6 +768,7 @@ void Estimator::optimization()
 
     ROS_DEBUG("visual measurement count: %d", f_m_cnt);
     ROS_DEBUG("prepare for ceres: %f", t_prepare.toc());
+    // std::cout << "prepare time cost:" << t_prepare.toc() << std::endl;
 
     if(relocalization_info)
     {
