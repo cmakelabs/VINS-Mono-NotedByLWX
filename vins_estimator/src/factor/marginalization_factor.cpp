@@ -8,14 +8,18 @@ void ResidualBlockInfo::Evaluate()
 {
     residuals.resize(cost_function->num_residuals()); // 确定残差的维数
 
+    // block_sizes存储的是每个参数块的维数大小
     std::vector<int> block_sizes = cost_function->parameter_block_sizes(); // 确定相关的参数块数目
     raw_jacobians = new double *[block_sizes.size()]; // ceres接口都是double数组，因此这里给雅克比准备数组
+    // block_sizes.size()返回的是参数块的个数，而每一个参数块，对应一个jacobian,因此这里是设置jacobian的个数，即设置jacobians数组的size
     jacobians.resize(block_sizes.size());
 
     // 这里就是把jacobians每个matrix地址赋给raw_jacobians，然后把raw_jacobians传递给ceres的接口，这样计算结果直接放进了这个matrix
     for (int i = 0; i < static_cast<int>(block_sizes.size()); i++)
     {
+        // 设置每一个jacobian矩阵的大小，行是参数个数，列是参数块的大小
         jacobians[i].resize(cost_function->num_residuals(), block_sizes[i]); // 雅克比矩阵大小 残差×变量
+        // .data()返回矩阵的数组形式的指针
         raw_jacobians[i] = jacobians[i].data();
         //dim += block_sizes[i] == 7 ? 6 : block_sizes[i];
     }
@@ -105,6 +109,9 @@ void MarginalizationInfo::addResidualBlockInfo(ResidualBlockInfo *residual_block
     factors.emplace_back(residual_block_info); // 残差块收集起来
 
     std::vector<double *> &parameter_blocks = residual_block_info->parameter_blocks; // 这个是和该约束相关的参数块
+    // 关于parameter_block_sizes数组：
+    // 对于IMU因子来说其存储的就是7,9,7,9
+    // 对于重投影因子来说就是7,7,7,1
     std::vector<int> parameter_block_sizes = residual_block_info->cost_function->parameter_block_sizes(); // 各个参数块的大小
 
     for (int i = 0; i < static_cast<int>(residual_block_info->parameter_blocks.size()); i++)
@@ -118,8 +125,9 @@ void MarginalizationInfo::addResidualBlockInfo(ResidualBlockInfo *residual_block
     // 待边缘化的参数块
     for (int i = 0; i < static_cast<int>(residual_block_info->drop_set.size()); i++)
     {
+        // 取出待边缘化的参数块的地址
         double *addr = parameter_blocks[residual_block_info->drop_set[i]];
-        // 先准备好待边缘化的参数块的map
+        // 先准备好待边缘化的参数块的map,  后面在marginalize()中还会添加其它参数块
         parameter_block_idx[reinterpret_cast<long>(addr)] = 0;
     }
 }
@@ -135,6 +143,9 @@ void MarginalizationInfo::preMarginalize()
     {
         it->Evaluate(); // 调用这个接口计算各个残差块的残差和雅克比矩阵
 
+        // 关于block_sizes数组：
+        // 对于IMU因子来说其存储的就是7,9,7,9
+        // 对于重投影因子来说就是7,7,7,1
         std::vector<int> block_sizes = it->cost_function->parameter_block_sizes(); // 得到每个残差块的参数块大小
         for (int i = 0; i < static_cast<int>(block_sizes.size()); i++)
         {
@@ -226,20 +237,21 @@ void* ThreadsConstructA(void* threadsstruct)
 void MarginalizationInfo::marginalize()
 {
     int pos = 0;
-    // parameter_block_idx key是各个待边缘化参数块地址 value预设都是0
+    // parameter_block_idx: key是各个待边缘化参数块地址 value预设都是0
     for (auto &it : parameter_block_idx)
     {
         it.second = pos; // 这就是在所有参数中排序的idx，待边缘化的排在前面
         pos += localSize(parameter_block_size[it.first]); // 因为要进行求导，因此大小是local size，具体一点就是使用李代数
     }
 
-    m = pos; // 总共待边缘化的参数块总大小（不是个数）
+    m = pos; // 总共待边缘化的参数块总大小（不是个数），即待边缘化的总维数
 
     // 其他参数块
     for (const auto &it : parameter_block_size)
     {
         if (parameter_block_idx.find(it.first) == parameter_block_idx.end())
         {
+            // 除了边缘化参数块之外的其它参数块，指定其参数顺序后也加入到parameter_block_idx
             parameter_block_idx[it.first] = pos; // 这样每个参数块的大小都能被正确找到
             pos += localSize(it.second);
         }
@@ -248,6 +260,7 @@ void MarginalizationInfo::marginalize()
     n = pos - m; // 其他参数块的总大小
 
     //ROS_DEBUG("marginalization, pos: %d, m: %d, n: %d, size: %d", pos, m, n, (int)parameter_block_idx.size());
+    std::cout << "pos=" << pos << " m=" << m << " n=" << n << " total parameter block count=" << (int)parameter_block_idx.size() << std::endl;
 
     TicToc t_summing;
     Eigen::MatrixXd A(pos, pos); // Ax = b预设大小
@@ -370,6 +383,9 @@ void MarginalizationInfo::marginalize()
     //std::cout << linearized_jacobians << std::endl;
     //printf("error2: %f %f\n", (linearized_jacobians.transpose() * linearized_jacobians - A).sum(),
     //      (linearized_jacobians.transpose() * linearized_residuals - b).sum());
+
+    std::cout << "linearized_jacobians: rows=" << linearized_jacobians.rows() << " cols=" << linearized_jacobians.cols() << std::endl;
+    std::cout << "linearized_residuals: rows=" << linearized_residuals.rows() << " cols=" << linearized_residuals.cols() << std::endl;
 }
 
 std::vector<double *> MarginalizationInfo::getParameterBlocks(std::unordered_map<long, double *> &addr_shift)
@@ -384,7 +400,7 @@ std::vector<double *> MarginalizationInfo::getParameterBlocks(std::unordered_map
         if (it.second >= m) // 如果是留下来的，说明后续会对其形成约束
         {
             keep_block_size.push_back(parameter_block_size[it.first]); // 留下来的参数块大小 global size
-            keep_block_idx.push_back(parameter_block_idx[it.first]); // 留下来的在原向量中的排序
+            keep_block_idx.push_back(parameter_block_idx[it.first]); // 留下来的在原向量中的排序，意思即在边缘化前的参数块的排序
             keep_block_data.push_back(parameter_block_data[it.first]); // 边缘化前各个参数块的值的备份
             keep_block_addr.push_back(addr_shift[it.first]); // 对应的新地址
         }
@@ -392,6 +408,7 @@ std::vector<double *> MarginalizationInfo::getParameterBlocks(std::unordered_map
     // 留下来的边缘化后的参数块总大小
     sum_block_size = std::accumulate(std::begin(keep_block_size), std::end(keep_block_size), 0);
 
+    // 返回的是边缘化之后保留的（剩余的）参数块vector，其储存了每个参数块在滑窗中新的位置（新的地址）。
     return keep_block_addr;
 }
 
@@ -473,6 +490,7 @@ bool MarginalizationFactor::Evaluate(double const *const *parameters, double *re
                 // 这里的 size 即为 global size
                 int size = marginalization_info->keep_block_size[i], local_size = marginalization_info->localSize(size);
                 int idx = marginalization_info->keep_block_idx[i] - m;
+                // 每个jacobian的维数：行数是剩余状态量的local size总维数之和n, 这里的列数是每个参数块的global size
                 Eigen::Map<Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic, Eigen::RowMajor>> jacobian(jacobians[i], n, size);
                 jacobian.setZero();
                 jacobian.leftCols(local_size) = marginalization_info->linearized_jacobians.middleCols(idx, local_size);

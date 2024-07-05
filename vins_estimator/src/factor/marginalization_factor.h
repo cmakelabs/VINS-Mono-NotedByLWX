@@ -60,17 +60,20 @@ class MarginalizationInfo
     // m为将要被marg掉的维数，n为剩余状态量的维数
     // 然后将所有需要被marg的维数移到矩阵的左上角，再进行舒尔补。
     // m为要边缘化状态量的维数，n为剩余状态量的总维数
-    int m, n; // m为要边缘化的变量个数，n为要保留下来的变量个数
+    int m, n; // m为要边缘化的变量维数，n为要保留下来的变量维数
     // 地址->global size
     std::unordered_map<long, int> parameter_block_size; //global size //<优化变量内存地址,global size>
     int sum_block_size;
     // 地址->参数排列的顺序idx
-    std::unordered_map<long, int> parameter_block_idx; //local size //<待边缘化的优化变量内存地址,在parameter_block_size中的id>
+    std::unordered_map<long, int> parameter_block_idx; //local size //<先是待边缘化的优化变量内存地址后面又增加其它参数块的地址, 在所有参数中的排列顺序>
     // 地址->参数块实际内容的地址
     std::unordered_map<long, double *> parameter_block_data; //<优化变量内存地址,数据>
 
+    // keep_block_size存储边缘化完成后，保留下来的每个参数块对应的global size
     std::vector<int> keep_block_size; //global size
+    // 存储在边缘化前保留下来的参数块在所有参数里面的序号
     std::vector<int> keep_block_idx;  //local size
+    // 存储在边缘化前保留下来的参数块的值
     std::vector<double *> keep_block_data;
 
     Eigen::MatrixXd linearized_jacobians;

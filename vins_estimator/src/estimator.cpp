@@ -847,6 +847,7 @@ void Estimator::optimization()
     {
         // construct new marginlization_factor
         MarginalizationFactor *marginalization_factor = new MarginalizationFactor(last_marginalization_info);
+        // last_marginalization_parameter_blocks存储的是待优化的状态量的地址的vector
         problem.AddResidualBlock(marginalization_factor, NULL,
                                  last_marginalization_parameter_blocks);
     }
@@ -992,6 +993,7 @@ void Estimator::optimization()
     // 如果次新帧是关键帧，将边缘化最老帧，及其看到的路标点和IMU数据，将其转化为先验：
     if (marginalization_flag == MARGIN_OLD)
     {
+        int marg_feature_count = 0; // added on 2024-7-5
         // 一个用来边缘化操作的对象
         MarginalizationInfo *marginalization_info = new MarginalizationInfo();
         // 这里类似手写高斯牛顿，因此也需要都转成double数组
@@ -1055,6 +1057,7 @@ void Estimator::optimization()
                 if (imu_i != 0)
                     continue;
 
+                marg_feature_count++;
                 Vector3d pts_i = it_per_id.feature_per_frame[0].point;
 
                 // 遍历看到这个特征点的所有KF，通过这个特征点，建立和第0帧的约束
@@ -1083,11 +1086,12 @@ void Estimator::optimization()
                         ResidualBlockInfo *residual_block_info = new ResidualBlockInfo(f, loss_function,
                                                                                        vector<double *>{para_Pose[imu_i], para_Pose[imu_j], para_Ex_Pose[0], para_Feature[feature_index]},
                                                                                        vector<int>{0, 3}); // 这里第0帧和地图点被margin
-                        marginalization_info->addResidualBlockInfo(residual_block_info);
+                        marginalization_info->addResidualBlockInfo(residual_block_info);                        
                     }
                 }
             }
         }
+        std::cout << "marg old: marg_feature_count=" << marg_feature_count << std::endl;
 
         // 所有的残差块都收集好了
         TicToc t_pre_margin;
@@ -1104,6 +1108,8 @@ void Estimator::optimization()
 
         //6.调整参数块在下一次窗口中对应的位置（往前移一格），注意这里是指针，后面slideWindow中会赋新值，这里只是提前占座
         // 即将滑窗，因此记录新地址对应的老地址
+        // 关于addr_shift补充说明一点：其作用是为了记录边缘化之后保留的参数块，在滑窗中新的位置。
+        // 比如marg老帧时，原来滑窗第1帧的位姿其位置就移动到第0帧（往前移一格），以此类推
         std::unordered_map<long, double *> addr_shift;
         for (int i = 1; i <= WINDOW_SIZE; i++)
         {

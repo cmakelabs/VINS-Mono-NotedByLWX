@@ -122,7 +122,9 @@ class Estimator
 
     int loop_window_index;
 
+    // last_marginalization_info存储的是上一次边缘化之后的结果
     MarginalizationInfo *last_marginalization_info;
+    // last_marginalization_parameter_blocks存储的是上一次边缘化结果之后保留下来的状态量的地址，或者说剩余参数块的地址，也即symfore里面的待优化量
     vector<double *> last_marginalization_parameter_blocks;
 
     //kay是时间戳，val是图像帧
