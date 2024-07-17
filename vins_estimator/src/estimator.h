@@ -49,9 +49,13 @@ class Estimator
     void slideWindowNew();
     void slideWindowOld();
     void optimization();
+    void symOptimization(); // use symforce to optimize. 2024-7-10
     void vector2double();
     void double2vector();
     bool failureDetection();
+
+    void setRemainParameterKey(); // 2024-7-9
+    void computeMarginalizationResult(); // 2024-7-12.
 
 
     enum SolverFlag
@@ -126,6 +130,9 @@ class Estimator
     MarginalizationInfo *last_marginalization_info;
     // last_marginalization_parameter_blocks存储的是上一次边缘化结果之后保留下来的状态量的地址，或者说剩余参数块的地址，也即symfore里面的待优化量
     vector<double *> last_marginalization_parameter_blocks;
+
+    // std::vector<std::string> remain_Keys; // 2024-7-9
+    MarginalizationFlag  last_marginalization_flag; // 2024-7-10
 
     //kay是时间戳，val是图像帧
     //图像帧中保存了图像帧的特征点、时间戳、位姿Rt，预积分对象pre_integration，是否是关键帧。

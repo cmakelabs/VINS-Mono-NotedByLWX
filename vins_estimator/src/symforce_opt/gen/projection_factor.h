@@ -10,6 +10,9 @@
 
 #include <sym/rot3.h>
 
+#include<ceres/loss_function.h> // 2024-7-15.
+ceres::CauchyLoss loss(1.0);
+
 namespace sym {
 
 /**
@@ -459,12 +462,35 @@ void ProjectionFactor(const Eigen::Matrix<Scalar, 3, 1>& pts_i,
   const Scalar _tmp371 = _tmp244 * _tmp338;
   const Scalar _tmp372 = _tmp229 * _tmp338;
 
+//   ceres::LossFunction *loss_function;
+//   loss_function = new ceres::CauchyLoss(1.0);
+//   ceres::CauchyLoss loss(1.0);
+  double residual_scaling_;
+
+  double sq_norm, rho[3];
+  Eigen::Vector2d residual(_tmp100, _tmp104);
+
+  sq_norm = residual.squaredNorm(); // 获得残差的模
+  loss.Evaluate(sq_norm, rho); // rho[0]:核函数这个点的值 rho[1]这个点的导数 rho[2]这个点的二阶导数
+  //printf("sq_norm: %f, rho[0]: %f, rho[1]: %f, rho[2]: %f\n", sq_norm, rho[0], rho[1], rho[2]);
+
+  double sqrt_rho1_ = sqrt(rho[1]);
+
+//   if ((sq_norm == 0.0) || (rho[2] <= 0.0)) // 柯西核p = log(s+1),rho[2]<＝0始终成立，一般核函数二阶导数都是小于0
+  {
+    residual_scaling_ = sqrt_rho1_;
+    // alpha_sq_norm_ = 0.0;
+  }
+
+//   residual_scaling_ = 1.0; // don't use core function
+
   // Output terms (4)
   if (res != nullptr) {
     Eigen::Matrix<Scalar, 2, 1>& _res = (*res);
 
     _res(0, 0) = _tmp100;
     _res(1, 0) = _tmp104;
+    _res *= residual_scaling_;
   }
 
   if (jacobian != nullptr) {
@@ -508,6 +534,7 @@ void ProjectionFactor(const Eigen::Matrix<Scalar, 3, 1>& pts_i,
     _jacobian(1, 17) = _tmp320;
     _jacobian(0, 18) = _tmp336;
     _jacobian(1, 18) = Scalar(306.66666666666703) * _tmp337;
+    _jacobian *= residual_scaling_;
   }
 
   if (hessian != nullptr) {
@@ -893,6 +920,8 @@ void ProjectionFactor(const Eigen::Matrix<Scalar, 3, 1>& pts_i,
     _hessian(17, 18) = 0;
     _hessian(18, 18) =
         std::pow(_tmp335, Scalar(2)) * _tmp338 + std::pow(_tmp337, Scalar(2)) * _tmp338;
+  
+    _hessian = _hessian * (residual_scaling_ * residual_scaling_);
   }
 
   if (rhs != nullptr) {
@@ -917,6 +946,7 @@ void ProjectionFactor(const Eigen::Matrix<Scalar, 3, 1>& pts_i,
     _rhs(16, 0) = _tmp104 * _tmp303 + _tmp302 * _tmp99;
     _rhs(17, 0) = _tmp100 * _tmp318 + _tmp103 * _tmp320;
     _rhs(18, 0) = _tmp104 * _tmp337 + _tmp336 * _tmp99;
+    _rhs = _rhs * (residual_scaling_ * residual_scaling_);
   }
 }  // NOLINT(readability/fn_size)
 

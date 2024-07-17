@@ -1,9 +1,41 @@
+
 #include "estimator.h"
+
+#include <spdlog/spdlog.h>
+#include <sym/util/epsilon.h>
+#include <symforce/opt/assert.h>
+#include <symforce/opt/factor.h>
+#include <symforce/opt/key.h>
+#include <symforce/opt/optimization_stats.h>
+#include <symforce/opt/optimizer.h>
+#include <lcmtypes/sym/optimizer_params_t.hpp>
+#include <symforce/opt/dense_cholesky_solver.h>
+
+#include "symforce_opt/gen/marginalization_factor_manual.h"
+#include "symforce_opt/gen/imu_factor.h"
+#include "symforce_opt/gen/projection_factor.h"
+#include "symforce_opt/gen/projection_gnc_factor.h"
+
+std::vector<sym::EParameterType> remain_Keys; // 2024-7-11.
+
+template <typename Scalar>
+using DenseOptimizer =
+    sym::Optimizer<Scalar, sym::LevenbergMarquardtSolver<Scalar, sym::DenseCholeskySolver<Scalar>>>; // 2024-7-13
 
 Estimator::Estimator(): f_manager{Rs}
 {
     ROS_INFO("init begins");
     clearState();
+
+    // for test 2024-7-8
+    for (int i = 0; i <= WINDOW_SIZE; i++)
+    {
+        std::cout << "i=" << i << " para_Pose addr=" << reinterpret_cast<long>(para_Pose[i]) << std::endl;
+        std::cout << "i=" << i << " para_SpeedBias addr=" << reinterpret_cast<long>(para_SpeedBias[i]) << std::endl;
+    }
+    
+    std::cout << "para_Ex_Pose addr=" << reinterpret_cast<long>(para_Ex_Pose[0]);
+    // the end.
 }
 
 /**
@@ -586,8 +618,9 @@ void Estimator::solveOdometry()
         f_manager.triangulate(Ps, tic, ric);
         ROS_DEBUG("triangulation costs %f", t_tri.toc());
         // TicToc t_opt;
-        optimization();
+        // optimization();
         // std::cout << "opt:" << t_opt.toc() << std::endl;
+        symOptimization(); // 2024-7-12.
         // std::cout << "sym opt:" << t_opt.toc() << std::endl;
     }
 }
@@ -738,7 +771,7 @@ void Estimator::double2vector()
         //cout << "vins relo " << endl;
         //cout << "vins relative_t " << relo_relative_t.transpose() << endl;
         //cout << "vins relative_yaw " <<relo_relative_yaw << endl;
-        relocalization_info = 0;    
+        relocalization_info = 0;
 
     }
 }
@@ -803,7 +836,8 @@ void Estimator::optimization()
     ceres::Problem problem;
     ceres::LossFunction *loss_function;
     //loss_function = new ceres::HuberLoss(1.0);
-    loss_function = new ceres::CauchyLoss(1.0);
+    // loss_function = new ceres::CauchyLoss(1.0); // temp comment
+    loss_function = NULL; // temply add for test.
     // Step 1 定义待优化的参数块，类似g2o的顶点。参数块：即待优化的变量
     // 参数块 1： 滑窗中位姿包括位置和姿态，共11帧
     for (int i = 0; i < WINDOW_SIZE + 1; i++)
@@ -843,7 +877,7 @@ void Estimator::optimization()
 
     // Step 2 通过残差约束来添加残差块，类似g2o的边
     // 上一次的边缘化结果作为这一次的先验
-    if (last_marginalization_info)
+    if (0 && last_marginalization_info)
     {
         // construct new marginlization_factor
         MarginalizationFactor *marginalization_factor = new MarginalizationFactor(last_marginalization_info);
@@ -967,6 +1001,7 @@ void Estimator::optimization()
     ceres::Solver::Options options;
 
     options.linear_solver_type = ceres::DENSE_SCHUR;
+    // options.linear_solver_type = ceres::DENSE_NORMAL_CHOLESKY;
     //options.num_threads = 2;
     options.trust_region_strategy_type = ceres::DOGLEG;
     options.max_num_iterations = NUM_ITERATIONS;
@@ -1131,6 +1166,7 @@ void Estimator::optimization()
             delete last_marginalization_info;
         last_marginalization_info = marginalization_info; // 本次边缘化的所有信息
         last_marginalization_parameter_blocks = parameter_blocks; // 代表该次边缘化对某些参数块形成约束，这些参数块在滑窗之后的地址
+        setRemainParameterKey(); // 2024-7-9
         
     }
     else // 如果次新帧不是关键帧：// 边缘化倒数第二帧
@@ -1207,6 +1243,7 @@ void Estimator::optimization()
                 delete last_marginalization_info;
             last_marginalization_info = marginalization_info;
             last_marginalization_parameter_blocks = parameter_blocks;
+            setRemainParameterKey(); // 2024-7-9
             
         }
     }
@@ -1358,3 +1395,1148 @@ void Estimator::setReloFrame(double _frame_stamp, int _frame_index, vector<Vecto
     }
 }
 
+void Estimator::setRemainParameterKey()
+{
+    // return ;
+    remain_Keys.clear();
+
+    int i = 0, j = 0;
+    int remain_count = last_marginalization_parameter_blocks.size();
+    // std::cout << "remain paramters count=" << remain_count << std::endl;
+    char szTmp[10] = { 0 };
+
+    for(i = 0; i < remain_count; i++)
+    {
+        double *addr = last_marginalization_parameter_blocks.at(i);
+
+        for(j = 0; j <= WINDOW_SIZE; j++)
+        {
+            if(addr == para_Pose[j])
+            {
+                // char szTmp[10] = { 0 };
+                // sprintf(szTmp, "pose%d", j);
+                // remain_Keys.emplace_back(szTmp);
+                remain_Keys.emplace_back((sym::EParameterType)j);
+                break ;
+            }
+            // else if(addr == para_SpeedBias[j])
+            // {
+            //     // char szTmp[10] = { 0 };
+            //     sprintf(szTmp, "vbabg%d", j);
+            //     remain_Keys.emplace_back(szTmp);
+            //     break ;
+            // }
+        }
+
+        if(addr == para_SpeedBias[0])
+        {
+            remain_Keys.emplace_back(sym::VBABG0);
+        }
+
+        if(addr == para_Ex_Pose[0])
+        {
+            // char szTmp[10] = { "ex_pose" };
+            // strcpy(szTmp, "ex_pose");
+            // remain_Keys.emplace_back(szTmp);
+
+            remain_Keys.emplace_back(sym::EX_POSE);
+        }
+    }
+
+    // std::cout << "output remain keys. size=" << remain_Keys.size() << std::endl;
+    // for(auto key: remain_Keys)
+    // {
+    //     std::cout << key << std::endl;
+    // }
+
+    sym::g_pMarginalizationInfo = last_marginalization_info;
+    sym::g_pVecKeys = &remain_Keys;
+
+    sym::last_marg_para_blocks = last_marginalization_parameter_blocks;
+}
+
+inline sym::optimizer_params_t OptimizerParams() {
+  sym::optimizer_params_t params{};
+  params.iterations = 50;
+  params.verbose = true;
+  params.initial_lambda = 1.0;
+  params.lambda_update_type = sym::lambda_update_type_t::STATIC;
+  params.lambda_up_factor = 10.0;
+  params.lambda_down_factor = 1 / 10.0;
+  params.lambda_lower_bound = 1.0e-8;
+  params.lambda_upper_bound = 1000000.0;
+  params.early_exit_min_reduction = 1.0e-6;
+  params.use_unit_damping = true;
+  params.use_diagonal_damping = false;
+  params.keep_max_diagonal_damping = false;
+  params.diagonal_damping_min = 1e-6;
+  params.enable_bold_updates = false;
+  return params;
+}
+
+void Estimator::symOptimization() // use symforce to optimize.
+{
+    constexpr double epsilon = 1e-10;
+    constexpr double reprojection_error_gnc_scale = 10;//1.0;//10;
+
+    // 创建Values和创建Factor的先后顺序可以调换
+    // build values.
+    sym::Valuesd values;
+    // sym::Values<double> values;
+
+    // 以下两个参数用于类BarronNoiseModel的，噪声模型相关的两个量
+    // 尺度参数 The scale parameter
+    values.Set({sym::Var::GNC_SCALE}, reprojection_error_gnc_scale); 
+    // μ凸性参数The mu convexity parameter 范围0->1, 用于计算参数alpha
+    values.Set(sym::Var::GNC_MU, 0.0); // huber loss ?
+    values.Set(sym::Var::GNC_MU, 0.5); // Cauchy loss ?
+    values.Set({sym::Var::MATCH_WEIGHT, 1, 1}, 1.0); // 点有效权重为1，否则为0
+
+    // poses: p q v ba bg
+    for (int i = 0; i <= WINDOW_SIZE; i++)
+    {
+        values.Set({'P', i}, Ps[i]);
+        values.Set({'Q', i}, sym::Rot3<double>::FromRotationMatrix(Rs[i]));
+        values.Set({'V', i}, Vs[i]);
+        values.Set({'A', i}, Bas[i]);
+        values.Set({'G', i}, Bgs[i]);
+    }
+
+    // extrinsic parameters: pbc qbc
+    for (int i = 0; i < NUM_OF_CAM; i++)
+    {
+        values.Set({'t', i}, tic[i]);
+        values.Set({'r', i}, sym::Rot3<double>::FromRotationMatrix(ric[i]));
+    }
+
+    // landmark's inverse depth
+    VectorXd dep = f_manager.getDepthVector();
+    for (int i = 0; i < f_manager.getFeatureCount(); i++)
+    {
+        values.Set({'L', i}, dep(i));
+    }
+
+    // td
+    if (ESTIMATE_TD)
+        values.Set({'d'}, td);
+
+    // epsilon
+    values.Set('e', sym::kDefaultEpsilond);
+
+    // preintegration
+    values.Set('g', G); // gravity
+    
+    //imu预积分是从第1帧开始，到第10帧结束，总共10帧
+    for (int i = 1; i <= WINDOW_SIZE; i++)
+    {
+        // delta_p
+        values.Set({'p', i}, pre_integrations[i]->delta_p);
+        // delta_q
+        // TODO: 测试发现似乎并没有sym::Quaternion<Scalar>这个类，还是用sym::Rot3吧
+        // values.Set({'q', i}, sym::Rot3<double>::FromRotationMatrix(pre_integrations[i]->delta_q));
+        values.Set({'q', i}, sym::Rot3<double>::FromQuaternion(pre_integrations[i]->delta_q));
+        // delta_v
+        values.Set({'v', i}, pre_integrations[i]->delta_v);
+        // sum_dt
+        values.Set({'s', i}, pre_integrations[i]->sum_dt);
+        // dp_dba
+        values.Set({'i', i, 1}, pre_integrations[i]->jacobian.block<3, 3>(O_P, O_BA));
+        // dp_dbg
+        values.Set({'i', i, 2}, pre_integrations[i]->jacobian.block<3, 3>(O_P, O_BG));
+        // dq_dbg
+        values.Set({'i', i, 3}, pre_integrations[i]->jacobian.block<3, 3>(O_R, O_BG));
+        // dv_dba
+        values.Set({'i', i, 4}, pre_integrations[i]->jacobian.block<3, 3>(O_V, O_BA));
+        // dv_dbg
+        values.Set({'i', i, 5}, pre_integrations[i]->jacobian.block<3, 3>(O_V, O_BG));
+        // linearized_ba
+        values.Set({'i', i, 6}, pre_integrations[i]->linearized_ba);
+        // linearized_bg
+        values.Set({'i', i, 7}, pre_integrations[i]->linearized_bg);
+
+        // sqrt_info
+        Eigen::Matrix<double, 15, 15> sqrt_info = Eigen::LLT<Eigen::Matrix<double, 15, 15>>(pre_integrations[i]->covariance.inverse()).matrixL().transpose();
+        values.Set({'i', i, 8}, sqrt_info);
+    }
+
+    // set feature values
+    for (auto &it_per_id : f_manager.feature)
+    {
+        it_per_id.used_num = it_per_id.feature_per_frame.size();
+        // 进行特征点有效性的检查
+        if (!(it_per_id.used_num >= 2 && it_per_id.start_frame < WINDOW_SIZE - 2))
+            continue;
+ 
+        // ++feature_index;
+
+        // 第一个观测到这个特征点的帧idx
+        int imu_i = it_per_id.start_frame, imu_j = imu_i - 1;
+        
+        // 特征点在第一个帧下的归一化相机系坐标
+        Vector3d pts_i = it_per_id.feature_per_frame[0].point;
+
+        // 以'f' + 特征点序号 + 特征点所属帧序号作为key.
+        values.Set({'f', it_per_id.feature_id, imu_i}, pts_i);
+
+        // 遍历看到这个特征点的所有KF
+        for (auto &it_per_frame : it_per_id.feature_per_frame)
+        {
+            imu_j++;
+            if (imu_i == imu_j) // 自己跟自己不能形成重投影
+            {
+                continue;
+            }
+            // 取出另一帧的归一化相机坐标
+            Vector3d pts_j = it_per_frame.point;
+
+            values.Set({'f', it_per_id.feature_id, imu_j}, pts_j);
+        }
+      
+    }
+
+    // set relocation values
+    if(relocalization_info)
+    {
+        int feature_index = 0;
+        for(auto match_point : match_points)
+        {
+            values.Set({'f', feature_index}, Vector3d(match_point.x(), match_point.y(), 1.0));
+            feature_index++;
+        }
+
+        // relo_Pose
+        values.Set({'P', 1, 1}, Vector3d(relo_Pose[0], relo_Pose[1], relo_Pose[2]));
+        values.Set({'Q', 1, 1}, sym::Rot3<double>(Eigen::Quaternion<double>(relo_Pose[6], relo_Pose[3], relo_Pose[4], relo_Pose[5])));
+    }
+
+
+    // build factors.
+    std::vector<sym::Factord> factors;
+    // std::vector<sym::Factor<double>> factors;
+
+    // use last marginalization result to create a marg factor.
+
+    std::cout << "last_marginalization_info addr = " << reinterpret_cast<long>(last_marginalization_info) << std::endl;
+
+    // if (last_marginalization_info)
+    if (0 && last_marginalization_info)
+    {
+        /*
+        factors.push_back(sym::Factor<double>::Hessian(
+            sym::MargFactor<double, RESIDUAL_DIM1>,
+            // input arguments
+            {
+                {'P', 0}, {'Q', 0},
+                {'P', 1}, {'Q', 1},
+                {'P', 2}, {'Q', 2},
+                {'P', 3}, {'Q', 3},
+                {'P', 4}, {'Q', 4},
+                {'P', 5}, {'Q', 5},
+                {'P', 6}, {'Q', 6},
+                {'P', 7}, {'Q', 7},
+                {'P', 8}, {'Q', 8},
+                {'P', 9}, {'Q', 9},
+                {'t', 0}, {'r', 0},
+                {'V', 0}, {'A', 0}, {'G', 0}
+            },
+            // keys to optimize
+            {}));
+        */
+
+        
+        if(last_marginalization_flag == MARGIN_OLD)
+        {         
+            const std::vector<sym::Key> factor_keys = {
+                {'P', 0}, {'Q', 0},
+                {'P', 1}, {'Q', 1},
+                {'P', 2}, {'Q', 2},
+                {'P', 3}, {'Q', 3},
+                {'P', 4}, {'Q', 4},
+                {'P', 5}, {'Q', 5},
+                {'P', 6}, {'Q', 6},
+                {'P', 7}, {'Q', 7},
+                {'P', 8}, {'Q', 8},
+                {'P', 9}, {'Q', 9},
+                {'t', 0}, {'r', 0},
+                {'V', 0}, {'A', 0}, {'G', 0}};
+/*
+            const std::vector<sym::Key> optimized_keys = {
+                {'P', 0}, {'Q', 0},
+                {'P', 1}, {'Q', 1},
+                {'P', 2}, {'Q', 2},
+                {'P', 3}, {'Q', 3},
+                {'P', 4}, {'Q', 4},
+                {'P', 5}, {'Q', 5},
+                {'P', 6}, {'Q', 6},
+                {'P', 7}, {'Q', 7},
+                {'P', 8}, {'Q', 8},
+                {'P', 9}, {'Q', 9},
+                {'t', 0}, {'r', 0},
+                {'V', 0}, {'A', 0}, {'G', 0}};
+            */
+
+            std::vector<sym::Key> optimized_keys;
+#if 1            
+            for(int i = 0; i <= 9; i++)
+            {
+                optimized_keys.push_back({'P', i});
+                optimized_keys.push_back({'Q', i});
+            }
+
+            // if ESTIMATE_EXTRINSIC !=0 optimize extrinsic parameters
+            // otherwise it's another way to fix them.(set constant)
+            // if (ESTIMATE_EXTRINSIC)
+            {
+                optimized_keys.push_back({'t', 0});
+                optimized_keys.push_back({'r', 0});
+            }
+
+            optimized_keys.push_back({'V', 0});
+            optimized_keys.push_back({'A', 0});
+            optimized_keys.push_back({'G', 0});
+#else           
+            for(auto key : remain_Keys)
+            {
+                switch (key)
+                {
+                case sym::POSE0:
+                    {
+                        optimized_keys.push_back({'P', 0});
+                        optimized_keys.push_back({'Q', 0});
+                    }        
+                    break;
+
+                case sym::EParameterType::POSE1:
+                    {
+                        optimized_keys.push_back({'P', 1});
+                        optimized_keys.push_back({'Q', 1});
+                    }        
+                    break;
+
+                case sym::POSE2:
+                    {
+                        optimized_keys.push_back({'P', 2});
+                        optimized_keys.push_back({'Q', 2});
+                    }        
+                    break;        
+                
+                case sym::POSE3:
+                    {
+                        optimized_keys.push_back({'P', 3});
+                        optimized_keys.push_back({'Q', 3});
+                    }        
+                    break;
+
+                case sym::POSE4:
+                    {
+                        optimized_keys.push_back({'P', 4});
+                        optimized_keys.push_back({'Q', 4});
+                    }        
+                    break;
+
+                case sym::POSE5:
+                    {
+                        optimized_keys.push_back({'P', 5});
+                        optimized_keys.push_back({'Q', 5});
+                    }        
+                    break;  
+
+                case sym::POSE6:
+                    {
+                        optimized_keys.push_back({'P', 6});
+                        optimized_keys.push_back({'Q', 6});
+                    }        
+                    break;
+
+                case sym::POSE7:
+                    {
+                        optimized_keys.push_back({'P', 7});
+                        optimized_keys.push_back({'Q', 7});
+                    }        
+                    break;
+
+                case sym::POSE8:
+                    {
+                        optimized_keys.push_back({'P', 8});
+                        optimized_keys.push_back({'Q', 8});
+                    }        
+                    break;  
+
+                case sym::POSE9:
+                    {
+                        optimized_keys.push_back({'P', 9});
+                        optimized_keys.push_back({'Q', 9});
+                    }        
+                    break;
+
+                case sym::EX_POSE:
+                    {
+                        optimized_keys.push_back({'t', 0});
+                        optimized_keys.push_back({'r', 0});
+                    }        
+                    break;
+
+                case sym::VBABG0:
+                    {
+                        optimized_keys.push_back({'V', 0});
+                        optimized_keys.push_back({'A', 0});
+                        optimized_keys.push_back({'G', 0});
+                    }        
+                    break;  
+
+                default:
+                    break;
+                }
+            }
+#endif
+            factors.push_back(sym::Factor<double>::Hessian(
+                // sym::MargFactor<double, sym::RESIDUAL_DIM1>, factor_keys,
+                sym::MargOldFactor<double>, factor_keys,
+                optimized_keys));
+        }
+        else if(last_marginalization_flag == MARGIN_SECOND_NEW)
+        {
+            const std::vector<sym::Key> factor_keys = {
+                {'P', 0}, {'Q', 0},
+                {'P', 1}, {'Q', 1},
+                {'P', 2}, {'Q', 2},
+                {'P', 3}, {'Q', 3},
+                {'P', 4}, {'Q', 4},
+                {'P', 5}, {'Q', 5},
+                {'P', 6}, {'Q', 6},
+                {'P', 7}, {'Q', 7},
+                {'P', 8}, {'Q', 8},
+                // {'P', 9}, {'Q', 9},
+                {'t', 0}, {'r', 0},
+                {'V', 0}, {'A', 0}, {'G', 0}};
+
+            std::vector<sym::Key> optimized_keys;
+#if 1
+            for(int i = 0; i <= 8; i++)
+            {
+                optimized_keys.push_back({'P', i});
+                optimized_keys.push_back({'Q', i});
+            }
+
+            // if ESTIMATE_EXTRINSIC !=0 optimize extrinsic parameters
+            // otherwise it's another way to fix them.(set constant)
+            // if (ESTIMATE_EXTRINSIC)
+            {
+                optimized_keys.push_back({'t', 0});
+                optimized_keys.push_back({'r', 0});
+            }
+
+            optimized_keys.push_back({'V', 0});
+            optimized_keys.push_back({'A', 0});
+            optimized_keys.push_back({'G', 0});
+#else
+            for(auto key : remain_Keys)
+            {
+                switch (key)
+                {
+                case sym::POSE0:
+                    {
+                        optimized_keys.push_back({'P', 0});
+                        optimized_keys.push_back({'Q', 0});
+                    }        
+                    break;
+
+                case sym::POSE1:
+                    {
+                        optimized_keys.push_back({'P', 1});
+                        optimized_keys.push_back({'Q', 1});
+                    }        
+                    break;
+
+                case sym::POSE2:
+                    {
+                        optimized_keys.push_back({'P', 2});
+                        optimized_keys.push_back({'Q', 2});
+                    }        
+                    break;        
+                
+                case sym::POSE3:
+                    {
+                        optimized_keys.push_back({'P', 3});
+                        optimized_keys.push_back({'Q', 3});
+                    }        
+                    break;
+
+                case sym::POSE4:
+                    {
+                        optimized_keys.push_back({'P', 4});
+                        optimized_keys.push_back({'Q', 4});
+                    }        
+                    break;
+
+                case sym::POSE5:
+                    {
+                        optimized_keys.push_back({'P', 5});
+                        optimized_keys.push_back({'Q', 5});
+                    }        
+                    break;  
+
+                case sym::POSE6:
+                    {
+                        optimized_keys.push_back({'P', 6});
+                        optimized_keys.push_back({'Q', 6});
+                    }        
+                    break;
+
+                case sym::POSE7:
+                    {
+                        optimized_keys.push_back({'P', 7});
+                        optimized_keys.push_back({'Q', 7});
+                    }        
+                    break;
+
+                case sym::POSE8:
+                    {
+                        optimized_keys.push_back({'P', 8});
+                        optimized_keys.push_back({'Q', 8});
+                    }        
+                    break;  
+
+                case sym::POSE9:
+                    {
+                        // optimized_keys.push_back({'P', 9});
+                        // optimized_keys.push_back({'Q', 9});
+                    }        
+                    break;
+
+                case sym::EX_POSE:
+                    {
+                        optimized_keys.push_back({'t', 0});
+                        optimized_keys.push_back({'r', 0});
+                    }        
+                    break;
+
+                case sym::VBABG0:
+                    {
+                        optimized_keys.push_back({'V', 0});
+                        optimized_keys.push_back({'A', 0});
+                        optimized_keys.push_back({'G', 0});
+                    }        
+                    break;  
+
+                default:
+                    break;
+                } // switch(key)
+            }
+#endif
+            factors.push_back(sym::Factor<double>::Hessian(
+                // sym::MargFactor<double, sym::RESIDUAL_DIM2>, factor_keys,
+                sym::MargNewFactor<double>, factor_keys,
+                optimized_keys));
+        }
+    
+    } // if (last_marginalization_info)
+
+    // imu factor
+    for (int i = 0; i < WINDOW_SIZE; i++)
+    {
+        int j = i + 1;
+        // 时间过长这个约束就不可信了
+        if (pre_integrations[j]->sum_dt > 10.0)
+            continue;
+
+        std::vector<sym::Key> factor_keys;
+        std::vector<sym::Key> optimized_keys;
+        
+        // frame i's PQVBABG
+        factor_keys.push_back({'P', i});
+        factor_keys.push_back({'Q', i});
+        factor_keys.push_back({'V', i});
+        factor_keys.push_back({'A', i});
+        factor_keys.push_back({'G', i});
+
+        // frame j's PQVBABG
+        factor_keys.push_back({'P', j});
+        factor_keys.push_back({'Q', j});
+        factor_keys.push_back({'V', j});
+        factor_keys.push_back({'A', j});
+        factor_keys.push_back({'G', j});
+
+        // preintegration: delta_p, delta_q, delta_v
+        factor_keys.push_back({'p', j});
+        factor_keys.push_back({'q', j});
+        factor_keys.push_back({'v', j});
+
+        // gravity
+        factor_keys.push_back('g');
+
+        // sum_dt
+        factor_keys.push_back({'s', j});
+
+        // dp_dba etc.
+        factor_keys.push_back({'i', j, 1});
+        factor_keys.push_back({'i', j, 2});
+        factor_keys.push_back({'i', j, 3});
+        factor_keys.push_back({'i', j, 4});
+        factor_keys.push_back({'i', j, 5});
+        factor_keys.push_back({'i', j, 6});
+        factor_keys.push_back({'i', j, 7});
+        factor_keys.push_back({'i', j, 8});
+
+        // frame i's PQVBABG
+        optimized_keys.push_back({'P', i});
+        optimized_keys.push_back({'Q', i});
+        optimized_keys.push_back({'V', i});
+        optimized_keys.push_back({'A', i});
+        optimized_keys.push_back({'G', i});
+
+        // frame j's PQVBABG
+        optimized_keys.push_back({'P', j});
+        optimized_keys.push_back({'Q', j});
+        optimized_keys.push_back({'V', j});
+        optimized_keys.push_back({'A', j});
+        optimized_keys.push_back({'G', j});
+
+        factors.push_back(sym::Factor<double>::Hessian(
+            sym::ImuFactor<double>, factor_keys,
+            optimized_keys));
+    }
+
+    // projection factor
+    // int f_m_cnt = 0;
+    int feature_index = -1;
+    // 视觉重投影的约束
+    // 遍历每一个特征点
+    // it_per_id 是FeaturePerId类型
+    for (auto &it_per_id : f_manager.feature)
+    {
+        it_per_id.used_num = it_per_id.feature_per_frame.size();
+        // 进行特征点有效性的检查
+        if (!(it_per_id.used_num >= 2 && it_per_id.start_frame < WINDOW_SIZE - 2))
+            continue;
+ 
+        ++feature_index;
+
+        // 第一个观测到这个特征点的帧idx
+        int imu_i = it_per_id.start_frame, imu_j = imu_i - 1;
+        
+        // 特征点在第一个帧下的归一化相机系坐标
+        Vector3d pts_i = it_per_id.feature_per_frame[0].point;
+
+        // 遍历看到这个特征点的所有KF
+        for (auto &it_per_frame : it_per_id.feature_per_frame)
+        {
+            imu_j++;
+            if (imu_i == imu_j) // 自己跟自己不能形成重投影
+            {
+                continue;
+            }
+            // 取出另一帧的归一化相机坐标
+            Vector3d pts_j = it_per_frame.point;
+            // 带有时间延时的是另一种形式
+            if (ESTIMATE_TD)
+            {
+                // TODO: if necessary, realize it.
+                /* 
+                    ProjectionTdFactor *f_td = new ProjectionTdFactor(pts_i, pts_j, it_per_id.feature_per_frame[0].velocity, it_per_frame.velocity,
+                                                                     it_per_id.feature_per_frame[0].cur_td, it_per_frame.cur_td,
+                                                                     it_per_id.feature_per_frame[0].uv.y(), it_per_frame.uv.y());
+                    problem.AddResidualBlock(f_td, loss_function, para_Pose[imu_i], para_Pose[imu_j], para_Ex_Pose[0], para_Feature[feature_index], para_Td[0]);
+                */
+            }
+            else
+            {
+                std::vector<sym::Key> factor_keys;
+                std::vector<sym::Key> optimized_keys;
+                factor_keys.push_back({'f', it_per_id.feature_id, imu_i});
+                factor_keys.push_back({'f', it_per_id.feature_id, imu_j});
+                factor_keys.push_back({'P', imu_i});
+                factor_keys.push_back({'Q', imu_i});
+                factor_keys.push_back({'P', imu_j});
+                factor_keys.push_back({'Q', imu_j});
+                factor_keys.push_back({'t', 0});
+                factor_keys.push_back({'r', 0});
+                factor_keys.push_back({'L', feature_index});
+                
+                // factor_keys.push_back({sym::Var::MATCH_WEIGHT, 1, 1});
+                // factor_keys.push_back(sym::Var::GNC_MU);
+                // factor_keys.push_back(sym::Var::GNC_SCALE);
+                // factor_keys.push_back(sym::Var::EPSILON);
+
+                optimized_keys.push_back({'P', imu_i});
+                optimized_keys.push_back({'Q', imu_i});
+                optimized_keys.push_back({'P', imu_j});
+                optimized_keys.push_back({'Q', imu_j});
+                // if (ESTIMATE_EXTRINSIC)
+                {
+                    optimized_keys.push_back({'t', 0});
+                    optimized_keys.push_back({'r', 0});
+                }
+                optimized_keys.push_back({'L', feature_index});
+
+                factors.push_back(sym::Factor<double>::Hessian(
+                    sym::ProjectionFactor<double>, factor_keys,
+                    // sym::ProjectionGncFactor<double>, factor_keys,
+                    optimized_keys));
+
+            }
+            // f_m_cnt++;
+        }
+    } // for (auto &it_per_id : f_manager.feature)
+
+    // 回环检测相关的约束
+    if(relocalization_info)
+    {
+        //printf("set relocalization factor! \n");
+        
+        int retrive_feature_index = 0;
+        int feature_index = -1;
+        // 遍历现有地图点
+        for (auto &it_per_id : f_manager.feature)
+        {
+            it_per_id.used_num = it_per_id.feature_per_frame.size();
+            if (!(it_per_id.used_num >= 2 && it_per_id.start_frame < WINDOW_SIZE - 2))
+                continue;
+            ++feature_index;
+            int start = it_per_id.start_frame;
+            if(start <= relo_frame_local_index) // 这个地图点能被对应的当前帧看到
+            {   
+                // 寻找回环帧能看到的地图点
+                while((int)match_points[retrive_feature_index].z() < it_per_id.feature_id)
+                {
+                    retrive_feature_index++;
+                }
+                // 这个地图点也能被回环帧看到
+                if((int)match_points[retrive_feature_index].z() == it_per_id.feature_id)
+                {
+                    std::vector<sym::Key> factor_keys;
+                    std::vector<sym::Key> optimized_keys;
+                    factor_keys.push_back({'f', it_per_id.feature_id, it_per_id.start_frame});
+                    factor_keys.push_back({'f', retrive_feature_index});
+                    factor_keys.push_back({'P', start});
+                    factor_keys.push_back({'Q', start});
+                    factor_keys.push_back({'P', 1, 1}); // relo_Pose
+                    factor_keys.push_back({'Q', 1, 1}); // relo_Pose
+                    factor_keys.push_back({'t', 0});
+                    factor_keys.push_back({'r', 0});
+                    factor_keys.push_back({'L', feature_index});
+                    
+                    // factor_keys.push_back({sym::Var::MATCH_WEIGHT, 1, 1});
+                    // factor_keys.push_back(sym::Var::GNC_MU);
+                    // factor_keys.push_back(sym::Var::GNC_SCALE);
+                    // factor_keys.push_back(sym::Var::EPSILON);
+
+                    optimized_keys.push_back({'P', start});
+                    optimized_keys.push_back({'Q', start});
+                    optimized_keys.push_back({'P', 1, 1});
+                    optimized_keys.push_back({'Q', 1, 1});
+                    // if (ESTIMATE_EXTRINSIC)
+                    {
+                        optimized_keys.push_back({'t', 0});
+                        optimized_keys.push_back({'r', 0});
+                    }
+                    optimized_keys.push_back({'L', feature_index});
+
+                    factors.push_back(sym::Factor<double>::Hessian(
+                        sym::ProjectionFactor<double>, factor_keys,
+                        // sym::ProjectionGncFactor<double>, factor_keys,
+                        optimized_keys));
+
+                    retrive_feature_index++;
+                }     
+            }
+        }
+
+    }
+
+
+    // Create and set up Optimizer
+   
+    // auto params = sym::DefaultOptimizerParams();
+    auto params = OptimizerParams();
+    params.iterations = 50;
+    params.verbose = false;//true;
+    /* 
+     * work well
+    params.use_diagonal_damping = true;
+    // params.use_unit_damping = false;
+    params.use_unit_damping = true;
+    params.keep_max_diagonal_damping = true;
+    // params.lambda_update_type = sym::lambda_update_type_t::DYNAMIC;
+    */
+
+    // 2024-7-15
+/*    params.iterations = 50;
+    params.initial_lambda = 1.0e0;
+    // params.lambda_update_type = sym::lambda_update_type_t::DYNAMIC;
+    params.lambda_up_factor = 4.0;
+    params.lambda_down_factor = 0.05;
+    params.lambda_lower_bound = 1.0e-8;
+    params.lambda_upper_bound = 1.0e6;
+*/ 
+    // 以下三行必须为true
+    params.use_diagonal_damping = true;
+    params.use_unit_damping = true;
+    params.keep_max_diagonal_damping = true;
+
+    /*
+     *  lambda DYNAMIC updating is inapplicable to diagonal damping
+    // auto params2 = sym::DefaultOptimizerParams();
+    params.lambda_update_type = sym::lambda_update_type_t::DYNAMIC;
+    params.initial_lambda = 1.0;
+    params.lambda_lower_bound = 1.0e-8;
+    params.lambda_upper_bound = 1.0e6;
+    */
+    // the end.
+    
+    // sym::Optimizer<double> optimizer(params, factors);
+    DenseOptimizer<double> optimizer(params, factors); // dense optimizer better. 2024-7-15.
+    // DenseOptimizer<double> optimizer(params2, factors); // dense optimizer better. 2024-7-15.
+    /*
+    sym::Optimizerd optimizer(optimizer_params, factors, "BundleAdjustmentOptimizer", optimized_keys,
+                            params.epsilon);
+
+    sym::Optimizerd optimizer(optimizer_params, {BuildFactor()}, "BundleAdjustmentOptimizer", {},
+                            params.epsilon);
+    */                        
+
+    // Optimize
+    const auto stats = optimizer.Optimize(values);
+    // const sym::Optimizerd::Stats stats = optimizer.Optimize(values);
+
+    const auto& iteration_stats = stats.iterations;
+  const auto& first_iter = iteration_stats.front();
+  const auto& last_iter = iteration_stats.back();
+
+  // Note that the best iteration (with the best error, and representing the Values that gives
+  // that error) may not be the last iteration, if later steps did not successfully decrease the
+  // cost
+  const auto& best_iter = iteration_stats[stats.best_index];
+
+  spdlog::info("Iterations: {}", last_iter.iteration);
+  spdlog::info("Lambda: {}", last_iter.current_lambda);
+  spdlog::info("Initial error: {}", first_iter.new_error);
+  spdlog::info("Final error: {}", best_iter.new_error);
+  spdlog::info("Status: {}", stats.status);
+
+
+    // update states
+    // TODO:
+    // if(stats.status == sym::optimization_status_t::SUCCESS)
+    {
+        Vector3d origin_R0 = Utility::R2ypr(Rs[0]);
+        Vector3d origin_P0 = Ps[0];
+
+        if (failure_occur)
+        {
+            origin_R0 = Utility::R2ypr(last_R0);
+            origin_P0 = last_P0;
+            failure_occur = 0;
+        }
+        sym::Rot3d Q0= values.At<sym::Rot3d>({'Q', 0});
+        Vector3d origin_R00 = Utility::R2ypr(Q0.ToRotationMatrix());
+        double y_diff = origin_R0.x() - origin_R00.x();
+
+        Matrix3d rot_diff = Utility::ypr2R(Vector3d(y_diff, 0, 0));
+        if (abs(abs(origin_R0.y()) - 90) < 1.0 || abs(abs(origin_R00.y()) - 90) < 1.0)
+        {
+            ROS_DEBUG("euler singular point!");
+            rot_diff = Rs[0] * Q0.ToRotationMatrix().transpose();
+        }
+
+        Vector3d P0 = values.At<Eigen::Vector3d>({'P', 0});
+        for (int i = 0; i <= WINDOW_SIZE; i++)
+        {
+            sym::Rot3d Qi= values.At<sym::Rot3d>({'Q', i});
+            Rs[i] = rot_diff * Qi.Quaternion().normalized().toRotationMatrix();
+            
+            Vector3d Pi = values.At<Eigen::Vector3d>({'P', i});
+            Ps[i] = rot_diff * (Pi - P0) + origin_P0;
+
+            Vs[i] = rot_diff * values.At<Eigen::Vector3d>({'V', i});
+
+            Bas[i] = values.At<Eigen::Vector3d>({'A', i});
+
+            Bgs[i] = values.At<Eigen::Vector3d>({'G', i});
+        }
+
+        if (ESTIMATE_EXTRINSIC)
+        {
+            for (int i = 0; i < NUM_OF_CAM; i++)
+            {
+                tic[i] = values.At<Eigen::Vector3d>({'t', i});
+                ric[i] = values.At<sym::Rot3d>({'r', i}).ToRotationMatrix();
+            }
+        }
+
+        // VectorXd dep = f_manager.getDepthVector();
+        for (int i = 0; i < f_manager.getFeatureCount(); i++)
+            dep(i) = values.At<double>({'L', i});
+        f_manager.setDepth(dep);
+        if (ESTIMATE_TD)
+            td =  values.At<double>('d');
+
+        // relative info between two loop frame
+        if(relocalization_info)
+        { 
+            Matrix3d relo_r;
+            Vector3d relo_t;
+            // relo_r = rot_diff * Quaterniond(relo_Pose[6], relo_Pose[3], relo_Pose[4], relo_Pose[5]).normalized().toRotationMatrix();
+            relo_r = rot_diff * values.At<sym::Rot3d>({'Q', 1, 1}).Quaternion().normalized().toRotationMatrix();
+            relo_t = rot_diff * (values.At<Eigen::Vector3d>({'P', 1, 1}) - P0) + origin_P0;
+            double drift_correct_yaw;
+            drift_correct_yaw = Utility::R2ypr(prev_relo_r).x() - Utility::R2ypr(relo_r).x();
+            drift_correct_r = Utility::ypr2R(Vector3d(drift_correct_yaw, 0, 0));
+            drift_correct_t = prev_relo_t - drift_correct_r * relo_t;   
+            relo_relative_t = relo_r.transpose() * (Ps[relo_frame_local_index] - relo_t);
+            relo_relative_q = relo_r.transpose() * Rs[relo_frame_local_index];
+            relo_relative_yaw = Utility::normalizeAngle(Utility::R2ypr(Rs[relo_frame_local_index]).x() - Utility::R2ypr(relo_r).x());
+            //cout << "vins relo " << endl;
+            //cout << "vins relative_t " << relo_relative_t.transpose() << endl;
+            //cout << "vins relative_yaw " <<relo_relative_yaw << endl;
+            relocalization_info = 0;
+
+        }
+    }
+
+    // marginalization
+    // TODO:
+    computeMarginalizationResult();
+    // TODO: should use sym::factor & sym::Linearizer to construct marginalization result.
+
+    last_marginalization_flag = marginalization_flag;
+}
+
+void Estimator::computeMarginalizationResult()
+{
+    ceres::LossFunction *loss_function;
+    //loss_function = new ceres::HuberLoss(1.0);
+    loss_function = new ceres::CauchyLoss(1.0);
+
+    // // 把优化后double -> eigen
+    // double2vector();
+
+    // 把优化后eigen -> double
+    vector2double();
+
+    // Step 4 边缘化
+    // 科普一下舒尔补
+    TicToc t_whole_marginalization;
+    // 如果次新帧是关键帧，将边缘化最老帧，及其看到的路标点和IMU数据，将其转化为先验：
+    if (marginalization_flag == MARGIN_OLD)
+    {
+        int marg_feature_count = 0; // added on 2024-7-5
+        // 一个用来边缘化操作的对象
+        MarginalizationInfo *marginalization_info = new MarginalizationInfo();
+        // 这里类似手写高斯牛顿，因此也需要都转成double数组
+        vector2double();
+        // 关于边缘化有几点注意的地方
+        // 1、找到需要边缘化的参数块，这里是地图点，第0帧位姿，第0帧速度零偏
+        // 2、找到构造高斯牛顿下降时跟这些待边缘化相关的参数块有关的残差约束，那就是预积分约束，重投影约束，以及上一次边缘化约束
+        // 3、这些约束连接的参数块中，不需要被边缘化的参数块，就是被提供先验约束的部分，也就是滑窗中剩下的位姿和速度零偏
+
+        //1、将上一次先验残差项传递给marginalization_info
+        // 上一次的边缘化结果
+        if (last_marginalization_info)
+        {
+            vector<int> drop_set;
+            // last_marginalization_parameter_blocks是上一次边缘化对哪些当前参数块有约束
+            for (int i = 0; i < static_cast<int>(last_marginalization_parameter_blocks.size()); i++)
+            {
+                // 涉及到的待边缘化的上一次边缘化留下来的当前参数块只有位姿和速度零偏
+                if (last_marginalization_parameter_blocks[i] == para_Pose[0] ||
+                    last_marginalization_parameter_blocks[i] == para_SpeedBias[0])
+                    drop_set.push_back(i);
+            }
+            // 处理方式和其他残差块相同
+            // construct new marginlization_factor
+            MarginalizationFactor *marginalization_factor = new MarginalizationFactor(last_marginalization_info);
+            ResidualBlockInfo *residual_block_info = new ResidualBlockInfo(marginalization_factor, NULL,
+                                                                           last_marginalization_parameter_blocks,
+                                                                           drop_set);
+
+            marginalization_info->addResidualBlockInfo(residual_block_info);
+        }
+
+        //2、将第0帧和第1帧间的IMU因子IMUFactor(pre_integrations[1])，添加到marginalization_info中
+        // 只有第1个预积分和待边缘化参数块相连
+        {
+            if (pre_integrations[1]->sum_dt < 10.0)
+            {
+                // 跟构建ceres约束问题一样，这里也需要得到残差和雅克比
+                IMUFactor* imu_factor = new IMUFactor(pre_integrations[1]);
+                ResidualBlockInfo *residual_block_info = new ResidualBlockInfo(imu_factor, NULL,
+                                                                           vector<double *>{para_Pose[0], para_SpeedBias[0], para_Pose[1], para_SpeedBias[1]},
+                                                                           vector<int>{0, 1}); // 这里就是第0和1个参数块是需要被边缘化的
+                marginalization_info->addResidualBlockInfo(residual_block_info);
+            }
+        }
+
+        //3、将第一次观测为第0帧的所有路标点对应的视觉观测，添加到marginalization_info中
+        // 遍历视觉重投影的约束
+        {
+            int feature_index = -1;
+            for (auto &it_per_id : f_manager.feature)
+            {
+                it_per_id.used_num = it_per_id.feature_per_frame.size();
+                if (!(it_per_id.used_num >= 2 && it_per_id.start_frame < WINDOW_SIZE - 2))
+                    continue;
+
+                ++feature_index;
+
+                int imu_i = it_per_id.start_frame, imu_j = imu_i - 1;
+                // 只找能被第0帧看到的特征点
+                if (imu_i != 0)
+                    continue;
+
+                marg_feature_count++;
+                Vector3d pts_i = it_per_id.feature_per_frame[0].point;
+
+                // 遍历看到这个特征点的所有KF，通过这个特征点，建立和第0帧的约束
+                for (auto &it_per_frame : it_per_id.feature_per_frame)
+                {
+                    imu_j++;
+                    if (imu_i == imu_j)
+                        continue;
+
+                    Vector3d pts_j = it_per_frame.point;
+                    // 根据是否约束延时确定残差阵
+                    if (ESTIMATE_TD)
+                    {
+                        ProjectionTdFactor *f_td = new ProjectionTdFactor(pts_i, pts_j, it_per_id.feature_per_frame[0].velocity, it_per_frame.velocity,
+                                                                          it_per_id.feature_per_frame[0].cur_td, it_per_frame.cur_td,
+                                                                          it_per_id.feature_per_frame[0].uv.y(), it_per_frame.uv.y());
+                        ResidualBlockInfo *residual_block_info = new ResidualBlockInfo(f_td, loss_function,
+                                                                                        vector<double *>{para_Pose[imu_i], para_Pose[imu_j], para_Ex_Pose[0], para_Feature[feature_index], para_Td[0]},
+                                                                                        vector<int>{0, 3});
+                        marginalization_info->addResidualBlockInfo(residual_block_info);
+                    }
+                    else
+                    {
+                        ProjectionFactor *f = new ProjectionFactor(pts_i, pts_j);
+                        // 重点说一下vector<int>{0, 3}: 表示要被drop或者marg掉的参数序号有0和3，对应到的参数块即为para_Pose[imu_i]和para_Feature[feature_index]，即第0帧的位姿和路标点需要被marg
+                        ResidualBlockInfo *residual_block_info = new ResidualBlockInfo(f, loss_function,
+                                                                                       vector<double *>{para_Pose[imu_i], para_Pose[imu_j], para_Ex_Pose[0], para_Feature[feature_index]},
+                                                                                       vector<int>{0, 3}); // 这里第0帧和地图点被margin
+                        marginalization_info->addResidualBlockInfo(residual_block_info);                        
+                    }
+                }
+            }
+        }
+        std::cout << "marg old: marg_feature_count=" << marg_feature_count << std::endl;
+
+        // 所有的残差块都收集好了
+        TicToc t_pre_margin;
+        //4、计算每个残差，对应的Jacobian，并将各参数块拷贝到统一的内存（parameter_block_data）中
+        // 进行预处理
+        marginalization_info->preMarginalize();
+        ROS_DEBUG("pre marginalization %f ms", t_pre_margin.toc());
+        
+        TicToc t_margin;
+        //5、多线程构造先验项舒尔补AX=b的结构，在X0处线性化计算Jacobian和残差
+        // 边缘化操作
+        marginalization_info->marginalize();
+        ROS_DEBUG("marginalization %f ms", t_margin.toc());
+
+        //6.调整参数块在下一次窗口中对应的位置（往前移一格），注意这里是指针，后面slideWindow中会赋新值，这里只是提前占座
+        // 即将滑窗，因此记录新地址对应的老地址
+        // 关于addr_shift补充说明一点：其作用是为了记录边缘化之后保留的参数块，在滑窗中新的位置。
+        // 比如marg老帧时，原来滑窗第1帧的位姿其位置就移动到第0帧（往前移一格），以此类推
+        std::unordered_map<long, double *> addr_shift;
+        for (int i = 1; i <= WINDOW_SIZE; i++)
+        {
+            // 位姿和速度都要滑窗移动
+            addr_shift[reinterpret_cast<long>(para_Pose[i])] = para_Pose[i - 1];
+            addr_shift[reinterpret_cast<long>(para_SpeedBias[i])] = para_SpeedBias[i - 1];
+        }
+        // 外参和时间延时不变
+        for (int i = 0; i < NUM_OF_CAM; i++)
+            addr_shift[reinterpret_cast<long>(para_Ex_Pose[i])] = para_Ex_Pose[i];
+        if (ESTIMATE_TD)
+        {
+            addr_shift[reinterpret_cast<long>(para_Td[0])] = para_Td[0];
+        }
+        // parameter_blocks实际上就是addr_shift的索引的集合及搬进去的新地址
+        vector<double *> parameter_blocks = marginalization_info->getParameterBlocks(addr_shift);
+
+        if (last_marginalization_info)
+            delete last_marginalization_info;
+        last_marginalization_info = marginalization_info; // 本次边缘化的所有信息
+        last_marginalization_parameter_blocks = parameter_blocks; // 代表该次边缘化对某些参数块形成约束，这些参数块在滑窗之后的地址
+        setRemainParameterKey(); // 2024-7-9
+        
+    }
+    else // 如果次新帧不是关键帧：// 边缘化倒数第二帧
+    {
+        // 要求有上一次边缘化的结果，同时即将被margin掉的（para_Pose[WINDOW_SIZE - 1]）在上一次边缘化后的约束中
+        // 预积分结果合并，因此只有位姿margin掉
+        if (last_marginalization_info &&
+            std::count(std::begin(last_marginalization_parameter_blocks), std::end(last_marginalization_parameter_blocks), para_Pose[WINDOW_SIZE - 1])) // 统计para_Pose[WINDOW_SIZE - 1]在上一次边缘化的参数块中出现的次数
+        {
+
+            //1.保留次新帧的IMU测量，丢弃该帧的视觉测量，将上一次先验残差项传递给marginalization_info
+            MarginalizationInfo *marginalization_info = new MarginalizationInfo();
+            vector2double();
+            if (last_marginalization_info)
+            {
+                vector<int> drop_set;
+                for (int i = 0; i < static_cast<int>(last_marginalization_parameter_blocks.size()); i++)
+                {
+                    // 速度零偏只会margin第1个（并且只有在marg老帧的时候，才会marg第一个速度零偏），不可能出现倒数第二个
+                    ROS_ASSERT(last_marginalization_parameter_blocks[i] != para_SpeedBias[WINDOW_SIZE - 1]);
+                    // 这种case只会margin掉倒数第二个位姿
+                    if (last_marginalization_parameter_blocks[i] == para_Pose[WINDOW_SIZE - 1])
+                        drop_set.push_back(i);
+                }
+                // construct new marginlization_factor
+                // 这里只会更新一下margin factor
+                MarginalizationFactor *marginalization_factor = new MarginalizationFactor(last_marginalization_info);
+                ResidualBlockInfo *residual_block_info = new ResidualBlockInfo(marginalization_factor, NULL,
+                                                                               last_marginalization_parameter_blocks,
+                                                                               drop_set);
+
+                marginalization_info->addResidualBlockInfo(residual_block_info);
+            }
+
+            // 这里的操作如出一辙
+            TicToc t_pre_margin;
+            ROS_DEBUG("begin marginalization");
+            //2、premargin
+            marginalization_info->preMarginalize();
+            ROS_DEBUG("end pre marginalization, %f ms", t_pre_margin.toc());
+
+            TicToc t_margin;
+            ROS_DEBUG("begin marginalization");
+            //3、marginalize
+            marginalization_info->marginalize();
+            ROS_DEBUG("end marginalization, %f ms", t_margin.toc());
+            
+            //4.调整参数块在下一次窗口中对应的位置（去掉次新帧）
+            std::unordered_map<long, double *> addr_shift;
+            for (int i = 0; i <= WINDOW_SIZE; i++)
+            {
+                if (i == WINDOW_SIZE - 1)
+                    continue;
+                else if (i == WINDOW_SIZE) // 滑窗，最新帧成为次新帧
+                {
+                    addr_shift[reinterpret_cast<long>(para_Pose[i])] = para_Pose[i - 1];
+                    addr_shift[reinterpret_cast<long>(para_SpeedBias[i])] = para_SpeedBias[i - 1];
+                }
+                else // 其他不变
+                {
+                    addr_shift[reinterpret_cast<long>(para_Pose[i])] = para_Pose[i];
+                    addr_shift[reinterpret_cast<long>(para_SpeedBias[i])] = para_SpeedBias[i];
+                }
+            }
+            for (int i = 0; i < NUM_OF_CAM; i++)
+                addr_shift[reinterpret_cast<long>(para_Ex_Pose[i])] = para_Ex_Pose[i];
+            if (ESTIMATE_TD)
+            {
+                addr_shift[reinterpret_cast<long>(para_Td[0])] = para_Td[0];
+            }
+            
+            vector<double *> parameter_blocks = marginalization_info->getParameterBlocks(addr_shift);
+            if (last_marginalization_info)
+                delete last_marginalization_info;
+            last_marginalization_info = marginalization_info;
+            last_marginalization_parameter_blocks = parameter_blocks;
+            setRemainParameterKey(); // 2024-7-9
+            
+        }
+    }
+}

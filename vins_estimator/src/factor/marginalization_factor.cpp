@@ -260,10 +260,10 @@ void MarginalizationInfo::marginalize()
     n = pos - m; // 其他参数块的总大小
 
     //ROS_DEBUG("marginalization, pos: %d, m: %d, n: %d, size: %d", pos, m, n, (int)parameter_block_idx.size());
-    std::cout << "pos=" << pos << " m=" << m << " n=" << n << " total parameter block count=" << (int)parameter_block_idx.size() << std::endl;
+    // std::cout << "pos=" << pos << " m=" << m << " n=" << n << " total parameter block count=" << (int)parameter_block_idx.size() << std::endl;
 
     TicToc t_summing;
-    Eigen::MatrixXd A(pos, pos); // Ax = b预设大小
+    Eigen::MatrixXd A(pos, pos); // Ax = b预设大小   pos是待边缘化的总维数
     Eigen::VectorXd b(pos);
     A.setZero();
     b.setZero();
@@ -384,8 +384,10 @@ void MarginalizationInfo::marginalize()
     //printf("error2: %f %f\n", (linearized_jacobians.transpose() * linearized_jacobians - A).sum(),
     //      (linearized_jacobians.transpose() * linearized_residuals - b).sum());
 
-    std::cout << "linearized_jacobians: rows=" << linearized_jacobians.rows() << " cols=" << linearized_jacobians.cols() << std::endl;
-    std::cout << "linearized_residuals: rows=" << linearized_residuals.rows() << " cols=" << linearized_residuals.cols() << std::endl;
+    // 2024-7-8
+    // std::cout << "linearized_jacobians: rows=" << linearized_jacobians.rows() << " cols=" << linearized_jacobians.cols() << std::endl;
+    // std::cout << "linearized_residuals: rows=" << linearized_residuals.rows() << " cols=" << linearized_residuals.cols() << std::endl;
+    // the end.
 }
 
 std::vector<double *> MarginalizationInfo::getParameterBlocks(std::unordered_map<long, double *> &addr_shift)
@@ -403,12 +405,15 @@ std::vector<double *> MarginalizationInfo::getParameterBlocks(std::unordered_map
             keep_block_idx.push_back(parameter_block_idx[it.first]); // 留下来的在原向量中的排序，意思即在边缘化前的参数块的排序
             keep_block_data.push_back(parameter_block_data[it.first]); // 边缘化前各个参数块的值的备份
             keep_block_addr.push_back(addr_shift[it.first]); // 对应的新地址
+            // 2024-7-8
+            // std::cout << "idx=" << (parameter_block_idx[it.first] - m) << " parameter block size=" << parameter_block_size[it.first] << " addr=" << reinterpret_cast<long>(addr_shift[it.first]) << " prev addr=" << it.first << std::endl;
+            // the end.
         }
     }
     // 留下来的边缘化后的参数块总大小
     sum_block_size = std::accumulate(std::begin(keep_block_size), std::end(keep_block_size), 0);
 
-    // 返回的是边缘化之后保留的（剩余的）参数块vector，其储存了每个参数块在滑窗中新的位置（新的地址）。
+    // 返回的是边缘化之后保留的（剩余的）参数块vector，其存储了每个参数块在滑窗中新的位置（新的地址）。
     return keep_block_addr;
 }
 
@@ -479,7 +484,7 @@ bool MarginalizationFactor::Evaluate(double const *const *parameters, double *re
     // 更新残差　边缘化后的先验误差 e = e0 + J * dx
     // 个人理解：根据FEJ．雅克比保持不变，但是残差随着优化会变化，因此下面不更新雅克比　只更新残差
     // 可以参考　https://blog.csdn.net/weixin_41394379/article/details/89975386
-    Eigen::Map<Eigen::VectorXd>(residuals, n) = marginalization_info->linearized_residuals + marginalization_info->linearized_jacobians * dx; // marg之后反解出来的残差，作为边缘化残差
+    Eigen::Map<Eigen::VectorXd>(residuals, n) = marginalization_info->linearized_residuals + marginalization_info->linearized_jacobians * dx; // marg之后反解出来的残差(再加上更新的部分)，作为边缘化残差
     if (jacobians)
     {
 

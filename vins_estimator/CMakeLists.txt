@@ -7,6 +7,11 @@ set(CMAKE_CXX_STANDARD 14)
 #-DEIGEN_USE_MKL_ALL")
 set(CMAKE_CXX_FLAGS_RELEASE "-O3 -Wall -g")
 
+# for gdb debug 2024-7-13.
+# SET(CMAKE_BUILD_TYPE "Debug")
+# SET(CMAKE_CXX_FLAGS_DEBUG "$ENV{CXXFLAGS} -O0 -Wall -g -ggdb")
+# the end.
+
 find_package(catkin REQUIRED COMPONENTS
     roscpp
     std_msgs
@@ -21,6 +26,8 @@ find_package(catkin REQUIRED COMPONENTS
 find_package(OpenCV 4 REQUIRED)
 
 # message(WARNING "OpenCV_VERSION: ${OpenCV_VERSION}")
+find_package(fmt REQUIRED) # 2024-7-11.
+add_definitions(-DSPDLOG_FMT_EXTERNAL) # 2024-7-11
 
 find_package(Ceres REQUIRED)
 
@@ -31,7 +38,11 @@ find_package(Eigen3)
 include_directories(
   ${catkin_INCLUDE_DIRS}
   ${EIGEN3_INCLUDE_DIR}
+  /root/SETUP/symforce_install/include # added by wxliu on 2024-7-9
+  # /root/SETUP/symforce_install/include/spdlog # 2024-7-11
 )
+
+link_directories(/root/SETUP/symforce_install/lib) # 2024-7-9
 
 catkin_package()
 
@@ -54,6 +65,10 @@ add_executable(vins_estimator
     )
 
 
-target_link_libraries(vins_estimator ${catkin_LIBRARIES} ${OpenCV_LIBS} ${CERES_LIBRARIES}) 
+target_link_libraries(vins_estimator ${catkin_LIBRARIES} ${OpenCV_LIBS} ${CERES_LIBRARIES}
+    symforce_gen # 2024-7-9
+    symforce_opt # 2024-7-9
+    fmt::fmt # 2024-7-11
+  ) 
 
 

@@ -29,7 +29,7 @@ namespace sym {
  *     Baj: Matrix31
  *     Bgj: Matrix31
  *     delta_p: Matrix31
- *     delta_q: Quaternion
+ *     delta_q: Rot3
  *     delta_v: Matrix31
  *     G: Matrix31
  *     sum_dt: Scalar
@@ -40,6 +40,7 @@ namespace sym {
  *     dv_dbg: Matrix33
  *     linearized_ba: Matrix31
  *     linearized_bg: Matrix31
+ *     sqrt_info: Matrix15_15
  *
  * Outputs:
  *     res: Matrix15_1
@@ -51,107 +52,188 @@ Eigen::Matrix<Scalar, 15, 1> ImuResidual(
     const Eigen::Matrix<Scalar, 3, 1>& Bgi, const Eigen::Matrix<Scalar, 3, 1>& Pj,
     const sym::Rot3<Scalar>& Qj, const Eigen::Matrix<Scalar, 3, 1>& Vj,
     const Eigen::Matrix<Scalar, 3, 1>& Baj, const Eigen::Matrix<Scalar, 3, 1>& Bgj,
-    const Eigen::Matrix<Scalar, 3, 1>& delta_p, const sym::Quaternion<Scalar>& delta_q,
+    const Eigen::Matrix<Scalar, 3, 1>& delta_p, const sym::Rot3<Scalar>& delta_q,
     const Eigen::Matrix<Scalar, 3, 1>& delta_v, const Eigen::Matrix<Scalar, 3, 1>& G,
     const Scalar sum_dt, const Eigen::Matrix<Scalar, 3, 3>& dp_dba,
     const Eigen::Matrix<Scalar, 3, 3>& dp_dbg, const Eigen::Matrix<Scalar, 3, 3>& dq_dbg,
     const Eigen::Matrix<Scalar, 3, 3>& dv_dba, const Eigen::Matrix<Scalar, 3, 3>& dv_dbg,
     const Eigen::Matrix<Scalar, 3, 1>& linearized_ba,
-    const Eigen::Matrix<Scalar, 3, 1>& linearized_bg) {
-  // Total ops: 284
+    const Eigen::Matrix<Scalar, 3, 1>& linearized_bg,
+    const Eigen::Matrix<Scalar, 15, 15>& sqrt_info) {
+  // Total ops: 719
 
   // Input arrays
   const Eigen::Matrix<Scalar, 4, 1>& _Qi = Qi.Data();
   const Eigen::Matrix<Scalar, 4, 1>& _Qj = Qj.Data();
   const Eigen::Matrix<Scalar, 4, 1>& _delta_q = delta_q.Data();
 
-  // Intermediate terms (47)
-  const Scalar _tmp0 = -2 * std::pow(_Qi[2], Scalar(2));
-  const Scalar _tmp1 = -2 * std::pow(_Qi[1], Scalar(2));
-  const Scalar _tmp2 = _tmp0 + _tmp1 + 1;
-  const Scalar _tmp3 = Scalar(0.5) * std::pow(sum_dt, Scalar(2));
-  const Scalar _tmp4 = G(0, 0) * _tmp3 - Pi(0, 0) + Pj(0, 0) - Vi(0, 0) * sum_dt;
-  const Scalar _tmp5 = 2 * _Qi[1] * _Qi[3];
-  const Scalar _tmp6 = 2 * _Qi[2];
-  const Scalar _tmp7 = _Qi[0] * _tmp6;
-  const Scalar _tmp8 = -_tmp5 + _tmp7;
-  const Scalar _tmp9 = G(2, 0) * _tmp3 - Pi(2, 0) + Pj(2, 0) - Vi(2, 0) * sum_dt;
-  const Scalar _tmp10 = 2 * _Qi[0];
-  const Scalar _tmp11 = _Qi[1] * _tmp10;
-  const Scalar _tmp12 = _Qi[3] * _tmp6;
-  const Scalar _tmp13 = _tmp11 + _tmp12;
-  const Scalar _tmp14 = G(1, 0) * _tmp3 - Pi(1, 0) + Pj(1, 0) - Vi(1, 0) * sum_dt;
-  const Scalar _tmp15 = Bgi(0, 0) - linearized_bg(0, 0);
-  const Scalar _tmp16 = Bgi(1, 0) - linearized_bg(1, 0);
+  // Intermediate terms (62)
+  const Scalar _tmp0 = 2 * _Qi[0];
+  const Scalar _tmp1 = _Qi[1] * _tmp0;
+  const Scalar _tmp2 = 2 * _Qi[2];
+  const Scalar _tmp3 = _Qi[3] * _tmp2;
+  const Scalar _tmp4 = _tmp1 + _tmp3;
+  const Scalar _tmp5 = G(1, 0) * sum_dt - Vi(1, 0) + Vj(1, 0);
+  const Scalar _tmp6 = 2 * _Qi[1] * _Qi[3];
+  const Scalar _tmp7 = _Qi[2] * _tmp0;
+  const Scalar _tmp8 = -_tmp6 + _tmp7;
+  const Scalar _tmp9 = G(2, 0) * sum_dt - Vi(2, 0) + Vj(2, 0);
+  const Scalar _tmp10 = -2 * std::pow(_Qi[2], Scalar(2));
+  const Scalar _tmp11 = -2 * std::pow(_Qi[1], Scalar(2));
+  const Scalar _tmp12 = _tmp10 + _tmp11 + 1;
+  const Scalar _tmp13 = G(0, 0) * sum_dt - Vi(0, 0) + Vj(0, 0);
+  const Scalar _tmp14 = Bai(0, 0) - linearized_ba(0, 0);
+  const Scalar _tmp15 = Bai(1, 0) - linearized_ba(1, 0);
+  const Scalar _tmp16 = Bai(2, 0) - linearized_ba(2, 0);
   const Scalar _tmp17 = Bgi(2, 0) - linearized_bg(2, 0);
-  const Scalar _tmp18 = Bai(1, 0) - linearized_ba(1, 0);
-  const Scalar _tmp19 = Bai(0, 0) - linearized_ba(0, 0);
-  const Scalar _tmp20 = Bai(2, 0) - linearized_ba(2, 0);
-  const Scalar _tmp21 = 1 - 2 * std::pow(_Qi[0], Scalar(2));
-  const Scalar _tmp22 = _tmp0 + _tmp21;
-  const Scalar _tmp23 = _Qi[1] * _tmp6;
-  const Scalar _tmp24 = _Qi[3] * _tmp10;
-  const Scalar _tmp25 = _tmp23 + _tmp24;
-  const Scalar _tmp26 = _tmp11 - _tmp12;
-  const Scalar _tmp27 = _tmp5 + _tmp7;
-  const Scalar _tmp28 = _tmp23 - _tmp24;
-  const Scalar _tmp29 = _tmp1 + _tmp21;
-  const Scalar _tmp30 = _Qi[0] * _Qj[2] - _Qi[1] * _Qj[3] - _Qi[2] * _Qj[0] + _Qi[3] * _Qj[1];
-  const Scalar _tmp31 = Scalar(0.5) * _tmp15 * dq_dbg(0, 0) + Scalar(0.5) * _tmp16 * dq_dbg(0, 1) +
-                        Scalar(0.5) * _tmp17 * dq_dbg(0, 2);
-  const Scalar _tmp32 = _tmp15 * dq_dbg(1, 0) + _tmp16 * dq_dbg(1, 1) + _tmp17 * dq_dbg(1, 2);
-  const Scalar _tmp33 = Scalar(0.5) * _delta_q[0];
-  const Scalar _tmp34 = _tmp15 * dq_dbg(2, 0) + _tmp16 * dq_dbg(2, 1) + _tmp17 * dq_dbg(2, 2);
-  const Scalar _tmp35 = Scalar(0.5) * _tmp34;
-  const Scalar _tmp36 =
-      -_delta_q[1] * _tmp31 + Scalar(1.0) * _delta_q[2] + _delta_q[3] * _tmp35 + _tmp32 * _tmp33;
-  const Scalar _tmp37 = -_Qi[0] * _Qj[1] + _Qi[1] * _Qj[0] - _Qi[2] * _Qj[3] + _Qi[3] * _Qj[2];
-  const Scalar _tmp38 = Scalar(0.5) * _tmp32;
-  const Scalar _tmp39 =
-      Scalar(1.0) * _delta_q[1] + _delta_q[2] * _tmp31 + _delta_q[3] * _tmp38 - _tmp33 * _tmp34;
-  const Scalar _tmp40 = -_Qi[0] * _Qj[3] - _Qi[1] * _Qj[2] + _Qi[2] * _Qj[1] + _Qi[3] * _Qj[0];
-  const Scalar _tmp41 = -_delta_q[0] * _tmp31 - _delta_q[1] * _tmp38 - _delta_q[2] * _tmp35 +
+  const Scalar _tmp18 = Bgi(0, 0) - linearized_bg(0, 0);
+  const Scalar _tmp19 = Bgi(1, 0) - linearized_bg(1, 0);
+  const Scalar _tmp20 = _tmp12 * _tmp13 - _tmp14 * dv_dba(0, 0) - _tmp15 * dv_dba(0, 1) -
+                        _tmp16 * dv_dba(0, 2) - _tmp17 * dv_dbg(0, 2) - _tmp18 * dv_dbg(0, 0) -
+                        _tmp19 * dv_dbg(0, 1) + _tmp4 * _tmp5 + _tmp8 * _tmp9 - delta_v(0, 0);
+  const Scalar _tmp21 = _tmp6 + _tmp7;
+  const Scalar _tmp22 = Scalar(0.5) * std::pow(sum_dt, Scalar(2));
+  const Scalar _tmp23 = G(0, 0) * _tmp22 - Pi(0, 0) + Pj(0, 0) - Vi(0, 0) * sum_dt;
+  const Scalar _tmp24 = _Qi[1] * _tmp2;
+  const Scalar _tmp25 = _Qi[3] * _tmp0;
+  const Scalar _tmp26 = _tmp24 - _tmp25;
+  const Scalar _tmp27 = G(1, 0) * _tmp22 - Pi(1, 0) + Pj(1, 0) - Vi(1, 0) * sum_dt;
+  const Scalar _tmp28 = 1 - 2 * std::pow(_Qi[0], Scalar(2));
+  const Scalar _tmp29 = _tmp11 + _tmp28;
+  const Scalar _tmp30 = G(2, 0) * _tmp22 - Pi(2, 0) + Pj(2, 0) - Vi(2, 0) * sum_dt;
+  const Scalar _tmp31 = -_tmp14 * dp_dba(2, 0) - _tmp15 * dp_dba(2, 1) - _tmp16 * dp_dba(2, 2) -
+                        _tmp17 * dp_dbg(2, 2) - _tmp18 * dp_dbg(2, 0) - _tmp19 * dp_dbg(2, 1) +
+                        _tmp21 * _tmp23 + _tmp26 * _tmp27 + _tmp29 * _tmp30 - delta_p(2, 0);
+  const Scalar _tmp32 = _tmp12 * _tmp23 - _tmp14 * dp_dba(0, 0) - _tmp15 * dp_dba(0, 1) -
+                        _tmp16 * dp_dba(0, 2) - _tmp17 * dp_dbg(0, 2) - _tmp18 * dp_dbg(0, 0) -
+                        _tmp19 * dp_dbg(0, 1) + _tmp27 * _tmp4 + _tmp30 * _tmp8 - delta_p(0, 0);
+  const Scalar _tmp33 = _tmp13 * _tmp21 - _tmp14 * dv_dba(2, 0) - _tmp15 * dv_dba(2, 1) -
+                        _tmp16 * dv_dba(2, 2) - _tmp17 * dv_dbg(2, 2) - _tmp18 * dv_dbg(2, 0) -
+                        _tmp19 * dv_dbg(2, 1) + _tmp26 * _tmp5 + _tmp29 * _tmp9 - delta_v(2, 0);
+  const Scalar _tmp34 = _tmp10 + _tmp28;
+  const Scalar _tmp35 = _tmp24 + _tmp25;
+  const Scalar _tmp36 = _tmp1 - _tmp3;
+  const Scalar _tmp37 = -_tmp14 * dp_dba(1, 0) - _tmp15 * dp_dba(1, 1) - _tmp16 * dp_dba(1, 2) -
+                        _tmp17 * dp_dbg(1, 2) - _tmp18 * dp_dbg(1, 0) - _tmp19 * dp_dbg(1, 1) +
+                        _tmp23 * _tmp36 + _tmp27 * _tmp34 + _tmp30 * _tmp35 - delta_p(1, 0);
+  const Scalar _tmp38 = -_Qi[0] * _Qj[3] - _Qi[1] * _Qj[2] + _Qi[2] * _Qj[1] + _Qi[3] * _Qj[0];
+  const Scalar _tmp39 = Scalar(0.5) * _tmp17 * dq_dbg(0, 2) + Scalar(0.5) * _tmp18 * dq_dbg(0, 0) +
+                        Scalar(0.5) * _tmp19 * dq_dbg(0, 1);
+  const Scalar _tmp40 = _tmp17 * dq_dbg(1, 2) + _tmp18 * dq_dbg(1, 0) + _tmp19 * dq_dbg(1, 1);
+  const Scalar _tmp41 = Scalar(0.5) * _tmp40;
+  const Scalar _tmp42 = _tmp17 * dq_dbg(2, 2) + _tmp18 * dq_dbg(2, 0) + _tmp19 * dq_dbg(2, 1);
+  const Scalar _tmp43 = Scalar(0.5) * _delta_q[3];
+  const Scalar _tmp44 =
+      _delta_q[0] * _tmp41 - _delta_q[1] * _tmp39 + Scalar(1.0) * _delta_q[2] + _tmp42 * _tmp43;
+  const Scalar _tmp45 = -_Qi[0] * _Qj[1] + _Qi[1] * _Qj[0] - _Qi[2] * _Qj[3] + _Qi[3] * _Qj[2];
+  const Scalar _tmp46 = Scalar(0.5) * _tmp42;
+  const Scalar _tmp47 = Scalar(1.0) * _delta_q[0] + _delta_q[1] * _tmp46 - _delta_q[2] * _tmp41 +
+                        _delta_q[3] * _tmp39;
+  const Scalar _tmp48 = _Qi[0] * _Qj[2] - _Qi[1] * _Qj[3] - _Qi[2] * _Qj[0] + _Qi[3] * _Qj[1];
+  const Scalar _tmp49 = -_delta_q[0] * _tmp39 - _delta_q[1] * _tmp41 - _delta_q[2] * _tmp46 +
                         Scalar(1.0) * _delta_q[3];
-  const Scalar _tmp42 = Scalar(1.0) * _delta_q[0] + _delta_q[1] * _tmp35 - _delta_q[2] * _tmp38 +
-                        _delta_q[3] * _tmp31;
-  const Scalar _tmp43 = _Qi[0] * _Qj[0] + _Qi[1] * _Qj[1] + _Qi[2] * _Qj[2] + _Qi[3] * _Qj[3];
-  const Scalar _tmp44 = G(1, 0) * sum_dt - Vi(1, 0) + Vj(1, 0);
-  const Scalar _tmp45 = G(2, 0) * sum_dt - Vi(2, 0) + Vj(2, 0);
-  const Scalar _tmp46 = G(0, 0) * sum_dt - Vi(0, 0) + Vj(0, 0);
+  const Scalar _tmp50 =
+      -_delta_q[0] * _tmp46 + Scalar(1.0) * _delta_q[1] + _delta_q[2] * _tmp39 + _tmp40 * _tmp43;
+  const Scalar _tmp51 = _Qi[0] * _Qj[0] + _Qi[1] * _Qj[1] + _Qi[2] * _Qj[2] + _Qi[3] * _Qj[3];
+  const Scalar _tmp52 =
+      -2 * _tmp38 * _tmp44 + 2 * _tmp45 * _tmp47 + 2 * _tmp48 * _tmp49 - 2 * _tmp50 * _tmp51;
+  const Scalar _tmp53 =
+      2 * _tmp38 * _tmp50 - 2 * _tmp44 * _tmp51 + 2 * _tmp45 * _tmp49 - 2 * _tmp47 * _tmp48;
+  const Scalar _tmp54 = -Bgi(0, 0) + Bgj(0, 0);
+  const Scalar _tmp55 = -Bai(2, 0) + Baj(2, 0);
+  const Scalar _tmp56 = -Bai(1, 0) + Baj(1, 0);
+  const Scalar _tmp57 = -Bgi(1, 0) + Bgj(1, 0);
+  const Scalar _tmp58 = -Bgi(2, 0) + Bgj(2, 0);
+  const Scalar _tmp59 =
+      2 * _tmp38 * _tmp49 + 2 * _tmp44 * _tmp48 - 2 * _tmp45 * _tmp50 - 2 * _tmp47 * _tmp51;
+  const Scalar _tmp60 = _tmp13 * _tmp36 - _tmp14 * dv_dba(1, 0) - _tmp15 * dv_dba(1, 1) -
+                        _tmp16 * dv_dba(1, 2) - _tmp17 * dv_dbg(1, 2) - _tmp18 * dv_dbg(1, 0) -
+                        _tmp19 * dv_dbg(1, 1) + _tmp34 * _tmp5 + _tmp35 * _tmp9 - delta_v(1, 0);
+  const Scalar _tmp61 = -Bai(0, 0) + Baj(0, 0);
 
   // Output terms (1)
   Eigen::Matrix<Scalar, 15, 1> _res;
 
-  _res(0, 0) = _tmp13 * _tmp14 - _tmp15 * dp_dbg(0, 0) - _tmp16 * dp_dbg(0, 1) -
-               _tmp17 * dp_dbg(0, 2) - _tmp18 * dp_dba(0, 1) - _tmp19 * dp_dba(0, 0) +
-               _tmp2 * _tmp4 - _tmp20 * dp_dba(0, 2) + _tmp8 * _tmp9 - delta_p(0, 0);
-  _res(1, 0) = _tmp14 * _tmp22 - _tmp15 * dp_dbg(1, 0) - _tmp16 * dp_dbg(1, 1) -
-               _tmp17 * dp_dbg(1, 2) - _tmp18 * dp_dba(1, 1) - _tmp19 * dp_dba(1, 0) -
-               _tmp20 * dp_dba(1, 2) + _tmp25 * _tmp9 + _tmp26 * _tmp4 - delta_p(1, 0);
-  _res(2, 0) = _tmp14 * _tmp28 - _tmp15 * dp_dbg(2, 0) - _tmp16 * dp_dbg(2, 1) -
-               _tmp17 * dp_dbg(2, 2) - _tmp18 * dp_dba(2, 1) - _tmp19 * dp_dba(2, 0) -
-               _tmp20 * dp_dba(2, 2) + _tmp27 * _tmp4 + _tmp29 * _tmp9 - delta_p(2, 0);
-  _res(3, 0) =
-      2 * _tmp30 * _tmp36 - 2 * _tmp37 * _tmp39 + 2 * _tmp40 * _tmp41 - 2 * _tmp42 * _tmp43;
-  _res(4, 0) =
-      2 * _tmp30 * _tmp41 - 2 * _tmp36 * _tmp40 + 2 * _tmp37 * _tmp42 - 2 * _tmp39 * _tmp43;
-  _res(5, 0) =
-      -2 * _tmp30 * _tmp42 - 2 * _tmp36 * _tmp43 + 2 * _tmp37 * _tmp41 + 2 * _tmp39 * _tmp40;
-  _res(6, 0) = _tmp13 * _tmp44 - _tmp15 * dv_dbg(0, 0) - _tmp16 * dv_dbg(0, 1) -
-               _tmp17 * dv_dbg(0, 2) - _tmp18 * dv_dba(0, 1) - _tmp19 * dv_dba(0, 0) +
-               _tmp2 * _tmp46 - _tmp20 * dv_dba(0, 2) + _tmp45 * _tmp8 - delta_v(0, 0);
-  _res(7, 0) = -_tmp15 * dv_dbg(1, 0) - _tmp16 * dv_dbg(1, 1) - _tmp17 * dv_dbg(1, 2) -
-               _tmp18 * dv_dba(1, 1) - _tmp19 * dv_dba(1, 0) - _tmp20 * dv_dba(1, 2) +
-               _tmp22 * _tmp44 + _tmp25 * _tmp45 + _tmp26 * _tmp46 - delta_v(1, 0);
-  _res(8, 0) = -_tmp15 * dv_dbg(2, 0) - _tmp16 * dv_dbg(2, 1) - _tmp17 * dv_dbg(2, 2) -
-               _tmp18 * dv_dba(2, 1) - _tmp19 * dv_dba(2, 0) - _tmp20 * dv_dba(2, 2) +
-               _tmp27 * _tmp46 + _tmp28 * _tmp44 + _tmp29 * _tmp45 - delta_v(2, 0);
-  _res(9, 0) = -Bai(0, 0) + Baj(0, 0);
-  _res(10, 0) = -Bai(1, 0) + Baj(1, 0);
-  _res(11, 0) = -Bai(2, 0) + Baj(2, 0);
-  _res(12, 0) = -Bgi(0, 0) + Bgj(0, 0);
-  _res(13, 0) = -Bgi(1, 0) + Bgj(1, 0);
-  _res(14, 0) = -Bgi(2, 0) + Bgj(2, 0);
+  _res(0, 0) = _tmp20 * sqrt_info(0, 6) + _tmp31 * sqrt_info(0, 2) + _tmp32 * sqrt_info(0, 0) +
+               _tmp33 * sqrt_info(0, 8) + _tmp37 * sqrt_info(0, 1) + _tmp52 * sqrt_info(0, 4) +
+               _tmp53 * sqrt_info(0, 5) + _tmp54 * sqrt_info(0, 12) + _tmp55 * sqrt_info(0, 11) +
+               _tmp56 * sqrt_info(0, 10) + _tmp57 * sqrt_info(0, 13) + _tmp58 * sqrt_info(0, 14) +
+               _tmp59 * sqrt_info(0, 3) + _tmp60 * sqrt_info(0, 7) + _tmp61 * sqrt_info(0, 9);
+  _res(1, 0) = _tmp20 * sqrt_info(1, 6) + _tmp31 * sqrt_info(1, 2) + _tmp32 * sqrt_info(1, 0) +
+               _tmp33 * sqrt_info(1, 8) + _tmp37 * sqrt_info(1, 1) + _tmp52 * sqrt_info(1, 4) +
+               _tmp53 * sqrt_info(1, 5) + _tmp54 * sqrt_info(1, 12) + _tmp55 * sqrt_info(1, 11) +
+               _tmp56 * sqrt_info(1, 10) + _tmp57 * sqrt_info(1, 13) + _tmp58 * sqrt_info(1, 14) +
+               _tmp59 * sqrt_info(1, 3) + _tmp60 * sqrt_info(1, 7) + _tmp61 * sqrt_info(1, 9);
+  _res(2, 0) = _tmp20 * sqrt_info(2, 6) + _tmp31 * sqrt_info(2, 2) + _tmp32 * sqrt_info(2, 0) +
+               _tmp33 * sqrt_info(2, 8) + _tmp37 * sqrt_info(2, 1) + _tmp52 * sqrt_info(2, 4) +
+               _tmp53 * sqrt_info(2, 5) + _tmp54 * sqrt_info(2, 12) + _tmp55 * sqrt_info(2, 11) +
+               _tmp56 * sqrt_info(2, 10) + _tmp57 * sqrt_info(2, 13) + _tmp58 * sqrt_info(2, 14) +
+               _tmp59 * sqrt_info(2, 3) + _tmp60 * sqrt_info(2, 7) + _tmp61 * sqrt_info(2, 9);
+  _res(3, 0) = _tmp20 * sqrt_info(3, 6) + _tmp31 * sqrt_info(3, 2) + _tmp32 * sqrt_info(3, 0) +
+               _tmp33 * sqrt_info(3, 8) + _tmp37 * sqrt_info(3, 1) + _tmp52 * sqrt_info(3, 4) +
+               _tmp53 * sqrt_info(3, 5) + _tmp54 * sqrt_info(3, 12) + _tmp55 * sqrt_info(3, 11) +
+               _tmp56 * sqrt_info(3, 10) + _tmp57 * sqrt_info(3, 13) + _tmp58 * sqrt_info(3, 14) +
+               _tmp59 * sqrt_info(3, 3) + _tmp60 * sqrt_info(3, 7) + _tmp61 * sqrt_info(3, 9);
+  _res(4, 0) = _tmp20 * sqrt_info(4, 6) + _tmp31 * sqrt_info(4, 2) + _tmp32 * sqrt_info(4, 0) +
+               _tmp33 * sqrt_info(4, 8) + _tmp37 * sqrt_info(4, 1) + _tmp52 * sqrt_info(4, 4) +
+               _tmp53 * sqrt_info(4, 5) + _tmp54 * sqrt_info(4, 12) + _tmp55 * sqrt_info(4, 11) +
+               _tmp56 * sqrt_info(4, 10) + _tmp57 * sqrt_info(4, 13) + _tmp58 * sqrt_info(4, 14) +
+               _tmp59 * sqrt_info(4, 3) + _tmp60 * sqrt_info(4, 7) + _tmp61 * sqrt_info(4, 9);
+  _res(5, 0) = _tmp20 * sqrt_info(5, 6) + _tmp31 * sqrt_info(5, 2) + _tmp32 * sqrt_info(5, 0) +
+               _tmp33 * sqrt_info(5, 8) + _tmp37 * sqrt_info(5, 1) + _tmp52 * sqrt_info(5, 4) +
+               _tmp53 * sqrt_info(5, 5) + _tmp54 * sqrt_info(5, 12) + _tmp55 * sqrt_info(5, 11) +
+               _tmp56 * sqrt_info(5, 10) + _tmp57 * sqrt_info(5, 13) + _tmp58 * sqrt_info(5, 14) +
+               _tmp59 * sqrt_info(5, 3) + _tmp60 * sqrt_info(5, 7) + _tmp61 * sqrt_info(5, 9);
+  _res(6, 0) = _tmp20 * sqrt_info(6, 6) + _tmp31 * sqrt_info(6, 2) + _tmp32 * sqrt_info(6, 0) +
+               _tmp33 * sqrt_info(6, 8) + _tmp37 * sqrt_info(6, 1) + _tmp52 * sqrt_info(6, 4) +
+               _tmp53 * sqrt_info(6, 5) + _tmp54 * sqrt_info(6, 12) + _tmp55 * sqrt_info(6, 11) +
+               _tmp56 * sqrt_info(6, 10) + _tmp57 * sqrt_info(6, 13) + _tmp58 * sqrt_info(6, 14) +
+               _tmp59 * sqrt_info(6, 3) + _tmp60 * sqrt_info(6, 7) + _tmp61 * sqrt_info(6, 9);
+  _res(7, 0) = _tmp20 * sqrt_info(7, 6) + _tmp31 * sqrt_info(7, 2) + _tmp32 * sqrt_info(7, 0) +
+               _tmp33 * sqrt_info(7, 8) + _tmp37 * sqrt_info(7, 1) + _tmp52 * sqrt_info(7, 4) +
+               _tmp53 * sqrt_info(7, 5) + _tmp54 * sqrt_info(7, 12) + _tmp55 * sqrt_info(7, 11) +
+               _tmp56 * sqrt_info(7, 10) + _tmp57 * sqrt_info(7, 13) + _tmp58 * sqrt_info(7, 14) +
+               _tmp59 * sqrt_info(7, 3) + _tmp60 * sqrt_info(7, 7) + _tmp61 * sqrt_info(7, 9);
+  _res(8, 0) = _tmp20 * sqrt_info(8, 6) + _tmp31 * sqrt_info(8, 2) + _tmp32 * sqrt_info(8, 0) +
+               _tmp33 * sqrt_info(8, 8) + _tmp37 * sqrt_info(8, 1) + _tmp52 * sqrt_info(8, 4) +
+               _tmp53 * sqrt_info(8, 5) + _tmp54 * sqrt_info(8, 12) + _tmp55 * sqrt_info(8, 11) +
+               _tmp56 * sqrt_info(8, 10) + _tmp57 * sqrt_info(8, 13) + _tmp58 * sqrt_info(8, 14) +
+               _tmp59 * sqrt_info(8, 3) + _tmp60 * sqrt_info(8, 7) + _tmp61 * sqrt_info(8, 9);
+  _res(9, 0) = _tmp20 * sqrt_info(9, 6) + _tmp31 * sqrt_info(9, 2) + _tmp32 * sqrt_info(9, 0) +
+               _tmp33 * sqrt_info(9, 8) + _tmp37 * sqrt_info(9, 1) + _tmp52 * sqrt_info(9, 4) +
+               _tmp53 * sqrt_info(9, 5) + _tmp54 * sqrt_info(9, 12) + _tmp55 * sqrt_info(9, 11) +
+               _tmp56 * sqrt_info(9, 10) + _tmp57 * sqrt_info(9, 13) + _tmp58 * sqrt_info(9, 14) +
+               _tmp59 * sqrt_info(9, 3) + _tmp60 * sqrt_info(9, 7) + _tmp61 * sqrt_info(9, 9);
+  _res(10, 0) = _tmp20 * sqrt_info(10, 6) + _tmp31 * sqrt_info(10, 2) + _tmp32 * sqrt_info(10, 0) +
+                _tmp33 * sqrt_info(10, 8) + _tmp37 * sqrt_info(10, 1) + _tmp52 * sqrt_info(10, 4) +
+                _tmp53 * sqrt_info(10, 5) + _tmp54 * sqrt_info(10, 12) +
+                _tmp55 * sqrt_info(10, 11) + _tmp56 * sqrt_info(10, 10) +
+                _tmp57 * sqrt_info(10, 13) + _tmp58 * sqrt_info(10, 14) +
+                _tmp59 * sqrt_info(10, 3) + _tmp60 * sqrt_info(10, 7) + _tmp61 * sqrt_info(10, 9);
+  _res(11, 0) = _tmp20 * sqrt_info(11, 6) + _tmp31 * sqrt_info(11, 2) + _tmp32 * sqrt_info(11, 0) +
+                _tmp33 * sqrt_info(11, 8) + _tmp37 * sqrt_info(11, 1) + _tmp52 * sqrt_info(11, 4) +
+                _tmp53 * sqrt_info(11, 5) + _tmp54 * sqrt_info(11, 12) +
+                _tmp55 * sqrt_info(11, 11) + _tmp56 * sqrt_info(11, 10) +
+                _tmp57 * sqrt_info(11, 13) + _tmp58 * sqrt_info(11, 14) +
+                _tmp59 * sqrt_info(11, 3) + _tmp60 * sqrt_info(11, 7) + _tmp61 * sqrt_info(11, 9);
+  _res(12, 0) = _tmp20 * sqrt_info(12, 6) + _tmp31 * sqrt_info(12, 2) + _tmp32 * sqrt_info(12, 0) +
+                _tmp33 * sqrt_info(12, 8) + _tmp37 * sqrt_info(12, 1) + _tmp52 * sqrt_info(12, 4) +
+                _tmp53 * sqrt_info(12, 5) + _tmp54 * sqrt_info(12, 12) +
+                _tmp55 * sqrt_info(12, 11) + _tmp56 * sqrt_info(12, 10) +
+                _tmp57 * sqrt_info(12, 13) + _tmp58 * sqrt_info(12, 14) +
+                _tmp59 * sqrt_info(12, 3) + _tmp60 * sqrt_info(12, 7) + _tmp61 * sqrt_info(12, 9);
+  _res(13, 0) = _tmp20 * sqrt_info(13, 6) + _tmp31 * sqrt_info(13, 2) + _tmp32 * sqrt_info(13, 0) +
+                _tmp33 * sqrt_info(13, 8) + _tmp37 * sqrt_info(13, 1) + _tmp52 * sqrt_info(13, 4) +
+                _tmp53 * sqrt_info(13, 5) + _tmp54 * sqrt_info(13, 12) +
+                _tmp55 * sqrt_info(13, 11) + _tmp56 * sqrt_info(13, 10) +
+                _tmp57 * sqrt_info(13, 13) + _tmp58 * sqrt_info(13, 14) +
+                _tmp59 * sqrt_info(13, 3) + _tmp60 * sqrt_info(13, 7) + _tmp61 * sqrt_info(13, 9);
+  _res(14, 0) = _tmp20 * sqrt_info(14, 6) + _tmp31 * sqrt_info(14, 2) + _tmp32 * sqrt_info(14, 0) +
+                _tmp33 * sqrt_info(14, 8) + _tmp37 * sqrt_info(14, 1) + _tmp52 * sqrt_info(14, 4) +
+                _tmp53 * sqrt_info(14, 5) + _tmp54 * sqrt_info(14, 12) +
+                _tmp55 * sqrt_info(14, 11) + _tmp56 * sqrt_info(14, 10) +
+                _tmp57 * sqrt_info(14, 13) + _tmp58 * sqrt_info(14, 14) +
+                _tmp59 * sqrt_info(14, 3) + _tmp60 * sqrt_info(14, 7) + _tmp61 * sqrt_info(14, 9);
 
   return _res;
 }  // NOLINT(readability/fn_size)
