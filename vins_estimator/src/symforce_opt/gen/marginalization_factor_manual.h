@@ -610,8 +610,8 @@ void MargOldFactor(const Eigen::Matrix<Scalar, 3, 1>& P0, const sym::Rot3<Scalar
         int idx = g_pMarginalizationInfo->keep_block_idx[i] - m;
         new_jacobian.middleCols(order * 6, local_size) = g_pMarginalizationInfo->linearized_jacobians.middleCols(idx, local_size);
 
-        // new_residual.segment(order * 6, local_size) =  g_pMarginalizationInfo->linearized_residuals.segment(idx, local_size);
-        // new_dx.segment(order * 6, local_size) = dx.segment(idx, local_size);
+        new_residual.segment(order * 6, local_size) =  g_pMarginalizationInfo->linearized_residuals.segment(idx, local_size);
+        new_dx.segment(order * 6, local_size) = dx.segment(idx, local_size);
         // std::cout << "order=" << order << " idx=" << idx << " local_size=" << local_size << "" << " para_addr=" << reinterpret_cast<long>(last_marg_para_blocks[i]) << std::endl;
     }
 /*    std::cout << "old residual=\n" << g_pMarginalizationInfo->linearized_residuals.transpose() << std::endl;
@@ -625,9 +625,9 @@ void MargOldFactor(const Eigen::Matrix<Scalar, 3, 1>& P0, const sym::Rot3<Scalar
         Eigen::Matrix<Scalar, 75, 1>& _res = (*res);
         // _res = g_pMarginalizationInfo->linearized_residuals + g_pMarginalizationInfo->linearized_jacobians * dx; // marg之后反解出来的残差，作为边缘化残差
 
-        // _res = new_residual + new_jacobian * new_dx;
+        _res = new_residual + new_jacobian * new_dx;
 
-        _res = g_pMarginalizationInfo->linearized_residuals + new_jacobian * dx;
+        // _res = g_pMarginalizationInfo->linearized_residuals + new_jacobian * dx;
     }
     
     if (jacobian != nullptr)
@@ -649,9 +649,9 @@ void MargOldFactor(const Eigen::Matrix<Scalar, 3, 1>& P0, const sym::Rot3<Scalar
     if (rhs != nullptr) {
         Eigen::Matrix<Scalar, 75, 1>& _rhs = (*rhs);
         // _rhs = g_pMarginalizationInfo->linearized_jacobians.transpose() * (g_pMarginalizationInfo->linearized_residuals + g_pMarginalizationInfo->linearized_jacobians * dx);
-        // _rhs = new_jacobian.transpose() * (new_residual + new_jacobian * new_dx);
+        _rhs = new_jacobian.transpose() * (new_residual + new_jacobian * new_dx);
 
-        _rhs = new_jacobian.transpose() * (g_pMarginalizationInfo->linearized_residuals + new_jacobian * dx);
+        // _rhs = new_jacobian.transpose() * (g_pMarginalizationInfo->linearized_residuals + new_jacobian * dx);
     }
    
 }
@@ -881,8 +881,8 @@ void MargNewFactor(const Eigen::Matrix<Scalar, 3, 1>& P0, const sym::Rot3<Scalar
     {
         Eigen::Matrix<Scalar, 69, 1>& _res = (*res);
         // _res = g_pMarginalizationInfo->linearized_residuals + g_pMarginalizationInfo->linearized_jacobians * dx; // marg之后反解出来的残差，作为边缘化残差
-        // _res = new_residual + new_jacobian * new_dx;
-        _res = g_pMarginalizationInfo->linearized_residuals + new_jacobian * dx;
+        _res = new_residual + new_jacobian * new_dx;
+        // _res = g_pMarginalizationInfo->linearized_residuals + new_jacobian * dx;
     }
     
     if (jacobian != nullptr)
@@ -904,8 +904,8 @@ void MargNewFactor(const Eigen::Matrix<Scalar, 3, 1>& P0, const sym::Rot3<Scalar
     if (rhs != nullptr) {
         Eigen::Matrix<Scalar, 69, 1>& _rhs = (*rhs);
         // _rhs = g_pMarginalizationInfo->linearized_jacobians.transpose() * (g_pMarginalizationInfo->linearized_residuals + g_pMarginalizationInfo->linearized_jacobians * dx);
-        // _rhs = new_jacobian.transpose() * (new_residual + new_jacobian * new_dx);
-        _rhs = new_jacobian.transpose() * (g_pMarginalizationInfo->linearized_residuals + new_jacobian * dx);
+        _rhs = new_jacobian.transpose() * (new_residual + new_jacobian * new_dx);
+        // _rhs = new_jacobian.transpose() * (g_pMarginalizationInfo->linearized_residuals + new_jacobian * dx);
     }
     
 }

@@ -10,6 +10,8 @@
 #include <symforce/opt/optimizer.h>
 #include <lcmtypes/sym/optimizer_params_t.hpp>
 #include <symforce/opt/dense_cholesky_solver.h>
+#include <symforce/opt/sparse_cholesky/sparse_cholesky_solver.h>
+#include <symforce/opt/sparse_schur_solver.h>
 
 #include "symforce_opt/gen/marginalization_factor_manual.h"
 #include "symforce_opt/gen/imu_factor.h"
@@ -21,6 +23,13 @@ std::vector<sym::EParameterType> remain_Keys; // 2024-7-11.
 template <typename Scalar>
 using DenseOptimizer =
     sym::Optimizer<Scalar, sym::LevenbergMarquardtSolver<Scalar, sym::DenseCholeskySolver<Scalar>>>; // 2024-7-13
+
+/*
+* can't use.
+template <typename Scalar>
+using SparseSchurOptimizer =
+    sym::Optimizer<Scalar, sym::LevenbergMarquardtSolver<Scalar, sym::SparseSchurSolver<Eigen::SparseMatrix<Scalar>>>>;
+*/    
 
 Estimator::Estimator(): f_manager{Rs}
 {
@@ -836,8 +845,8 @@ void Estimator::optimization()
     ceres::Problem problem;
     ceres::LossFunction *loss_function;
     //loss_function = new ceres::HuberLoss(1.0);
-    // loss_function = new ceres::CauchyLoss(1.0); // temp comment
-    loss_function = NULL; // temply add for test.
+    loss_function = new ceres::CauchyLoss(1.0); // temp comment
+    // loss_function = NULL; // temply add for test.
     // Step 1 定义待优化的参数块，类似g2o的顶点。参数块：即待优化的变量
     // 参数块 1： 滑窗中位姿包括位置和姿态，共11帧
     for (int i = 0; i < WINDOW_SIZE + 1; i++)
@@ -877,7 +886,8 @@ void Estimator::optimization()
 
     // Step 2 通过残差约束来添加残差块，类似g2o的边
     // 上一次的边缘化结果作为这一次的先验
-    if (0 && last_marginalization_info)
+    // if (0 && last_marginalization_info)
+    if (last_marginalization_info)
     {
         // construct new marginlization_factor
         MarginalizationFactor *marginalization_factor = new MarginalizationFactor(last_marginalization_info);
@@ -1000,10 +1010,16 @@ void Estimator::optimization()
     // Step 3 ceres优化求解
     ceres::Solver::Options options;
 
-    options.linear_solver_type = ceres::DENSE_SCHUR;
-    // options.linear_solver_type = ceres::DENSE_NORMAL_CHOLESKY;
+    // options.linear_solver_type = ceres::DENSE_SCHUR; // tmp comment 2024-7-18
+    // options.linear_solver_type = ceres::DENSE_NORMAL_CHOLESKY; // test 2024-7-13 can not use if strategy is ceres::LEVENBERG_MARQUARDT
+    options.linear_solver_type = ceres::SPARSE_NORMAL_CHOLESKY; // test 2024-7-18 can use if strategy is ceres::LEVENBERG_MARQUARDT, but is not applicable to marginalization.
     //options.num_threads = 2;
-    options.trust_region_strategy_type = ceres::DOGLEG;
+    // options.trust_region_strategy_type = ceres::DOGLEG; // tmp comment 2024-7-18
+    // test 2024-7-18.
+    options.trust_region_strategy_type = ceres::LEVENBERG_MARQUARDT;
+    options.min_lm_diagonal = 1.0e-8;
+    options.max_lm_diagonal = 1.0e6;
+    // the end.
     options.max_num_iterations = NUM_ITERATIONS;
     //options.use_explicit_schur_complement = true;
     //options.minimizer_progress_to_stdout = true;
@@ -1474,6 +1490,24 @@ inline sym::optimizer_params_t OptimizerParams() {
   return params;
 }
 
+inline sym::optimizer_params_t RobotLocalizationOptimizerParams() {
+  sym::optimizer_params_t params = sym::DefaultOptimizerParams();
+  // 迭代次数少了，就是不行
+  params.iterations = 50;//8;
+  // 似乎1.0e-8、 1.0e6是最好的参数，试验过很多次，改成其它的都未必能跑好
+  params.lambda_lower_bound = 1.0e-8;//1.0e-16;
+  params.lambda_upper_bound = 1.0e6;//1.0e32;
+//   params.verbose = true;
+  params.initial_lambda = 1;//0;//1e4;
+//   params.lambda_down_factor = 1 / 2.;
+  params.lambda_up_factor = 10.0;
+  params.lambda_down_factor = 1 / 10.0;
+  params.use_unit_damping = true;
+  params.use_diagonal_damping = true;
+  params.keep_max_diagonal_damping = true;
+  return params;
+}
+
 void Estimator::symOptimization() // use symforce to optimize.
 {
     constexpr double epsilon = 1e-10;
@@ -1619,7 +1653,7 @@ void Estimator::symOptimization() // use symforce to optimize.
     std::cout << "last_marginalization_info addr = " << reinterpret_cast<long>(last_marginalization_info) << std::endl;
 
     // if (last_marginalization_info)
-    if (0 && last_marginalization_info)
+    if (0 && last_marginalization_info) // close marginalization
     {
         /*
         factors.push_back(sym::Factor<double>::Hessian(
@@ -2183,10 +2217,32 @@ void Estimator::symOptimization() // use symforce to optimize.
     params.lambda_upper_bound = 1.0e6;
     */
     // the end.
+
+    /*
+     * 1、Ceres迭代策略改为LM的情况下，不管是dense schur和dense cholesky分解，轨迹均发散；
+     * 2、Ceres迭代策略改为LM的情况下，使用sparse cholesky分解，开始会报dense矩阵分解失败，但仍能完成整个轨迹；
+     * 3、symforce 只有LM策略，选择sparse cholesky分解，很容易轨迹发散，在迭代次数用完的情况下偶尔能跑成功一次，选择dense cholesky，大部分情况下在迭代次数用完时得到一个满意的精度的轨迹；
+     * 4、symforce 将lambda设为0，程序会报错Internal Error: Damped hessian factorization failed.
+    */
+
     
+    // 对于symforce又总结出一些心得。其适合于求解问题规模比较小（优化维数小）或者稀疏的Hessian矩阵，
+    // 作者举例均是要么问题的维数较少，要么路标点个数远远超过相机个数（维数），
+    // 即当路标点的个数远远超过位姿个数的情况下，其能表现优异，一旦位姿个数较多，维数较大的情况，其不能良好工作。经常把迭代次数用完HIT_ITERATION_LIMIT
+    // 论文中对于稠密矩阵的比较，仅仅是矩阵相乘的测试dense matrix multiplication，
+    // 比较了矩阵相乘符号化之后Flattend和Eigen的稠密和稀疏的矩阵乘法消耗的时间
+    // SymForce与Eigen比较稀疏和密集矩阵乘法
+    // 因此，推断作者可能没有想要实现稠密矩阵求解的方式，因为根本不能提高效率。
+    // 另外又发现：
+    // 当 params.initial_lambda = 1.0; params.lambda_lower_bound = 1.0e-8; params.lambda_upper_bound = 1.0e6;
+    // 并且边缘化不开的情况下：sym::Optimizer<double>和 DenseOptimizer<double> 均在HIT_ITERATION_LIMIT时得到较好的精度
+
     // sym::Optimizer<double> optimizer(params, factors);
-    DenseOptimizer<double> optimizer(params, factors); // dense optimizer better. 2024-7-15.
+    sym::Optimizer<double> optimizer(RobotLocalizationOptimizerParams(), factors);
+    // SparseSchurOptimizer<double> optimizer(RobotLocalizationOptimizerParams(), factors); // failed.
+    // DenseOptimizer<double> optimizer(params, factors); // dense optimizer better. 2024-7-15.
     // DenseOptimizer<double> optimizer(params2, factors); // dense optimizer better. 2024-7-15.
+    // DenseOptimizer<double> optimizer(RobotLocalizationOptimizerParams(), factors); // dense optimizer better. 2024-7-15.
     /*
     sym::Optimizerd optimizer(optimizer_params, factors, "BundleAdjustmentOptimizer", optimized_keys,
                             params.epsilon);
