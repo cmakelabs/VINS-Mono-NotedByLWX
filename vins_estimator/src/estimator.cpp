@@ -2237,6 +2237,9 @@ void Estimator::symOptimization() // use symforce to optimize.
     // 当 params.initial_lambda = 1.0; params.lambda_lower_bound = 1.0e-8; params.lambda_upper_bound = 1.0e6;
     // 并且边缘化不开的情况下：sym::Optimizer<double>和 DenseOptimizer<double> 均在HIT_ITERATION_LIMIT时得到较好的精度
 
+    // 2024-7-22再补充: 并不是LM法不能用，只能说dog leg迭代方法选择步长更合理，Dog-Leg略优于LM。迭代只是为了构建一个新的H矩阵，最终求解，就需要用到各种分解，比如 Schur, LDLT, Cholesky(LLT)分解等
+    // 总之，symforce的LM迭代，和SparseCholesky或者DenseCholesky分解对于求解后是否能够收敛，就没有那么好的效果
+
     // sym::Optimizer<double> optimizer(params, factors);
     sym::Optimizer<double> optimizer(RobotLocalizationOptimizerParams(), factors);
     // SparseSchurOptimizer<double> optimizer(RobotLocalizationOptimizerParams(), factors); // failed.
