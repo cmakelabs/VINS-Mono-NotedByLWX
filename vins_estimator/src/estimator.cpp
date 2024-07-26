@@ -1010,13 +1010,13 @@ void Estimator::optimization()
     // Step 3 ceres优化求解
     ceres::Solver::Options options;
 
-    // options.linear_solver_type = ceres::DENSE_SCHUR; // tmp comment 2024-7-18
+    options.linear_solver_type = ceres::DENSE_SCHUR; // tmp comment 2024-7-18
     // options.linear_solver_type = ceres::DENSE_NORMAL_CHOLESKY; // test 2024-7-13 can not use if strategy is ceres::LEVENBERG_MARQUARDT
-    options.linear_solver_type = ceres::SPARSE_NORMAL_CHOLESKY; // test 2024-7-18 can use if strategy is ceres::LEVENBERG_MARQUARDT, but is not applicable to marginalization.
+    // options.linear_solver_type = ceres::SPARSE_NORMAL_CHOLESKY; // test 2024-7-18 can use if strategy is ceres::LEVENBERG_MARQUARDT, but is not applicable to marginalization.
     //options.num_threads = 2;
-    // options.trust_region_strategy_type = ceres::DOGLEG; // tmp comment 2024-7-18
+    options.trust_region_strategy_type = ceres::DOGLEG; // tmp comment 2024-7-18
     // test 2024-7-18.
-    options.trust_region_strategy_type = ceres::LEVENBERG_MARQUARDT;
+    // options.trust_region_strategy_type = ceres::LEVENBERG_MARQUARDT;
     options.min_lm_diagonal = 1.0e-8;
     options.max_lm_diagonal = 1.0e6;
     // the end.
@@ -1034,6 +1034,7 @@ void Estimator::optimization()
     //cout << summary.BriefReport() << endl;
     ROS_DEBUG("Iterations : %d", static_cast<int>(summary.iterations.size()));
     ROS_DEBUG("solver costs: %f", t_solver.toc());
+    cout << summary.FullReport() << std::endl;
 
     // 把优化后double -> eigen
     double2vector();
@@ -1493,7 +1494,9 @@ inline sym::optimizer_params_t OptimizerParams() {
 inline sym::optimizer_params_t RobotLocalizationOptimizerParams() {
   sym::optimizer_params_t params = sym::DefaultOptimizerParams();
   // 迭代次数少了，就是不行
-  params.iterations = 50;//8;
+  params.iterations = 16;//50;//8;
+  params.verbose = true;
+  params.debug_stats = true;
   // 似乎1.0e-8、 1.0e6是最好的参数，试验过很多次，改成其它的都未必能跑好
   params.lambda_lower_bound = 1.0e-8;//1.0e-16;
   params.lambda_upper_bound = 1.0e6;//1.0e32;
@@ -2241,11 +2244,15 @@ void Estimator::symOptimization() // use symforce to optimize.
     // 总之，symforce的LM迭代，和SparseCholesky或者DenseCholesky分解对于求解后是否能够收敛，就没有那么好的效果
 
     // sym::Optimizer<double> optimizer(params, factors);
-    sym::Optimizer<double> optimizer(RobotLocalizationOptimizerParams(), factors);
+    // sym::Optimizer<double> optimizer(RobotLocalizationOptimizerParams(), factors); // ok
+    // constexpr double epsilon = 1e-10;
+    // sym::Optimizer<double> optimizer(RobotLocalizationOptimizerParams(), factors, "BAOptimizer", {}, epsilon); // sym::kDefaultEpsilon<double>
+    // sym::Optimizer<double> optimizer(RobotLocalizationOptimizerParams(), factors); // test on 2024-7-26
     // SparseSchurOptimizer<double> optimizer(RobotLocalizationOptimizerParams(), factors); // failed.
     // DenseOptimizer<double> optimizer(params, factors); // dense optimizer better. 2024-7-15.
     // DenseOptimizer<double> optimizer(params2, factors); // dense optimizer better. 2024-7-15.
     // DenseOptimizer<double> optimizer(RobotLocalizationOptimizerParams(), factors); // dense optimizer better. 2024-7-15.
+    DenseOptimizer<double> optimizer(RobotLocalizationOptimizerParams(), factors);//, "BAOptimizer", {}, epsilon); // test on 2024-7-26
     /*
     sym::Optimizerd optimizer(optimizer_params, factors, "BundleAdjustmentOptimizer", optimized_keys,
                             params.epsilon);

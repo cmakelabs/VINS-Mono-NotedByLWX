@@ -1,0 +1,3607 @@
+[0m[ INFO] [1721964596.751907480]: init begins[0m
+i=0 para_Pose addr=94448660353160
+i=0 para_SpeedBias addr=94448660353776
+i=1 para_Pose addr=94448660353216
+i=1 para_SpeedBias addr=94448660353848
+i=2 para_Pose addr=94448660353272
+i=2 para_SpeedBias addr=94448660353920
+i=3 para_Pose addr=94448660353328
+i=3 para_SpeedBias addr=94448660353992
+i=4 para_Pose addr=94448660353384
+i=4 para_SpeedBias addr=94448660354064
+i=5 para_Pose addr=94448660353440
+i=5 para_SpeedBias addr=94448660354136
+i=6 para_Pose addr=94448660353496
+i=6 para_SpeedBias addr=94448660354208
+i=7 para_Pose addr=94448660353552
+i=7 para_SpeedBias addr=94448660354280
+i=8 para_Pose addr=94448660353608
+i=8 para_SpeedBias addr=94448660354352
+i=9 para_Pose addr=94448660353664
+i=9 para_SpeedBias addr=94448660354424
+i=10 para_Pose addr=94448660353720
+i=10 para_SpeedBias addr=94448660354496
+para_Ex_Pose addr=94448660362568[0m[ INFO] [1721964596.759749747]: Loaded config_file: /root/dev/vins-mono_ws/src/VINS-Mono-NotedByLWX/feature_tracker/../config/euroc/euroc_config.yaml[0m
+result path /home/shaozu/output//vins_result_no_loop.csv
+[0m[ INFO] [1721964596.760531701]: ROW: 480.000000 COL: 752.000000 [0m
+[0m[ INFO] [1721964596.760696182]: Extrinsic_R : 
+ 0.0148655  -0.999881  0.0041403
+  0.999557  0.0149672  0.0257155
+-0.0257744 0.00375619   0.999661[0m
+[0m[ INFO] [1721964596.760729481]: Extrinsic_T : 
+-0.0216401  -0.064677 0.00981073[0m
+[0m[ INFO] [1721964596.760758260]: Synchronized sensors, fix time offset: 0[0m
+[0m[ INFO] [1721964629.267587690]: Not enough features or parallax; Move device around[0m
+[0m[ INFO] [1721964629.367461841]: IMU excitation not enouth![0m
+[0m[ INFO] [1721964629.367649998]: Not enough features or parallax; Move device around[0m
+[0m[ INFO] [1721964629.579234514]: IMU excitation not enouth![0m
+[0m[ INFO] [1721964629.579470292]: Not enough features or parallax; Move device around[0m
+[0m[ INFO] [1721964629.667849384]: IMU excitation not enouth![0m
+[0m[ INFO] [1721964629.667959162]: Not enough features or parallax; Move device around[0m
+[0m[ INFO] [1721964629.868321856]: IMU excitation not enouth![0m
+[0m[ INFO] [1721964629.868451377]: Not enough features or parallax; Move device around[0m
+[0m[ INFO] [1721964630.068358186]: IMU excitation not enouth![0m
+[0m[ INFO] [1721964630.068468503]: Not enough features or parallax; Move device around[0m
+[0m[ INFO] [1721964630.178940765]: IMU excitation not enouth![0m
+[0m[ INFO] [1721964630.179250355]: Not enough features or parallax; Move device around[0m
+[0m[ INFO] [1721964630.441907218]: IMU excitation not enouth![0m
+[0m[ INFO] [1721964630.442107210]: Not enough features or parallax; Move device around[0m
+[0m[ INFO] [1721964630.596285511]: Not enough features or parallax; Move device around[0m
+[0m[ INFO] [1721964630.673336263]: IMU excitation not enouth![0m
+[0m[ INFO] [1721964630.673506389]: Not enough features or parallax; Move device around[0m
+[0m[ INFO] [1721964630.878049130]: IMU excitation not enouth![0m
+[0m[ INFO] [1721964630.878254814]: Not enough features or parallax; Move device around[0m
+[0m[ INFO] [1721964631.075605715]: IMU excitation not enouth![0m
+[0m[ INFO] [1721964631.075872704]: Not enough features or parallax; Move device around[0m
+[0m[ INFO] [1721964631.170761183]: IMU excitation not enouth![0m
+[0m[ INFO] [1721964631.170910672]: Not enough features or parallax; Move device around[0m
+[0m[ INFO] [1721964631.378189294]: IMU excitation not enouth![0m
+[0m[ INFO] [1721964631.378295885]: Not enough features or parallax; Move device around[0m
+[0m[ INFO] [1721964631.566996600]: IMU excitation not enouth![0m
+[0m[ INFO] [1721964631.567106643]: Not enough features or parallax; Move device around[0m
+[0m[ INFO] [1721964631.667860314]: IMU excitation not enouth![0m
+[0m[ INFO] [1721964631.668079683]: Not enough features or parallax; Move device around[0m
+[0m[ INFO] [1721964631.873663389]: IMU excitation not enouth![0m
+[0m[ INFO] [1721964631.873876990]: Not enough features or parallax; Move device around[0m
+[0m[ INFO] [1721964632.584857416]: Not enough features or parallax; Move device around[0m
+[0m[ INFO] [1721964632.944486838]: misalign visual structure with IMU[0m
+
+W20240726 11:30:32.113734 33739 levenberg_marquardt_strategy.cc:115] Linear solver failure. Failed to compute a step: Eigen failure. Unable to perform dense Cholesky factorization.
+W20240726 11:30:32.116978 33739 levenberg_marquardt_strategy.cc:115] Linear solver failure. Failed to compute a step: Eigen failure. Unable to perform dense Cholesky factorization.
+W20240726 11:30:32.119544 33739 levenberg_marquardt_strategy.cc:115] Linear solver failure. Failed to compute a step: Eigen failure. Unable to perform dense Cholesky factorization.
+W20240726 11:30:32.120112 33739 levenberg_marquardt_strategy.cc:115] Linear solver failure. Failed to compute a step: Eigen failure. Unable to perform dense Cholesky factorization.
+W20240726 11:30:32.121668 33739 levenberg_marquardt_strategy.cc:115] Linear solver failure. Failed to compute a step: Eigen failure. Unable to perform dense Cholesky factorization.
+W20240726 11:30:32.123206 33739 levenberg_marquardt_strategy.cc:115] Linear solver failure. Failed to compute a step: Eigen failure. Unable to perform dense Cholesky factorization.
+W20240726 11:30:32.124716 33739 levenberg_marquardt_strategy.cc:115] Linear solver failure. Failed to compute a step: Eigen failure. Unable to perform dense Cholesky factorization.
+W20240726 11:30:32.125273 33739 levenberg_marquardt_strategy.cc:115] Linear solver failure. Failed to compute a step: Eigen failure. Unable to perform dense Cholesky factorization.
+[ WARN] [1721964632.941308160]: gyroscope bias initial calibration -0.00235671   0.0130351   0.0762747
+W20240726 11:30:33.108628 33739 levenberg_marquardt_strategy.cc:115] Linear solver failure. Failed to compute a step: Eigen failure. Unable to perform dense Cholesky factorization.
+W20240726 11:30:33.109714 33739 levenberg_marquardt_strategy.cc:115] Linear solver failure. Failed to compute a step: Eigen failure. Unable to perform dense Cholesky factorization.
+W20240726 11:30:33.110769 33739 levenberg_marquardt_strategy.cc:115] Linear solver failure. Failed to compute a step: Eigen failure. Unable to perform dense Cholesky factorization.
+W20240726 11:30:33.111814 33739 levenberg_marquardt_strategy.cc:115] Linear solver failure. Failed to compute a step: Eigen failure. Unable to perform dense Cholesky factorization.
+W20240726 11:30:33.112187 33739 levenberg_marquardt_strategy.cc:115] Linear solver failure. Failed to compute a step: Eigen failure. Unable to perform dense Cholesky factorization.
+W20240726 11:30:33.113916 33739 levenberg_marquardt_strategy.cc:115] Linear solver failure. Failed to compute a step: Eigen failure. Unable to perform dense Cholesky factorization.
+W20240726 11:30:33.115824 33739 levenberg_marquardt_strategy.cc:115] Linear solver failure. Failed to compute a step: Eigen failure. Unable to perform dense Cholesky factorization.
+W20240726 11:30:33.116210 33739 levenberg_marquardt_strategy.cc:115] Linear solver failure. Failed to compute a step: Eigen failure. Unable to perform dense Cholesky factorization.
+W20240726 11:30:33.117290 33739 levenberg_marquardt_strategy.cc:115] Linear solver failure. Failed to compute a step: Eigen failure. Unable to perform dense Cholesky factorization.
+W20240726 11:30:33.118351 33739 levenberg_marquardt_strategy.cc:115] Linear solver failure. Failed to compute a step: Eigen failure. Unable to perform dense Cholesky factorization.
+W20240726 11:30:33.119477 33739 levenberg_marquardt_strategy.cc:115] Linear solver failure. Failed to compute a step: Eigen failure. Unable to perform dense Cholesky factorization.
+W20240726 11:30:33.119871 33739 levenberg_marquardt_strategy.cc:115] Linear solver failure. Failed to compute a step: Eigen failure. Unable to perform dense Cholesky factorization.
+W20240726 11:30:33.121625 33739 levenberg_marquardt_strategy.cc:115] Linear solver failure. Failed to compute a step: Eigen failure. Unable to perform dense Cholesky factorization.
+W20240726 11:30:33.122011 33739 levenberg_marquardt_strategy.cc:115] Linear solver failure. Failed to compute a step: Eigen failure. Unable to perform dense Cholesky factorization.
+W20240726 11:30:33.219978 33739 levenberg_marquardt_strategy.cc:115] Linear solver failure. Failed to compute a step: Eigen failure. Unable to perform dense Cholesky factorization.
+W20240726 11:30:33.221064 33739 levenberg_marquardt_strategy.cc:115] Linear solver failure. Failed to compute a step: Eigen failure. Unable to perform dense Cholesky factorization.
+W20240726 11:30:33.222196 33739 levenberg_marquardt_strategy.cc:115] Linear solver failure. Failed to compute a step: Eigen failure. Unable to perform dense Cholesky factorization.
+W20240726 11:30:33.222572 33739 levenberg_marquardt_strategy.cc:115] Linear solver failure. Failed to compute a step: Eigen failure. Unable to perform dense Cholesky factorization.
+[ WARN] [1721964633.223478032]: gyroscope bias initial calibration -0.0027492 -0.0137477 0.00238787
+
+
+
+Solver Summary (v 2.1.0-eigen-(3.3.9)-lapack-suitesparse-(5.7.1)-cxsparse-(3.2.0)-eigensparse-no_openmp)
+
+                                     Original                  Reduced
+Parameter blocks                          207                      206
+Parameters                                367                      360
+Effective parameters                      355                      349
+Residual blocks                           980                      980
+Residuals                                2090                     2090
+
+Minimizer                        TRUST_REGION
+
+Dense linear algebra library            EIGEN
+Trust region strategy     LEVENBERG_MARQUARDT
+
+                                        Given                     Used
+Linear solver           DENSE_NORMAL_CHOLESKY    DENSE_NORMAL_CHOLESKY
+Threads                                     1                        1
+Linear solver ordering              AUTOMATIC                      206
+
+Cost:
+Initial                          1.383500e+06
+Final                            2.890533e+03
+Change                           1.380609e+06
+
+Minimizer iterations                        3
+Successful steps                            3
+Unsuccessful steps                          0
+
+Time (in seconds):
+Preprocessor                         0.000070
+
+  Residual only evaluation           0.000443 (2)
+  Jacobian & residual evaluation     0.003324 (3)
+  Linear solver                      0.033446 (2)
+Minimizer                            0.041538
+
+Postprocessor                        0.000017
+Total                                0.041626
+
+Termination:                   NO_CONVERGENCE (Maximum solver time reached. Total solver time: 4.159808e-02 >= 3.200000e-02.)
+
+marg old: marg_feature_count=72
+[0m[ INFO] [1721964633.294435748]: Initialization finish![0m
+
+Solver Summary (v 2.1.0-eigen-(3.3.9)-lapack-suitesparse-(5.7.1)-cxsparse-(3.2.0)-eigensparse-no_openmp)
+
+                                     Original                  Reduced
+Parameter blocks                           83                       82
+Parameters                                243                      236
+Effective parameters                      231                      225
+Residual blocks                           189                      189
+Residuals                                 581                      581
+
+Minimizer                        TRUST_REGION
+
+Dense linear algebra library            EIGEN
+Trust region strategy     LEVENBERG_MARQUARDT
+
+                                        Given                     Used
+Linear solver           DENSE_NORMAL_CHOLESKY    DENSE_NORMAL_CHOLESKY
+Threads                                     1                        1
+Linear solver ordering              AUTOMATIC                       82
+
+Cost:
+Initial                          6.588998e+02
+Final                            2.064074e+02
+Change                           4.524924e+02
+
+Minimizer iterations                        9
+Successful steps                            9
+Unsuccessful steps                          0
+
+Time (in seconds):
+Preprocessor                         0.000030
+
+  Residual only evaluation           0.000574 (8)
+  Jacobian & residual evaluation     0.001604 (9)
+  Linear solver                      0.017299 (8)
+Minimizer                            0.020580
+
+Postprocessor                        0.000005
+Total                                0.020615
+
+Termination:                   NO_CONVERGENCE (Maximum number of iterations reached. Number of iterations: 8.)
+
+marg old: marg_feature_count=35
+
+Solver Summary (v 2.1.0-eigen-(3.3.9)-lapack-suitesparse-(5.7.1)-cxsparse-(3.2.0)-eigensparse-no_openmp)
+
+                                     Original                  Reduced
+Parameter blocks                           67                       66
+Parameters                                227                      220
+Effective parameters                      215                      209
+Residual blocks                           162                      162
+Residuals                                 527                      527
+
+Minimizer                        TRUST_REGION
+
+Dense linear algebra library            EIGEN
+Trust region strategy     LEVENBERG_MARQUARDT
+
+                                        Given                     Used
+Linear solver           DENSE_NORMAL_CHOLESKY    DENSE_NORMAL_CHOLESKY
+Threads                                     1                        1
+Linear solver ordering              AUTOMATIC                       66
+
+Cost:
+Initial                          1.662342e+02
+Final                            1.489785e+02
+Change                           1.725570e+01
+
+Minimizer iterations                        9
+Successful steps                            9
+Unsuccessful steps                          0
+
+Time (in seconds):
+Preprocessor                         0.000037
+
+  Residual only evaluation           0.000552 (8)
+  Jacobian & residual evaluation     0.001442 (9)
+  Linear solver                      0.012260 (8)
+Minimizer                            0.015145
+
+Postprocessor                        0.000005
+Total                                0.015187
+
+Termination:                   NO_CONVERGENCE (Maximum number of iterations reached. Number of iterations: 8.)
+
+
+Solver Summary (v 2.1.0-eigen-(3.3.9)-lapack-suitesparse-(5.7.1)-cxsparse-(3.2.0)-eigensparse-no_openmp)
+
+                                     Original                  Reduced
+Parameter blocks                           67                       66
+Parameters                                227                      220
+Effective parameters                      215                      209
+Residual blocks                           157                      157
+Residuals                                 511                      511
+
+Minimizer                        TRUST_REGION
+
+Dense linear algebra library            EIGEN
+Trust region strategy     LEVENBERG_MARQUARDT
+
+                                        Given                     Used
+Linear solver           DENSE_NORMAL_CHOLESKY    DENSE_NORMAL_CHOLESKY
+Threads                                     1                        1
+Linear solver ordering              AUTOMATIC                       66
+
+Cost:
+Initial                          1.463588e+02
+Final                            1.423395e+02
+Change                           4.019369e+00
+
+Minimizer iterations                        9
+Successful steps                            9
+Unsuccessful steps                          0
+
+Time (in seconds):
+Preprocessor                         0.000028
+
+  Residual only evaluation           0.000554 (8)
+  Jacobian & residual evaluation     0.001365 (9)
+  Linear solver                      0.011880 (8)
+Minimizer                            0.014715
+
+Postprocessor                        0.000005
+Total                                0.014748
+
+Termination:                   NO_CONVERGENCE (Maximum number of iterations reached. Number of iterations: 8.)
+
+marg old: marg_feature_count=26
+
+Solver Summary (v 2.1.0-eigen-(3.3.9)-lapack-suitesparse-(5.7.1)-cxsparse-(3.2.0)-eigensparse-no_openmp)
+
+                                     Original                  Reduced
+Parameter blocks                           59                       58
+Parameters                                219                      212
+Effective parameters                      207                      201
+Residual blocks                           144                      144
+Residuals                                 491                      491
+
+Minimizer                        TRUST_REGION
+
+Dense linear algebra library            EIGEN
+Trust region strategy     LEVENBERG_MARQUARDT
+
+                                        Given                     Used
+Linear solver           DENSE_NORMAL_CHOLESKY    DENSE_NORMAL_CHOLESKY
+Threads                                     1                        1
+Linear solver ordering              AUTOMATIC                       58
+
+Cost:
+Initial                          1.494622e+02
+Final                            1.444319e+02
+Change                           5.030259e+00
+
+Minimizer iterations                        9
+Successful steps                            9
+Unsuccessful steps                          0
+
+Time (in seconds):
+Preprocessor                         0.000029
+
+  Residual only evaluation           0.000533 (8)
+  Jacobian & residual evaluation     0.001660 (9)
+  Linear solver                      0.010508 (8)
+Minimizer                            0.013549
+
+Postprocessor                        0.000004
+Total                                0.013582
+
+Termination:                   NO_CONVERGENCE (Maximum number of iterations reached. Number of iterations: 8.)
+
+marg old: marg_feature_count=16
+
+Solver Summary (v 2.1.0-eigen-(3.3.9)-lapack-suitesparse-(5.7.1)-cxsparse-(3.2.0)-eigensparse-no_openmp)
+
+                                     Original                  Reduced
+Parameter blocks                          141                      140
+Parameters                                301                      294
+Effective parameters                      289                      283
+Residual blocks                           373                      373
+Residuals                                 949                      949
+
+Minimizer                        TRUST_REGION
+
+Dense linear algebra library            EIGEN
+Trust region strategy     LEVENBERG_MARQUARDT
+
+                                        Given                     Used
+Linear solver           DENSE_NORMAL_CHOLESKY    DENSE_NORMAL_CHOLESKY
+Threads                                     1                        1
+Linear solver ordering              AUTOMATIC                      140
+
+Cost:
+Initial                          2.049416e+02
+Final                            1.978163e+02
+Change                           7.125240e+00
+
+Minimizer iterations                        7
+Successful steps                            7
+Unsuccessful steps                          0
+
+Time (in seconds):
+Preprocessor                         0.000040
+
+  Residual only evaluation           0.000699 (6)
+  Jacobian & residual evaluation     0.002003 (7)
+  Linear solver                      0.029580 (6)
+Minimizer                            0.034575
+
+Postprocessor                        0.000008
+Total                                0.034623
+
+Termination:                   NO_CONVERGENCE (Maximum solver time reached. Total solver time: 3.460860e-02 >= 3.200000e-02.)
+
+marg old: marg_feature_count=10
+
+Solver Summary (v 2.1.0-eigen-(3.3.9)-lapack-suitesparse-(5.7.1)-cxsparse-(3.2.0)-eigensparse-no_openmp)
+
+                                     Original                  Reduced
+Parameter blocks                          147                      146
+Parameters                                307                      300
+Effective parameters                      295                      289
+Residual blocks                           444                      444
+Residuals                                1091                     1091
+
+Minimizer                        TRUST_REGION
+
+Dense linear algebra library            EIGEN
+Trust region strategy     LEVENBERG_MARQUARDT
+
+                                        Given                     Used
+Linear solver           DENSE_NORMAL_CHOLESKY    DENSE_NORMAL_CHOLESKY
+Threads                                     1                        1
+Linear solver ordering              AUTOMATIC                      146
+
+Cost:
+Initial                          2.444542e+02
+Final                            2.403432e+02
+Change                           4.110955e+00
+
+Minimizer iterations                        7
+Successful steps                            7
+Unsuccessful steps                          0
+
+Time (in seconds):
+Preprocessor                         0.000042
+
+  Residual only evaluation           0.000769 (6)
+  Jacobian & residual evaluation     0.002251 (7)
+  Linear solver                      0.035036 (6)
+Minimizer                            0.040596
+
+Postprocessor                        0.000009
+Total                                0.040647
+
+Termination:                   NO_CONVERGENCE (Maximum solver time reached. Total solver time: 4.063201e-02 >= 4.000000e-02.)
+
+
+Solver Summary (v 2.1.0-eigen-(3.3.9)-lapack-suitesparse-(5.7.1)-cxsparse-(3.2.0)-eigensparse-no_openmp)
+
+                                     Original                  Reduced
+Parameter blocks                          147                      146
+Parameters                                307                      300
+Effective parameters                      295                      289
+Residual blocks                           429                      429
+Residuals                                1055                     1055
+
+Minimizer                        TRUST_REGION
+
+Dense linear algebra library            EIGEN
+Trust region strategy     LEVENBERG_MARQUARDT
+
+                                        Given                     Used
+Linear solver           DENSE_NORMAL_CHOLESKY    DENSE_NORMAL_CHOLESKY
+Threads                                     1                        1
+Linear solver ordering              AUTOMATIC                      146
+
+Cost:
+Initial                          2.516135e+02
+Final                            2.497307e+02
+Change                           1.882844e+00
+
+Minimizer iterations                        7
+Successful steps                            7
+Unsuccessful steps                          0
+
+Time (in seconds):
+Preprocessor                         0.000039
+
+  Residual only evaluation           0.000746 (6)
+  Jacobian & residual evaluation     0.002099 (7)
+  Linear solver                      0.031779 (6)
+Minimizer                            0.036885
+
+Postprocessor                        0.000010
+Total                                0.036934
+
+Termination:                   NO_CONVERGENCE (Maximum solver time reached. Total solver time: 3.691888e-02 >= 3.200000e-02.)
+
+marg old: marg_feature_count=12
+
+Solver Summary (v 2.1.0-eigen-(3.3.9)-lapack-suitesparse-(5.7.1)-cxsparse-(3.2.0)-eigensparse-no_openmp)
+
+                                     Original                  Reduced
+Parameter blocks                          151                      150
+Parameters                                311                      304
+Effective parameters                      299                      293
+Residual blocks                           485                      485
+Residuals                                1173                     1173
+
+Minimizer                        TRUST_REGION
+
+Dense linear algebra library            EIGEN
+Trust region strategy     LEVENBERG_MARQUARDT
+
+                                        Given                     Used
+Linear solver           DENSE_NORMAL_CHOLESKY    DENSE_NORMAL_CHOLESKY
+Threads                                     1                        1
+Linear solver ordering              AUTOMATIC                      150
+
+Cost:
+Initial                          2.910770e+02
+Final                            2.847601e+02
+Change                           6.316898e+00
+
+Minimizer iterations                        6
+Successful steps                            6
+Unsuccessful steps                          0
+
+Time (in seconds):
+Preprocessor                         0.000044
+
+  Residual only evaluation           0.000625 (5)
+  Jacobian & residual evaluation     0.002159 (6)
+  Linear solver                      0.029596 (5)
+Minimizer                            0.034822
+
+Postprocessor                        0.000009
+Total                                0.034875
+
+Termination:                   NO_CONVERGENCE (Maximum solver time reached. Total solver time: 3.486013e-02 >= 3.200000e-02.)
+
+marg old: marg_feature_count=13
+
+Solver Summary (v 2.1.0-eigen-(3.3.9)-lapack-suitesparse-(5.7.1)-cxsparse-(3.2.0)-eigensparse-no_openmp)
+
+                                     Original                  Reduced
+Parameter blocks                          180                      179
+Parameters                                340                      333
+Effective parameters                      328                      322
+Residual blocks                           620                      620
+Residuals                                1443                     1443
+
+Minimizer                        TRUST_REGION
+
+Dense linear algebra library            EIGEN
+Trust region strategy     LEVENBERG_MARQUARDT
+
+                                        Given                     Used
+Linear solver           DENSE_NORMAL_CHOLESKY    DENSE_NORMAL_CHOLESKY
+Threads                                     1                        1
+Linear solver ordering              AUTOMATIC                      179
+
+Cost:
+Initial                          5.432191e+02
+Final                            5.312982e+02
+Change                           1.192087e+01
+
+Minimizer iterations                        4
+Successful steps                            4
+Unsuccessful steps                          0
+
+Time (in seconds):
+Preprocessor                         0.000049
+
+  Residual only evaluation           0.000453 (3)
+  Jacobian & residual evaluation     0.002809 (4)
+  Linear solver                      0.026755 (3)
+Minimizer                            0.032461
+
+Postprocessor                        0.000014
+Total                                0.032524
+
+Termination:                   NO_CONVERGENCE (Maximum solver time reached. Total solver time: 3.250217e-02 >= 3.200000e-02.)
+
+marg old: marg_feature_count=10
+
+Solver Summary (v 2.1.0-eigen-(3.3.9)-lapack-suitesparse-(5.7.1)-cxsparse-(3.2.0)-eigensparse-no_openmp)
+
+                                     Original                  Reduced
+Parameter blocks                          200                      199
+Parameters                                360                      353
+Effective parameters                      348                      342
+Residual blocks                           703                      703
+Residuals                                1609                     1609
+
+Minimizer                        TRUST_REGION
+
+Dense linear algebra library            EIGEN
+Trust region strategy     LEVENBERG_MARQUARDT
+
+                                        Given                     Used
+Linear solver           DENSE_NORMAL_CHOLESKY    DENSE_NORMAL_CHOLESKY
+Threads                                     1                        1
+Linear solver ordering              AUTOMATIC                      199
+
+Cost:
+Initial                          7.217558e+02
+Final                            6.834452e+02
+Change                           3.831062e+01
+
+Minimizer iterations                        4
+Successful steps                            4
+Unsuccessful steps                          0
+
+Time (in seconds):
+Preprocessor                         0.000052
+
+  Residual only evaluation           0.000506 (3)
+  Jacobian & residual evaluation     0.002036 (4)
+  Linear solver                      0.032068 (3)
+Minimizer                            0.037094
+
+Postprocessor                        0.000010
+Total                                0.037156
+
+Termination:                   NO_CONVERGENCE (Maximum solver time reached. Total solver time: 3.713989e-02 >= 3.200000e-02.)
+
+marg old: marg_feature_count=21
+
+Solver Summary (v 2.1.0-eigen-(3.3.9)-lapack-suitesparse-(5.7.1)-cxsparse-(3.2.0)-eigensparse-no_openmp)
+
+                                     Original                  Reduced
+Parameter blocks                          181                      180
+Parameters                                341                      334
+Effective parameters                      329                      323
+Residual blocks                           715                      715
+Residuals                                1633                     1633
+
+Minimizer                        TRUST_REGION
+
+Dense linear algebra library            EIGEN
+Trust region strategy     LEVENBERG_MARQUARDT
+
+                                        Given                     Used
+Linear solver           DENSE_NORMAL_CHOLESKY    DENSE_NORMAL_CHOLESKY
+Threads                                     1                        1
+Linear solver ordering              AUTOMATIC                      180
+
+Cost:
+Initial                          7.408514e+02
+Final                            7.259404e+02
+Change                           1.491095e+01
+
+Minimizer iterations                        4
+Successful steps                            4
+Unsuccessful steps                          0
+
+Time (in seconds):
+Preprocessor                         0.000062
+
+  Residual only evaluation           0.000533 (3)
+  Jacobian & residual evaluation     0.002428 (4)
+  Linear solver                      0.030255 (3)
+Minimizer                            0.036028
+
+Postprocessor                        0.000012
+Total                                0.036102
+
+Termination:                   NO_CONVERGENCE (Maximum solver time reached. Total solver time: 3.608298e-02 >= 3.200000e-02.)
+
+marg old: marg_feature_count=18
+
+Solver Summary (v 2.1.0-eigen-(3.3.9)-lapack-suitesparse-(5.7.1)-cxsparse-(3.2.0)-eigensparse-no_openmp)
+
+                                     Original                  Reduced
+Parameter blocks                          174                      173
+Parameters                                334                      327
+Effective parameters                      322                      316
+Residual blocks                           748                      748
+Residuals                                1699                     1699
+
+Minimizer                        TRUST_REGION
+
+Dense linear algebra library            EIGEN
+Trust region strategy     LEVENBERG_MARQUARDT
+
+                                        Given                     Used
+Linear solver           DENSE_NORMAL_CHOLESKY    DENSE_NORMAL_CHOLESKY
+Threads                                     1                        1
+Linear solver ordering              AUTOMATIC                      173
+
+Cost:
+Initial                          8.070646e+02
+Final                            8.025817e+02
+Change                           4.482957e+00
+
+Minimizer iterations                        4
+Successful steps                            4
+Unsuccessful steps                          0
+
+Time (in seconds):
+Preprocessor                         0.000058
+
+  Residual only evaluation           0.000516 (3)
+  Jacobian & residual evaluation     0.002009 (4)
+  Linear solver                      0.029346 (3)
+Minimizer                            0.034228
+
+Postprocessor                        0.000011
+Total                                0.034297
+
+Termination:                   NO_CONVERGENCE (Maximum solver time reached. Total solver time: 3.428078e-02 >= 3.200000e-02.)
+
+marg old: marg_feature_count=14
+
+Solver Summary (v 2.1.0-eigen-(3.3.9)-lapack-suitesparse-(5.7.1)-cxsparse-(3.2.0)-eigensparse-no_openmp)
+
+                                     Original                  Reduced
+Parameter blocks                          181                      180
+Parameters                                341                      334
+Effective parameters                      329                      323
+Residual blocks                           809                      809
+Residuals                                1821                     1821
+
+Minimizer                        TRUST_REGION
+
+Dense linear algebra library            EIGEN
+Trust region strategy     LEVENBERG_MARQUARDT
+
+                                        Given                     Used
+Linear solver           DENSE_NORMAL_CHOLESKY    DENSE_NORMAL_CHOLESKY
+Threads                                     1                        1
+Linear solver ordering              AUTOMATIC                      180
+
+Cost:
+Initial                          9.147644e+02
+Final                            9.059217e+02
+Change                           8.842659e+00
+
+Minimizer iterations                        4
+Successful steps                            4
+Unsuccessful steps                          0
+
+Time (in seconds):
+Preprocessor                         0.000055
+
+  Residual only evaluation           0.000583 (3)
+  Jacobian & residual evaluation     0.002161 (4)
+  Linear solver                      0.034039 (3)
+Minimizer                            0.039815
+
+Postprocessor                        0.000011
+Total                                0.039881
+
+Termination:                   NO_CONVERGENCE (Maximum solver time reached. Total solver time: 3.986478e-02 >= 3.200000e-02.)
+
+marg old: marg_feature_count=98
+
+Solver Summary (v 2.1.0-eigen-(3.3.9)-lapack-suitesparse-(5.7.1)-cxsparse-(3.2.0)-eigensparse-no_openmp)
+
+                                     Original                  Reduced
+Parameter blocks                          197                      196
+Parameters                                357                      350
+Effective parameters                      345                      339
+Residual blocks                           836                      836
+Residuals                                1875                     1875
+
+Minimizer                        TRUST_REGION
+
+Dense linear algebra library            EIGEN
+Trust region strategy     LEVENBERG_MARQUARDT
+
+                                        Given                     Used
+Linear solver           DENSE_NORMAL_CHOLESKY    DENSE_NORMAL_CHOLESKY
+Threads                                     1                        1
+Linear solver ordering              AUTOMATIC                      196
+
+Cost:
+Initial                          1.172708e+03
+Final                            1.113656e+03
+Change                           5.905178e+01
+
+Minimizer iterations                        4
+Successful steps                            4
+Unsuccessful steps                          0
+
+Time (in seconds):
+Preprocessor                         0.000057
+
+  Residual only evaluation           0.000569 (3)
+  Jacobian & residual evaluation     0.002347 (4)
+  Linear solver                      0.039881 (3)
+Minimizer                            0.046914
+
+Postprocessor                        0.000013
+Total                                0.046984
+
+Termination:                   NO_CONVERGENCE (Maximum solver time reached. Total solver time: 4.696584e-02 >= 3.200000e-02.)
+
+marg old: marg_feature_count=96
+
+Solver Summary (v 2.1.0-eigen-(3.3.9)-lapack-suitesparse-(5.7.1)-cxsparse-(3.2.0)-eigensparse-no_openmp)
+
+                                     Original                  Reduced
+Parameter blocks                          180                      179
+Parameters                                340                      333
+Effective parameters                      328                      322
+Residual blocks                           825                      825
+Residuals                                1853                     1853
+
+Minimizer                        TRUST_REGION
+
+Dense linear algebra library            EIGEN
+Trust region strategy     LEVENBERG_MARQUARDT
+
+                                        Given                     Used
+Linear solver           DENSE_NORMAL_CHOLESKY    DENSE_NORMAL_CHOLESKY
+Threads                                     1                        1
+Linear solver ordering              AUTOMATIC                      179
+
+Cost:
+Initial                          1.378128e+03
+Final                            1.301566e+03
+Change                           7.656208e+01
+
+Minimizer iterations                        4
+Successful steps                            4
+Unsuccessful steps                          0
+
+Time (in seconds):
+Preprocessor                         0.000054
+
+  Residual only evaluation           0.000577 (3)
+  Jacobian & residual evaluation     0.002317 (4)
+  Linear solver                      0.032619 (3)
+Minimizer                            0.038239
+
+Postprocessor                        0.000012
+Total                                0.038305
+
+Termination:                   NO_CONVERGENCE (Maximum solver time reached. Total solver time: 3.828788e-02 >= 3.200000e-02.)
+
+marg old: marg_feature_count=74
+
+Solver Summary (v 2.1.0-eigen-(3.3.9)-lapack-suitesparse-(5.7.1)-cxsparse-(3.2.0)-eigensparse-no_openmp)
+
+                                     Original                  Reduced
+Parameter blocks                          178                      177
+Parameters                                338                      331
+Effective parameters                      326                      320
+Residual blocks                           825                      825
+Residuals                                1853                     1853
+
+Minimizer                        TRUST_REGION
+
+Dense linear algebra library            EIGEN
+Trust region strategy     LEVENBERG_MARQUARDT
+
+                                        Given                     Used
+Linear solver           DENSE_NORMAL_CHOLESKY    DENSE_NORMAL_CHOLESKY
+Threads                                     1                        1
+Linear solver ordering              AUTOMATIC                      177
+
+Cost:
+Initial                          1.550143e+03
+Final                            1.427858e+03
+Change                           1.222843e+02
+
+Minimizer iterations                        4
+Successful steps                            4
+Unsuccessful steps                          0
+
+Time (in seconds):
+Preprocessor                         0.000057
+
+  Residual only evaluation           0.000548 (3)
+  Jacobian & residual evaluation     0.002191 (4)
+  Linear solver                      0.034291 (3)
+Minimizer                            0.040765
+
+Postprocessor                        0.000012
+Total                                0.040834
+
+Termination:                   NO_CONVERGENCE (Maximum solver time reached. Total solver time: 4.081798e-02 >= 4.000000e-02.)
+
+
+Solver Summary (v 2.1.0-eigen-(3.3.9)-lapack-suitesparse-(5.7.1)-cxsparse-(3.2.0)-eigensparse-no_openmp)
+
+                                     Original                  Reduced
+Parameter blocks                          157                      156
+Parameters                                317                      310
+Effective parameters                      305                      299
+Residual blocks                           730                      730
+Residuals                                1657                     1657
+
+Minimizer                        TRUST_REGION
+
+Dense linear algebra library            EIGEN
+Trust region strategy     LEVENBERG_MARQUARDT
+
+                                        Given                     Used
+Linear solver           DENSE_NORMAL_CHOLESKY    DENSE_NORMAL_CHOLESKY
+Threads                                     1                        1
+Linear solver ordering              AUTOMATIC                      156
+
+Cost:
+Initial                          1.330648e+03
+Final                            1.320114e+03
+Change                           1.053461e+01
+
+Minimizer iterations                        5
+Successful steps                            5
+Unsuccessful steps                          0
+
+Time (in seconds):
+Preprocessor                         0.000105
+
+  Residual only evaluation           0.000668 (4)
+  Jacobian & residual evaluation     0.002553 (5)
+  Linear solver                      0.035939 (4)
+Minimizer                            0.041884
+
+Postprocessor                        0.000011
+Total                                0.042000
+
+Termination:                   NO_CONVERGENCE (Maximum solver time reached. Total solver time: 4.198122e-02 >= 4.000000e-02.)
+
+
+Solver Summary (v 2.1.0-eigen-(3.3.9)-lapack-suitesparse-(5.7.1)-cxsparse-(3.2.0)-eigensparse-no_openmp)
+
+                                     Original                  Reduced
+Parameter blocks                          140                      139
+Parameters                                300                      293
+Effective parameters                      288                      282
+Residual blocks                           595                      595
+Residuals                                1387                     1387
+
+Minimizer                        TRUST_REGION
+
+Dense linear algebra library            EIGEN
+Trust region strategy     LEVENBERG_MARQUARDT
+
+                                        Given                     Used
+Linear solver           DENSE_NORMAL_CHOLESKY    DENSE_NORMAL_CHOLESKY
+Threads                                     1                        1
+Linear solver ordering              AUTOMATIC                      139
+
+Cost:
+Initial                          1.153671e+03
+Final                            1.141474e+03
+Change                           1.219672e+01
+
+Minimizer iterations                        6
+Successful steps                            6
+Unsuccessful steps                          0
+
+Time (in seconds):
+Preprocessor                         0.000053
+
+  Residual only evaluation           0.000812 (5)
+  Jacobian & residual evaluation     0.002404 (6)
+  Linear solver                      0.032282 (5)
+Minimizer                            0.038145
+
+Postprocessor                        0.000010
+Total                                0.038208
+
+Termination:                   NO_CONVERGENCE (Maximum solver time reached. Total solver time: 3.819394e-02 >= 3.200000e-02.)
+
+marg old: marg_feature_count=86
+
+Solver Summary (v 2.1.0-eigen-(3.3.9)-lapack-suitesparse-(5.7.1)-cxsparse-(3.2.0)-eigensparse-no_openmp)
+
+                                     Original                  Reduced
+Parameter blocks                          129                      128
+Parameters                                289                      282
+Effective parameters                      277                      271
+Residual blocks                           487                      487
+Residuals                                1177                     1177
+
+Minimizer                        TRUST_REGION
+
+Dense linear algebra library            EIGEN
+Trust region strategy     LEVENBERG_MARQUARDT
+
+                                        Given                     Used
+Linear solver           DENSE_NORMAL_CHOLESKY    DENSE_NORMAL_CHOLESKY
+Threads                                     1                        1
+Linear solver ordering              AUTOMATIC                      128
+
+Cost:
+Initial                          1.126902e+03
+Final                            1.055410e+03
+Change                           7.149205e+01
+
+Minimizer iterations                        8
+Successful steps                            8
+Unsuccessful steps                          0
+
+Time (in seconds):
+Preprocessor                         0.000043
+
+  Residual only evaluation           0.000931 (7)
+  Jacobian & residual evaluation     0.002810 (8)
+  Linear solver                      0.037684 (7)
+Minimizer                            0.044174
+
+Postprocessor                        0.000009
+Total                                0.044226
+
+Termination:                   NO_CONVERGENCE (Maximum solver time reached. Total solver time: 4.421210e-02 >= 4.000000e-02.)
+
+
+Solver Summary (v 2.1.0-eigen-(3.3.9)-lapack-suitesparse-(5.7.1)-cxsparse-(3.2.0)-eigensparse-no_openmp)
+
+                                     Original                  Reduced
+Parameter blocks                           90                       89
+Parameters                                250                      243
+Effective parameters                      238                      232
+Residual blocks                           351                      351
+Residuals                                 899                      899
+
+Minimizer                        TRUST_REGION
+
+Dense linear algebra library            EIGEN
+Trust region strategy     LEVENBERG_MARQUARDT
+
+                                        Given                     Used
+Linear solver           DENSE_NORMAL_CHOLESKY    DENSE_NORMAL_CHOLESKY
+Threads                                     1                        1
+Linear solver ordering              AUTOMATIC                       89
+
+Cost:
+Initial                          7.863980e+02
+Final                            7.510487e+02
+Change                           3.534928e+01
+
+Minimizer iterations                        9
+Successful steps                            9
+Unsuccessful steps                          0
+
+Time (in seconds):
+Preprocessor                         0.000036
+
+  Residual only evaluation           0.000832 (8)
+  Jacobian & residual evaluation     0.002239 (9)
+  Linear solver                      0.023286 (8)
+Minimizer                            0.028306
+
+Postprocessor                        0.000007
+Total                                0.028350
+
+Termination:                   NO_CONVERGENCE (Maximum number of iterations reached. Number of iterations: 8.)
+
+
+Solver Summary (v 2.1.0-eigen-(3.3.9)-lapack-suitesparse-(5.7.1)-cxsparse-(3.2.0)-eigensparse-no_openmp)
+
+                                     Original                  Reduced
+Parameter blocks                           90                       89
+Parameters                                250                      243
+Effective parameters                      238                      232
+Residual blocks                           342                      342
+Residuals                                 881                      881
+
+Minimizer                        TRUST_REGION
+
+Dense linear algebra library            EIGEN
+Trust region strategy     LEVENBERG_MARQUARDT
+
+                                        Given                     Used
+Linear solver           DENSE_NORMAL_CHOLESKY    DENSE_NORMAL_CHOLESKY
+Threads                                     1                        1
+Linear solver ordering              AUTOMATIC                       89
+
+Cost:
+Initial                          7.708013e+02
+Final                            7.377547e+02
+Change                           3.304655e+01
+
+Minimizer iterations                        9
+Successful steps                            9
+Unsuccessful steps                          0
+
+Time (in seconds):
+Preprocessor                         0.000038
+
+  Residual only evaluation           0.000796 (8)
+  Jacobian & residual evaluation     0.002187 (9)
+  Linear solver                      0.023448 (8)
+Minimizer                            0.028357
+
+Postprocessor                        0.000007
+Total                                0.028402
+
+Termination:                   NO_CONVERGENCE (Maximum number of iterations reached. Number of iterations: 8.)
+
+marg old: marg_feature_count=33
+
+Solver Summary (v 2.1.0-eigen-(3.3.9)-lapack-suitesparse-(5.7.1)-cxsparse-(3.2.0)-eigensparse-no_openmp)
+
+                                     Original                  Reduced
+Parameter blocks                          132                      131
+Parameters                                292                      285
+Effective parameters                      280                      274
+Residual blocks                           442                      442
+Residuals                                1087                     1087
+
+Minimizer                        TRUST_REGION
+
+Dense linear algebra library            EIGEN
+Trust region strategy     LEVENBERG_MARQUARDT
+
+                                        Given                     Used
+Linear solver           DENSE_NORMAL_CHOLESKY    DENSE_NORMAL_CHOLESKY
+Threads                                     1                        1
+Linear solver ordering              AUTOMATIC                      131
+
+Cost:
+Initial                          8.854337e+02
+Final                            8.637698e+02
+Change                           2.166390e+01
+
+Minimizer iterations                        7
+Successful steps                            7
+Unsuccessful steps                          0
+
+Time (in seconds):
+Preprocessor                         0.000041
+
+  Residual only evaluation           0.000673 (6)
+  Jacobian & residual evaluation     0.002075 (7)
+  Linear solver                      0.028209 (6)
+Minimizer                            0.033078
+
+Postprocessor                        0.000007
+Total                                0.033126
+
+Termination:                   NO_CONVERGENCE (Maximum solver time reached. Total solver time: 3.311300e-02 >= 3.200000e-02.)
+
+marg old: marg_feature_count=31
+
+Solver Summary (v 2.1.0-eigen-(3.3.9)-lapack-suitesparse-(5.7.1)-cxsparse-(3.2.0)-eigensparse-no_openmp)
+
+                                     Original                  Reduced
+Parameter blocks                          160                      159
+Parameters                                320                      313
+Effective parameters                      308                      302
+Residual blocks                           560                      560
+Residuals                                1323                     1323
+
+Minimizer                        TRUST_REGION
+
+Dense linear algebra library            EIGEN
+Trust region strategy     LEVENBERG_MARQUARDT
+
+                                        Given                     Used
+Linear solver           DENSE_NORMAL_CHOLESKY    DENSE_NORMAL_CHOLESKY
+Threads                                     1                        1
+Linear solver ordering              AUTOMATIC                      159
+
+Cost:
+Initial                          9.854766e+02
+Final                            9.708113e+02
+Change                           1.466524e+01
+
+Minimizer iterations                        5
+Successful steps                            5
+Unsuccessful steps                          0
+
+Time (in seconds):
+Preprocessor                         0.000048
+
+  Residual only evaluation           0.000579 (4)
+  Jacobian & residual evaluation     0.001860 (5)
+  Linear solver                      0.027375 (4)
+Minimizer                            0.032248
+
+Postprocessor                        0.000012
+Total                                0.032308
+
+Termination:                   NO_CONVERGENCE (Maximum solver time reached. Total solver time: 3.228807e-02 >= 3.200000e-02.)
+
+marg old: marg_feature_count=24
+
+Solver Summary (v 2.1.0-eigen-(3.3.9)-lapack-suitesparse-(5.7.1)-cxsparse-(3.2.0)-eigensparse-no_openmp)
+
+                                     Original                  Reduced
+Parameter blocks                          167                      166
+Parameters                                327                      320
+Effective parameters                      315                      309
+Residual blocks                           618                      618
+Residuals                                1439                     1439
+
+Minimizer                        TRUST_REGION
+
+Dense linear algebra library            EIGEN
+Trust region strategy     LEVENBERG_MARQUARDT
+
+                                        Given                     Used
+Linear solver           DENSE_NORMAL_CHOLESKY    DENSE_NORMAL_CHOLESKY
+Threads                                     1                        1
+Linear solver ordering              AUTOMATIC                      166
+
+Cost:
+Initial                          1.075384e+03
+Final                            1.041584e+03
+Change                           3.380025e+01
+
+Minimizer iterations                        5
+Successful steps                            5
+Unsuccessful steps                          0
+
+Time (in seconds):
+Preprocessor                         0.000050
+
+  Residual only evaluation           0.000593 (4)
+  Jacobian & residual evaluation     0.002159 (5)
+  Linear solver                      0.032469 (4)
+Minimizer                            0.037883
+
+Postprocessor                        0.000009
+Total                                0.037942
+
+Termination:                   NO_CONVERGENCE (Maximum solver time reached. Total solver time: 3.792787e-02 >= 3.200000e-02.)
+
+marg old: marg_feature_count=31
+
+Solver Summary (v 2.1.0-eigen-(3.3.9)-lapack-suitesparse-(5.7.1)-cxsparse-(3.2.0)-eigensparse-no_openmp)
+
+                                     Original                  Reduced
+Parameter blocks                          178                      177
+Parameters                                338                      331
+Effective parameters                      326                      320
+Residual blocks                           683                      683
+Residuals                                1569                     1569
+
+Minimizer                        TRUST_REGION
+
+Dense linear algebra library            EIGEN
+Trust region strategy     LEVENBERG_MARQUARDT
+
+                                        Given                     Used
+Linear solver           DENSE_NORMAL_CHOLESKY    DENSE_NORMAL_CHOLESKY
+Threads                                     1                        1
+Linear solver ordering              AUTOMATIC                      177
+
+Cost:
+Initial                          1.210807e+03
+Final                            1.180001e+03
+Change                           3.080577e+01
+
+Minimizer iterations                        4
+Successful steps                            4
+Unsuccessful steps                          0
+
+Time (in seconds):
+Preprocessor                         0.000050
+
+  Residual only evaluation           0.000498 (3)
+  Jacobian & residual evaluation     0.001834 (4)
+  Linear solver                      0.028397 (3)
+Minimizer                            0.033437
+
+Postprocessor                        0.000013
+Total                                0.033500
+
+Termination:                   NO_CONVERGENCE (Maximum solver time reached. Total solver time: 3.348303e-02 >= 3.200000e-02.)
+
+marg old: marg_feature_count=33
+
+Solver Summary (v 2.1.0-eigen-(3.3.9)-lapack-suitesparse-(5.7.1)-cxsparse-(3.2.0)-eigensparse-no_openmp)
+
+                                     Original                  Reduced
+Parameter blocks                          187                      186
+Parameters                                347                      340
+Effective parameters                      335                      329
+Residual blocks                           745                      745
+Residuals                                1693                     1693
+
+Minimizer                        TRUST_REGION
+
+Dense linear algebra library            EIGEN
+Trust region strategy     LEVENBERG_MARQUARDT
+
+                                        Given                     Used
+Linear solver           DENSE_NORMAL_CHOLESKY    DENSE_NORMAL_CHOLESKY
+Threads                                     1                        1
+Linear solver ordering              AUTOMATIC                      186
+
+Cost:
+Initial                          1.384737e+03
+Final                            1.357074e+03
+Change                           2.766275e+01
+
+Minimizer iterations                        4
+Successful steps                            4
+Unsuccessful steps                          0
+
+Time (in seconds):
+Preprocessor                         0.000055
+
+  Residual only evaluation           0.000535 (3)
+  Jacobian & residual evaluation     0.002335 (4)
+  Linear solver                      0.034392 (3)
+Minimizer                            0.041063
+
+Postprocessor                        0.000013
+Total                                0.041131
+
+Termination:                   NO_CONVERGENCE (Maximum solver time reached. Total solver time: 4.111123e-02 >= 3.200000e-02.)
+
+marg old: marg_feature_count=34
+
+Solver Summary (v 2.1.0-eigen-(3.3.9)-lapack-suitesparse-(5.7.1)-cxsparse-(3.2.0)-eigensparse-no_openmp)
+
+                                     Original                  Reduced
+Parameter blocks                          205                      204
+Parameters                                365                      358
+Effective parameters                      353                      347
+Residual blocks                           845                      845
+Residuals                                1893                     1893
+
+Minimizer                        TRUST_REGION
+
+Dense linear algebra library            EIGEN
+Trust region strategy     LEVENBERG_MARQUARDT
+
+                                        Given                     Used
+Linear solver           DENSE_NORMAL_CHOLESKY    DENSE_NORMAL_CHOLESKY
+Threads                                     1                        1
+Linear solver ordering              AUTOMATIC                      204
+
+Cost:
+Initial                          1.644114e+03
+Final                            1.597244e+03
+Change                           4.686971e+01
+
+Minimizer iterations                        4
+Successful steps                            4
+Unsuccessful steps                          0
+
+Time (in seconds):
+Preprocessor                         0.000053
+
+  Residual only evaluation           0.000548 (3)
+  Jacobian & residual evaluation     0.002152 (4)
+  Linear solver                      0.040706 (3)
+Minimizer                            0.046464
+
+Postprocessor                        0.000016
+Total                                0.046533
+
+Termination:                   NO_CONVERGENCE (Maximum solver time reached. Total solver time: 4.651093e-02 >= 3.200000e-02.)
+
+marg old: marg_feature_count=37
+
+Solver Summary (v 2.1.0-eigen-(3.3.9)-lapack-suitesparse-(5.7.1)-cxsparse-(3.2.0)-eigensparse-no_openmp)
+
+                                     Original                  Reduced
+Parameter blocks                          220                      219
+Parameters                                380                      373
+Effective parameters                      368                      362
+Residual blocks                           942                      942
+Residuals                                2087                     2087
+
+Minimizer                        TRUST_REGION
+
+Dense linear algebra library            EIGEN
+Trust region strategy     LEVENBERG_MARQUARDT
+
+                                        Given                     Used
+Linear solver           DENSE_NORMAL_CHOLESKY    DENSE_NORMAL_CHOLESKY
+Threads                                     1                        1
+Linear solver ordering              AUTOMATIC                      219
+
+Cost:
+Initial                          1.948503e+03
+Final                            1.915664e+03
+Change                           3.283915e+01
+
+Minimizer iterations                        3
+Successful steps                            3
+Unsuccessful steps                          0
+
+Time (in seconds):
+Preprocessor                         0.000059
+
+  Residual only evaluation           0.000384 (2)
+  Jacobian & residual evaluation     0.001990 (3)
+  Linear solver                      0.031178 (2)
+Minimizer                            0.036740
+
+Postprocessor                        0.000013
+Total                                0.036812
+
+Termination:                   NO_CONVERGENCE (Maximum solver time reached. Total solver time: 3.679490e-02 >= 3.200000e-02.)
+
+marg old: marg_feature_count=40
+
+Solver Summary (v 2.1.0-eigen-(3.3.9)-lapack-suitesparse-(5.7.1)-cxsparse-(3.2.0)-eigensparse-no_openmp)
+
+                                     Original                  Reduced
+Parameter blocks                          228                      227
+Parameters                                388                      381
+Effective parameters                      376                      370
+Residual blocks                          1014                     1014
+Residuals                                2231                     2231
+
+Minimizer                        TRUST_REGION
+
+Dense linear algebra library            EIGEN
+Trust region strategy     LEVENBERG_MARQUARDT
+
+                                        Given                     Used
+Linear solver           DENSE_NORMAL_CHOLESKY    DENSE_NORMAL_CHOLESKY
+Threads                                     1                        1
+Linear solver ordering              AUTOMATIC                      227
+
+Cost:
+Initial                          2.143642e+03
+Final                            2.099132e+03
+Change                           4.451097e+01
+
+Minimizer iterations                        3
+Successful steps                            3
+Unsuccessful steps                          0
+
+Time (in seconds):
+Preprocessor                         0.000080
+
+  Residual only evaluation           0.000413 (2)
+  Jacobian & residual evaluation     0.002295 (3)
+  Linear solver                      0.035940 (2)
+Minimizer                            0.042197
+
+Postprocessor                        0.000015
+Total                                0.042292
+
+Termination:                   NO_CONVERGENCE (Maximum solver time reached. Total solver time: 4.227114e-02 >= 3.200000e-02.)
+
+marg old: marg_feature_count=81
+
+Solver Summary (v 2.1.0-eigen-(3.3.9)-lapack-suitesparse-(5.7.1)-cxsparse-(3.2.0)-eigensparse-no_openmp)
+
+                                     Original                  Reduced
+Parameter blocks                          219                      218
+Parameters                                379                      372
+Effective parameters                      367                      361
+Residual blocks                          1034                     1034
+Residuals                                2271                     2271
+
+Minimizer                        TRUST_REGION
+
+Dense linear algebra library            EIGEN
+Trust region strategy     LEVENBERG_MARQUARDT
+
+                                        Given                     Used
+Linear solver           DENSE_NORMAL_CHOLESKY    DENSE_NORMAL_CHOLESKY
+Threads                                     1                        1
+Linear solver ordering              AUTOMATIC                      218
+
+Cost:
+Initial                          2.229154e+03
+Final                            2.195898e+03
+Change                           3.325601e+01
+
+Minimizer iterations                        2
+Successful steps                            2
+Unsuccessful steps                          0
+
+Time (in seconds):
+Preprocessor                         0.000201
+
+  Residual only evaluation           0.000249 (1)
+  Jacobian & residual evaluation     0.003112 (2)
+  Linear solver                      0.068416 (1)
+Minimizer                            0.074102
+
+Postprocessor                        0.000016
+Total                                0.074319
+
+Termination:                   NO_CONVERGENCE (Maximum solver time reached. Total solver time: 7.429790e-02 >= 3.200000e-02.)
+
+marg old: marg_feature_count=101
+
+Solver Summary (v 2.1.0-eigen-(3.3.9)-lapack-suitesparse-(5.7.1)-cxsparse-(3.2.0)-eigensparse-no_openmp)
+
+                                     Original                  Reduced
+Parameter blocks                          206                      205
+Parameters                                366                      359
+Effective parameters                      354                      348
+Residual blocks                          1009                     1009
+Residuals                                2221                     2221
+
+Minimizer                        TRUST_REGION
+
+Dense linear algebra library            EIGEN
+Trust region strategy     LEVENBERG_MARQUARDT
+
+                                        Given                     Used
+Linear solver           DENSE_NORMAL_CHOLESKY    DENSE_NORMAL_CHOLESKY
+Threads                                     1                        1
+Linear solver ordering              AUTOMATIC                      205
+
+Cost:
+Initial                          2.387180e+03
+Final                            2.306179e+03
+Change                           8.100144e+01
+
+Minimizer iterations                        3
+Successful steps                            3
+Unsuccessful steps                          0
+
+Time (in seconds):
+Preprocessor                         0.000071
+
+  Residual only evaluation           0.000416 (2)
+  Jacobian & residual evaluation     0.002375 (3)
+  Linear solver                      0.031226 (2)
+Minimizer                            0.036842
+
+Postprocessor                        0.000016
+Total                                0.036929
+
+Termination:                   NO_CONVERGENCE (Maximum solver time reached. Total solver time: 3.689098e-02 >= 3.200000e-02.)
+
+marg old: marg_feature_count=97
+
+Solver Summary (v 2.1.0-eigen-(3.3.9)-lapack-suitesparse-(5.7.1)-cxsparse-(3.2.0)-eigensparse-no_openmp)
+
+                                     Original                  Reduced
+Parameter blocks                          193                      192
+Parameters                                353                      346
+Effective parameters                      341                      335
+Residual blocks                           988                      988
+Residuals                                2179                     2179
+
+Minimizer                        TRUST_REGION
+
+Dense linear algebra library            EIGEN
+Trust region strategy     LEVENBERG_MARQUARDT
+
+                                        Given                     Used
+Linear solver           DENSE_NORMAL_CHOLESKY    DENSE_NORMAL_CHOLESKY
+Threads                                     1                        1
+Linear solver ordering              AUTOMATIC                      192
+
+Cost:
+Initial                          2.476847e+03
+Final                            2.393554e+03
+Change                           8.329327e+01
+
+Minimizer iterations                        3
+Successful steps                            3
+Unsuccessful steps                          0
+
+Time (in seconds):
+Preprocessor                         0.000059
+
+  Residual only evaluation           0.000459 (2)
+  Jacobian & residual evaluation     0.002322 (3)
+  Linear solver                      0.030082 (2)
+Minimizer                            0.036543
+
+Postprocessor                        0.000021
+Total                                0.036623
+
+Termination:                   NO_CONVERGENCE (Maximum solver time reached. Total solver time: 3.659511e-02 >= 3.200000e-02.)
+
+marg old: marg_feature_count=96
+
+Solver Summary (v 2.1.0-eigen-(3.3.9)-lapack-suitesparse-(5.7.1)-cxsparse-(3.2.0)-eigensparse-no_openmp)
+
+                                     Original                  Reduced
+Parameter blocks                          191                      190
+Parameters                                351                      344
+Effective parameters                      339                      333
+Residual blocks                           988                      988
+Residuals                                2179                     2179
+
+Minimizer                        TRUST_REGION
+
+Dense linear algebra library            EIGEN
+Trust region strategy     LEVENBERG_MARQUARDT
+
+                                        Given                     Used
+Linear solver           DENSE_NORMAL_CHOLESKY    DENSE_NORMAL_CHOLESKY
+Threads                                     1                        1
+Linear solver ordering              AUTOMATIC                      190
+
+Cost:
+Initial                          2.531180e+03
+Final                            2.454751e+03
+Change                           7.642841e+01
+
+Minimizer iterations                        3
+Successful steps                            3
+Unsuccessful steps                          0
+
+Time (in seconds):
+Preprocessor                         0.000066
+
+  Residual only evaluation           0.000450 (2)
+  Jacobian & residual evaluation     0.002081 (3)
+  Linear solver                      0.028861 (2)
+Minimizer                            0.034242
+
+Postprocessor                        0.000015
+Total                                0.034323
+
+Termination:                   NO_CONVERGENCE (Maximum solver time reached. Total solver time: 3.430200e-02 >= 3.200000e-02.)
+
+marg old: marg_feature_count=93
+
+Solver Summary (v 2.1.0-eigen-(3.3.9)-lapack-suitesparse-(5.7.1)-cxsparse-(3.2.0)-eigensparse-no_openmp)
+
+                                     Original                  Reduced
+Parameter blocks                          184                      183
+Parameters                                344                      337
+Effective parameters                      332                      326
+Residual blocks                           983                      983
+Residuals                                2169                     2169
+
+Minimizer                        TRUST_REGION
+
+Dense linear algebra library            EIGEN
+Trust region strategy     LEVENBERG_MARQUARDT
+
+                                        Given                     Used
+Linear solver           DENSE_NORMAL_CHOLESKY    DENSE_NORMAL_CHOLESKY
+Threads                                     1                        1
+Linear solver ordering              AUTOMATIC                      183
+
+Cost:
+Initial                          2.537365e+03
+Final                            2.463982e+03
+Change                           7.338293e+01
+
+Minimizer iterations                        3
+Successful steps                            3
+Unsuccessful steps                          0
+
+Time (in seconds):
+Preprocessor                         0.000061
+
+  Residual only evaluation           0.000433 (2)
+  Jacobian & residual evaluation     0.002085 (3)
+  Linear solver                      0.027130 (2)
+Minimizer                            0.032368
+
+Postprocessor                        0.000017
+Total                                0.032446
+
+Termination:                   NO_CONVERGENCE (Maximum solver time reached. Total solver time: 3.242278e-02 >= 3.200000e-02.)
+
+marg old: marg_feature_count=103
+
+Solver Summary (v 2.1.0-eigen-(3.3.9)-lapack-suitesparse-(5.7.1)-cxsparse-(3.2.0)-eigensparse-no_openmp)
+
+                                     Original                  Reduced
+Parameter blocks                          187                      186
+Parameters                                347                      340
+Effective parameters                      335                      329
+Residual blocks                           974                      974
+Residuals                                2151                     2151
+
+Minimizer                        TRUST_REGION
+
+Dense linear algebra library            EIGEN
+Trust region strategy     LEVENBERG_MARQUARDT
+
+                                        Given                     Used
+Linear solver           DENSE_NORMAL_CHOLESKY    DENSE_NORMAL_CHOLESKY
+Threads                                     1                        1
+Linear solver ordering              AUTOMATIC                      186
+
+Cost:
+Initial                          2.599569e+03
+Final                            2.528197e+03
+Change                           7.137168e+01
+
+Minimizer iterations                        3
+Successful steps                            3
+Unsuccessful steps                          0
+
+Time (in seconds):
+Preprocessor                         0.000063
+
+  Residual only evaluation           0.000580 (2)
+  Jacobian & residual evaluation     0.002143 (3)
+  Linear solver                      0.027377 (2)
+Minimizer                            0.033211
+
+Postprocessor                        0.000014
+Total                                0.033288
+
+Termination:                   NO_CONVERGENCE (Maximum solver time reached. Total solver time: 3.326821e-02 >= 3.200000e-02.)
+
+marg old: marg_feature_count=113
+
+Solver Summary (v 2.1.0-eigen-(3.3.9)-lapack-suitesparse-(5.7.1)-cxsparse-(3.2.0)-eigensparse-no_openmp)
+
+                                     Original                  Reduced
+Parameter blocks                          198                      197
+Parameters                                358                      351
+Effective parameters                      346                      340
+Residual blocks                           982                      982
+Residuals                                2167                     2167
+
+Minimizer                        TRUST_REGION
+
+Dense linear algebra library            EIGEN
+Trust region strategy     LEVENBERG_MARQUARDT
+
+                                        Given                     Used
+Linear solver           DENSE_NORMAL_CHOLESKY    DENSE_NORMAL_CHOLESKY
+Threads                                     1                        1
+Linear solver ordering              AUTOMATIC                      197
+
+Cost:
+Initial                          2.592325e+03
+Final                            2.525728e+03
+Change                           6.659696e+01
+
+Minimizer iterations                        3
+Successful steps                            3
+Unsuccessful steps                          0
+
+Time (in seconds):
+Preprocessor                         0.000064
+
+  Residual only evaluation           0.000406 (2)
+  Jacobian & residual evaluation     0.002102 (3)
+  Linear solver                      0.027882 (2)
+Minimizer                            0.033469
+
+Postprocessor                        0.000013
+Total                                0.033546
+
+Termination:                   NO_CONVERGENCE (Maximum solver time reached. Total solver time: 3.352714e-02 >= 3.200000e-02.)
+
+marg old: marg_feature_count=116
+
+Solver Summary (v 2.1.0-eigen-(3.3.9)-lapack-suitesparse-(5.7.1)-cxsparse-(3.2.0)-eigensparse-no_openmp)
+
+                                     Original                  Reduced
+Parameter blocks                          199                      198
+Parameters                                359                      352
+Effective parameters                      347                      341
+Residual blocks                           974                      974
+Residuals                                2151                     2151
+
+Minimizer                        TRUST_REGION
+
+Dense linear algebra library            EIGEN
+Trust region strategy     LEVENBERG_MARQUARDT
+
+                                        Given                     Used
+Linear solver           DENSE_NORMAL_CHOLESKY    DENSE_NORMAL_CHOLESKY
+Threads                                     1                        1
+Linear solver ordering              AUTOMATIC                      198
+
+Cost:
+Initial                          2.488813e+03
+Final                            2.427428e+03
+Change                           6.138581e+01
+
+Minimizer iterations                        3
+Successful steps                            3
+Unsuccessful steps                          0
+
+Time (in seconds):
+Preprocessor                         0.000066
+
+  Residual only evaluation           0.000397 (2)
+  Jacobian & residual evaluation     0.002484 (3)
+  Linear solver                      0.029027 (2)
+Minimizer                            0.035405
+
+Postprocessor                        0.000020
+Total                                0.035491
+
+Termination:                   NO_CONVERGENCE (Maximum solver time reached. Total solver time: 3.546286e-02 >= 3.200000e-02.)
+
+marg old: marg_feature_count=113
+
+Solver Summary (v 2.1.0-eigen-(3.3.9)-lapack-suitesparse-(5.7.1)-cxsparse-(3.2.0)-eigensparse-no_openmp)
+
+                                     Original                  Reduced
+Parameter blocks                          187                      186
+Parameters                                347                      340
+Effective parameters                      335                      329
+Residual blocks                           944                      944
+Residuals                                2091                     2091
+
+Minimizer                        TRUST_REGION
+
+Dense linear algebra library            EIGEN
+Trust region strategy     LEVENBERG_MARQUARDT
+
+                                        Given                     Used
+Linear solver           DENSE_NORMAL_CHOLESKY    DENSE_NORMAL_CHOLESKY
+Threads                                     1                        1
+Linear solver ordering              AUTOMATIC                      186
+
+Cost:
+Initial                          2.346445e+03
+Final                            2.229934e+03
+Change                           1.165108e+02
+
+Minimizer iterations                        4
+Successful steps                            4
+Unsuccessful steps                          0
+
+Time (in seconds):
+Preprocessor                         0.000057
+
+  Residual only evaluation           0.000619 (3)
+  Jacobian & residual evaluation     0.002545 (4)
+  Linear solver                      0.040260 (3)
+Minimizer                            0.047738
+
+Postprocessor                        0.000014
+Total                                0.047809
+
+Termination:                   NO_CONVERGENCE (Maximum solver time reached. Total solver time: 4.778910e-02 >= 3.200000e-02.)
+
+marg old: marg_feature_count=95
+
+Solver Summary (v 2.1.0-eigen-(3.3.9)-lapack-suitesparse-(5.7.1)-cxsparse-(3.2.0)-eigensparse-no_openmp)
+
+                                     Original                  Reduced
+Parameter blocks                          177                      176
+Parameters                                337                      330
+Effective parameters                      325                      319
+Residual blocks                           933                      933
+Residuals                                2069                     2069
+
+Minimizer                        TRUST_REGION
+
+Dense linear algebra library            EIGEN
+Trust region strategy     LEVENBERG_MARQUARDT
+
+                                        Given                     Used
+Linear solver           DENSE_NORMAL_CHOLESKY    DENSE_NORMAL_CHOLESKY
+Threads                                     1                        1
+Linear solver ordering              AUTOMATIC                      176
+
+Cost:
+Initial                          2.201877e+03
+Final                            2.118093e+03
+Change                           8.378392e+01
+
+Minimizer iterations                        4
+Successful steps                            4
+Unsuccessful steps                          0
+
+Time (in seconds):
+Preprocessor                         0.000055
+
+  Residual only evaluation           0.000780 (3)
+  Jacobian & residual evaluation     0.002435 (4)
+  Linear solver                      0.037042 (3)
+Minimizer                            0.043960
+
+Postprocessor                        0.000013
+Total                                0.044028
+
+Termination:                   NO_CONVERGENCE (Maximum solver time reached. Total solver time: 4.400921e-02 >= 3.200000e-02.)
+
+marg old: marg_feature_count=86
+
+Solver Summary (v 2.1.0-eigen-(3.3.9)-lapack-suitesparse-(5.7.1)-cxsparse-(3.2.0)-eigensparse-no_openmp)
+
+                                     Original                  Reduced
+Parameter blocks                          183                      182
+Parameters                                343                      336
+Effective parameters                      331                      325
+Residual blocks                           955                      955
+Residuals                                2113                     2113
+
+Minimizer                        TRUST_REGION
+
+Dense linear algebra library            EIGEN
+Trust region strategy     LEVENBERG_MARQUARDT
+
+                                        Given                     Used
+Linear solver           DENSE_NORMAL_CHOLESKY    DENSE_NORMAL_CHOLESKY
+Threads                                     1                        1
+Linear solver ordering              AUTOMATIC                      182
+
+Cost:
+Initial                          2.178291e+03
+Final                            2.105887e+03
+Change                           7.240409e+01
+
+Minimizer iterations                        4
+Successful steps                            4
+Unsuccessful steps                          0
+
+Time (in seconds):
+Preprocessor                         0.000146
+
+  Residual only evaluation           0.000639 (3)
+  Jacobian & residual evaluation     0.002798 (4)
+  Linear solver                      0.038535 (3)
+Minimizer                            0.045518
+
+Postprocessor                        0.000015
+Total                                0.045679
+
+Termination:                   NO_CONVERGENCE (Maximum solver time reached. Total solver time: 4.565692e-02 >= 3.200000e-02.)
+
+marg old: marg_feature_count=92
+
+Solver Summary (v 2.1.0-eigen-(3.3.9)-lapack-suitesparse-(5.7.1)-cxsparse-(3.2.0)-eigensparse-no_openmp)
+
+                                     Original                  Reduced
+Parameter blocks                          175                      174
+Parameters                                335                      328
+Effective parameters                      323                      317
+Residual blocks                           958                      958
+Residuals                                2119                     2119
+
+Minimizer                        TRUST_REGION
+
+Dense linear algebra library            EIGEN
+Trust region strategy     LEVENBERG_MARQUARDT
+
+                                        Given                     Used
+Linear solver           DENSE_NORMAL_CHOLESKY    DENSE_NORMAL_CHOLESKY
+Threads                                     1                        1
+Linear solver ordering              AUTOMATIC                      174
+
+Cost:
+Initial                          2.179733e+03
+Final                            2.108016e+03
+Change                           7.171691e+01
+
+Minimizer iterations                        4
+Successful steps                            4
+Unsuccessful steps                          0
+
+Time (in seconds):
+Preprocessor                         0.000059
+
+  Residual only evaluation           0.000590 (3)
+  Jacobian & residual evaluation     0.002407 (4)
+  Linear solver                      0.035664 (3)
+Minimizer                            0.042819
+
+Postprocessor                        0.000012
+Total                                0.042891
+
+Termination:                   NO_CONVERGENCE (Maximum solver time reached. Total solver time: 4.287171e-02 >= 3.200000e-02.)
+
+marg old: marg_feature_count=87
+
+Solver Summary (v 2.1.0-eigen-(3.3.9)-lapack-suitesparse-(5.7.1)-cxsparse-(3.2.0)-eigensparse-no_openmp)
+
+                                     Original                  Reduced
+Parameter blocks                          186                      185
+Parameters                                346                      339
+Effective parameters                      334                      328
+Residual blocks                           992                      992
+Residuals                                2187                     2187
+
+Minimizer                        TRUST_REGION
+
+Dense linear algebra library            EIGEN
+Trust region strategy     LEVENBERG_MARQUARDT
+
+                                        Given                     Used
+Linear solver           DENSE_NORMAL_CHOLESKY    DENSE_NORMAL_CHOLESKY
+Threads                                     1                        1
+Linear solver ordering              AUTOMATIC                      185
+
+Cost:
+Initial                          2.271684e+03
+Final                            2.187660e+03
+Change                           8.402435e+01
+
+Minimizer iterations                        4
+Successful steps                            4
+Unsuccessful steps                          0
+
+Time (in seconds):
+Preprocessor                         0.000063
+
+  Residual only evaluation           0.000596 (3)
+  Jacobian & residual evaluation     0.002504 (4)
+  Linear solver                      0.039402 (3)
+Minimizer                            0.045915
+
+Postprocessor                        0.000016
+Total                                0.045994
+
+Termination:                   NO_CONVERGENCE (Maximum solver time reached. Total solver time: 4.597306e-02 >= 3.200000e-02.)
+
+marg old: marg_feature_count=92
+
+Solver Summary (v 2.1.0-eigen-(3.3.9)-lapack-suitesparse-(5.7.1)-cxsparse-(3.2.0)-eigensparse-no_openmp)
+
+                                     Original                  Reduced
+Parameter blocks                          196                      195
+Parameters                                356                      349
+Effective parameters                      344                      338
+Residual blocks                          1042                     1042
+Residuals                                2287                     2287
+
+Minimizer                        TRUST_REGION
+
+Dense linear algebra library            EIGEN
+Trust region strategy     LEVENBERG_MARQUARDT
+
+                                        Given                     Used
+Linear solver           DENSE_NORMAL_CHOLESKY    DENSE_NORMAL_CHOLESKY
+Threads                                     1                        1
+Linear solver ordering              AUTOMATIC                      195
+
+Cost:
+Initial                          2.450220e+03
+Final                            2.298323e+03
+Change                           1.518978e+02
+
+Minimizer iterations                        4
+Successful steps                            4
+Unsuccessful steps                          0
+
+Time (in seconds):
+Preprocessor                         0.000061
+
+  Residual only evaluation           0.000677 (3)
+  Jacobian & residual evaluation     0.002762 (4)
+  Linear solver                      0.046704 (3)
+Minimizer                            0.054482
+
+Postprocessor                        0.000014
+Total                                0.054557
+
+Termination:                   NO_CONVERGENCE (Maximum solver time reached. Total solver time: 5.453706e-02 >= 4.000000e-02.)
+
+
+Solver Summary (v 2.1.0-eigen-(3.3.9)-lapack-suitesparse-(5.7.1)-cxsparse-(3.2.0)-eigensparse-no_openmp)
+
+                                     Original                  Reduced
+Parameter blocks                          180                      179
+Parameters                                340                      333
+Effective parameters                      328                      322
+Residual blocks                           996                      996
+Residuals                                2189                     2189
+
+Minimizer                        TRUST_REGION
+
+Dense linear algebra library            EIGEN
+Trust region strategy     LEVENBERG_MARQUARDT
+
+                                        Given                     Used
+Linear solver           DENSE_NORMAL_CHOLESKY    DENSE_NORMAL_CHOLESKY
+Threads                                     1                        1
+Linear solver ordering              AUTOMATIC                      179
+
+Cost:
+Initial                          2.315929e+03
+Final                            2.259172e+03
+Change                           5.675711e+01
+
+Minimizer iterations                        4
+Successful steps                            4
+Unsuccessful steps                          0
+
+Time (in seconds):
+Preprocessor                         0.000062
+
+  Residual only evaluation           0.001089 (3)
+  Jacobian & residual evaluation     0.003047 (4)
+  Linear solver                      0.040098 (3)
+Minimizer                            0.048454
+
+Postprocessor                        0.000017
+Total                                0.048533
+
+Termination:                   NO_CONVERGENCE (Maximum solver time reached. Total solver time: 4.851007e-02 >= 4.000000e-02.)
+
+
+Solver Summary (v 2.1.0-eigen-(3.3.9)-lapack-suitesparse-(5.7.1)-cxsparse-(3.2.0)-eigensparse-no_openmp)
+
+                                     Original                  Reduced
+Parameter blocks                          179                      178
+Parameters                                339                      332
+Effective parameters                      327                      321
+Residual blocks                           986                      986
+Residuals                                2169                     2169
+
+Minimizer                        TRUST_REGION
+
+Dense linear algebra library            EIGEN
+Trust region strategy     LEVENBERG_MARQUARDT
+
+                                        Given                     Used
+Linear solver           DENSE_NORMAL_CHOLESKY    DENSE_NORMAL_CHOLESKY
+Threads                                     1                        1
+Linear solver ordering              AUTOMATIC                      178
+
+Cost:
+Initial                          2.329238e+03
+Final                            2.278986e+03
+Change                           5.025175e+01
+
+Minimizer iterations                        4
+Successful steps                            4
+Unsuccessful steps                          0
+
+Time (in seconds):
+Preprocessor                         0.000056
+
+  Residual only evaluation           0.000657 (3)
+  Jacobian & residual evaluation     0.002618 (4)
+  Linear solver                      0.040694 (3)
+Minimizer                            0.048020
+
+Postprocessor                        0.000014
+Total                                0.048090
+
+Termination:                   NO_CONVERGENCE (Maximum solver time reached. Total solver time: 4.807115e-02 >= 3.200000e-02.)
+
+marg old: marg_feature_count=97
+
+Solver Summary (v 2.1.0-eigen-(3.3.9)-lapack-suitesparse-(5.7.1)-cxsparse-(3.2.0)-eigensparse-no_openmp)
+
+                                     Original                  Reduced
+Parameter blocks                          176                      175
+Parameters                                336                      329
+Effective parameters                      324                      318
+Residual blocks                           960                      960
+Residuals                                2123                     2123
+
+Minimizer                        TRUST_REGION
+
+Dense linear algebra library            EIGEN
+Trust region strategy     LEVENBERG_MARQUARDT
+
+                                        Given                     Used
+Linear solver           DENSE_NORMAL_CHOLESKY    DENSE_NORMAL_CHOLESKY
+Threads                                     1                        1
+Linear solver ordering              AUTOMATIC                      175
+
+Cost:
+Initial                          2.499050e+03
+Final                            2.435823e+03
+Change                           6.322641e+01
+
+Minimizer iterations                        4
+Successful steps                            4
+Unsuccessful steps                          0
+
+Time (in seconds):
+Preprocessor                         0.000055
+
+  Residual only evaluation           0.000584 (3)
+  Jacobian & residual evaluation     0.002501 (4)
+  Linear solver                      0.036667 (3)
+Minimizer                            0.043319
+
+Postprocessor                        0.000014
+Total                                0.043388
+
+Termination:                   NO_CONVERGENCE (Maximum solver time reached. Total solver time: 4.336905e-02 >= 3.200000e-02.)
+
+marg old: marg_feature_count=106
+
+Solver Summary (v 2.1.0-eigen-(3.3.9)-lapack-suitesparse-(5.7.1)-cxsparse-(3.2.0)-eigensparse-no_openmp)
+
+                                     Original                  Reduced
+Parameter blocks                          189                      188
+Parameters                                349                      342
+Effective parameters                      337                      331
+Residual blocks                           993                      993
+Residuals                                2189                     2189
+
+Minimizer                        TRUST_REGION
+
+Dense linear algebra library            EIGEN
+Trust region strategy     LEVENBERG_MARQUARDT
+
+                                        Given                     Used
+Linear solver           DENSE_NORMAL_CHOLESKY    DENSE_NORMAL_CHOLESKY
+Threads                                     1                        1
+Linear solver ordering              AUTOMATIC                      188
+
+Cost:
+Initial                          2.829172e+03
+Final                            2.753100e+03
+Change                           7.607211e+01
+
+Minimizer iterations                        3
+Successful steps                            3
+Unsuccessful steps                          0
+
+Time (in seconds):
+Preprocessor                         0.000069
+
+  Residual only evaluation           0.000428 (2)
+  Jacobian & residual evaluation     0.002244 (3)
+  Linear solver                      0.028454 (2)
+Minimizer                            0.034687
+
+Postprocessor                        0.000016
+Total                                0.034772
+
+Termination:                   NO_CONVERGENCE (Maximum solver time reached. Total solver time: 3.474689e-02 >= 3.200000e-02.)
+
+marg old: marg_feature_count=102
+
+Solver Summary (v 2.1.0-eigen-(3.3.9)-lapack-suitesparse-(5.7.1)-cxsparse-(3.2.0)-eigensparse-no_openmp)
+
+                                     Original                  Reduced
+Parameter blocks                          171                      170
+Parameters                                331                      324
+Effective parameters                      319                      313
+Residual blocks                           960                      960
+Residuals                                2123                     2123
+
+Minimizer                        TRUST_REGION
+
+Dense linear algebra library            EIGEN
+Trust region strategy     LEVENBERG_MARQUARDT
+
+                                        Given                     Used
+Linear solver           DENSE_NORMAL_CHOLESKY    DENSE_NORMAL_CHOLESKY
+Threads                                     1                        1
+Linear solver ordering              AUTOMATIC                      170
+
+Cost:
+Initial                          2.995417e+03
+Final                            2.877068e+03
+Change                           1.183498e+02
+
+Minimizer iterations                        4
+Successful steps                            4
+Unsuccessful steps                          0
+
+Time (in seconds):
+Preprocessor                         0.000055
+
+  Residual only evaluation           0.000616 (3)
+  Jacobian & residual evaluation     0.002424 (4)
+  Linear solver                      0.036258 (3)
+Minimizer                            0.043000
+
+Postprocessor                        0.000013
+Total                                0.043068
+
+Termination:                   NO_CONVERGENCE (Maximum solver time reached. Total solver time: 4.305005e-02 >= 3.200000e-02.)
+
+marg old: marg_feature_count=93
+
+Solver Summary (v 2.1.0-eigen-(3.3.9)-lapack-suitesparse-(5.7.1)-cxsparse-(3.2.0)-eigensparse-no_openmp)
+
+                                     Original                  Reduced
+Parameter blocks                          171                      170
+Parameters                                331                      324
+Effective parameters                      319                      313
+Residual blocks                           968                      968
+Residuals                                2139                     2139
+
+Minimizer                        TRUST_REGION
+
+Dense linear algebra library            EIGEN
+Trust region strategy     LEVENBERG_MARQUARDT
+
+                                        Given                     Used
+Linear solver           DENSE_NORMAL_CHOLESKY    DENSE_NORMAL_CHOLESKY
+Threads                                     1                        1
+Linear solver ordering              AUTOMATIC                      170
+
+Cost:
+Initial                          3.154532e+03
+Final                            3.050006e+03
+Change                           1.045265e+02
+
+Minimizer iterations                        4
+Successful steps                            4
+Unsuccessful steps                          0
+
+Time (in seconds):
+Preprocessor                         0.000063
+
+  Residual only evaluation           0.000626 (3)
+  Jacobian & residual evaluation     0.002542 (4)
+  Linear solver                      0.037163 (3)
+Minimizer                            0.043995
+
+Postprocessor                        0.000016
+Total                                0.044074
+
+Termination:                   NO_CONVERGENCE (Maximum solver time reached. Total solver time: 4.405189e-02 >= 3.200000e-02.)
+
+marg old: marg_feature_count=93
+
+Solver Summary (v 2.1.0-eigen-(3.3.9)-lapack-suitesparse-(5.7.1)-cxsparse-(3.2.0)-eigensparse-no_openmp)
+
+                                     Original                  Reduced
+Parameter blocks                          162                      161
+Parameters                                322                      315
+Effective parameters                      310                      304
+Residual blocks                           972                      972
+Residuals                                2147                     2147
+
+Minimizer                        TRUST_REGION
+
+Dense linear algebra library            EIGEN
+Trust region strategy     LEVENBERG_MARQUARDT
+
+                                        Given                     Used
+Linear solver           DENSE_NORMAL_CHOLESKY    DENSE_NORMAL_CHOLESKY
+Threads                                     1                        1
+Linear solver ordering              AUTOMATIC                      161
+
+Cost:
+Initial                          3.413875e+03
+Final                            3.316211e+03
+Change                           9.766372e+01
+
+Minimizer iterations                        4
+Successful steps                            4
+Unsuccessful steps                          0
+
+Time (in seconds):
+Preprocessor                         0.000061
+
+  Residual only evaluation           0.000619 (3)
+  Jacobian & residual evaluation     0.002515 (4)
+  Linear solver                      0.034129 (3)
+Minimizer                            0.040476
+
+Postprocessor                        0.000014
+Total                                0.040551
+
+Termination:                   NO_CONVERGENCE (Maximum solver time reached. Total solver time: 4.053116e-02 >= 3.200000e-02.)
+
+marg old: marg_feature_count=85
+
+Solver Summary (v 2.1.0-eigen-(3.3.9)-lapack-suitesparse-(5.7.1)-cxsparse-(3.2.0)-eigensparse-no_openmp)
+
+                                     Original                  Reduced
+Parameter blocks                          164                      163
+Parameters                                324                      317
+Effective parameters                      312                      306
+Residual blocks                           983                      983
+Residuals                                2169                     2169
+
+Minimizer                        TRUST_REGION
+
+Dense linear algebra library            EIGEN
+Trust region strategy     LEVENBERG_MARQUARDT
+
+                                        Given                     Used
+Linear solver           DENSE_NORMAL_CHOLESKY    DENSE_NORMAL_CHOLESKY
+Threads                                     1                        1
+Linear solver ordering              AUTOMATIC                      163
+
+Cost:
+Initial                          3.725484e+03
+Final                            3.631948e+03
+Change                           9.353509e+01
+
+Minimizer iterations                        4
+Successful steps                            4
+Unsuccessful steps                          0
+
+Time (in seconds):
+Preprocessor                         0.000066
+
+  Residual only evaluation           0.000580 (3)
+  Jacobian & residual evaluation     0.002525 (4)
+  Linear solver                      0.034237 (3)
+Minimizer                            0.040654
+
+Postprocessor                        0.000014
+Total                                0.040734
+
+Termination:                   NO_CONVERGENCE (Maximum solver time reached. Total solver time: 4.071379e-02 >= 3.200000e-02.)
+
+marg old: marg_feature_count=97
+
+Solver Summary (v 2.1.0-eigen-(3.3.9)-lapack-suitesparse-(5.7.1)-cxsparse-(3.2.0)-eigensparse-no_openmp)
+
+                                     Original                  Reduced
+Parameter blocks                          160                      159
+Parameters                                320                      313
+Effective parameters                      308                      302
+Residual blocks                           961                      961
+Residuals                                2125                     2125
+
+Minimizer                        TRUST_REGION
+
+Dense linear algebra library            EIGEN
+Trust region strategy     LEVENBERG_MARQUARDT
+
+                                        Given                     Used
+Linear solver           DENSE_NORMAL_CHOLESKY    DENSE_NORMAL_CHOLESKY
+Threads                                     1                        1
+Linear solver ordering              AUTOMATIC                      159
+
+Cost:
+Initial                          3.977278e+03
+Final                            3.867777e+03
+Change                           1.095014e+02
+
+Minimizer iterations                        5
+Successful steps                            5
+Unsuccessful steps                          0
+
+Time (in seconds):
+Preprocessor                         0.000061
+
+  Residual only evaluation           0.000794 (4)
+  Jacobian & residual evaluation     0.002991 (5)
+  Linear solver                      0.045964 (4)
+Minimizer                            0.053646
+
+Postprocessor                        0.000014
+Total                                0.053721
+
+Termination:                   NO_CONVERGENCE (Maximum solver time reached. Total solver time: 5.370116e-02 >= 4.000000e-02.)
+
+
+Solver Summary (v 2.1.0-eigen-(3.3.9)-lapack-suitesparse-(5.7.1)-cxsparse-(3.2.0)-eigensparse-no_openmp)
+
+                                     Original                  Reduced
+Parameter blocks                          137                      136
+Parameters                                297                      290
+Effective parameters                      285                      279
+Residual blocks                           846                      846
+Residuals                                1889                     1889
+
+Minimizer                        TRUST_REGION
+
+Dense linear algebra library            EIGEN
+Trust region strategy     LEVENBERG_MARQUARDT
+
+                                        Given                     Used
+Linear solver           DENSE_NORMAL_CHOLESKY    DENSE_NORMAL_CHOLESKY
+Threads                                     1                        1
+Linear solver ordering              AUTOMATIC                      136
+
+Cost:
+Initial                          3.654931e+03
+Final                            3.605325e+03
+Change                           4.960612e+01
+
+Minimizer iterations                        5
+Successful steps                            5
+Unsuccessful steps                          0
+
+Time (in seconds):
+Preprocessor                         0.000051
+
+  Residual only evaluation           0.000730 (4)
+  Jacobian & residual evaluation     0.004386 (5)
+  Linear solver                      0.033972 (4)
+Minimizer                            0.042383
+
+Postprocessor                        0.000019
+Total                                0.042453
+
+Termination:                   NO_CONVERGENCE (Maximum solver time reached. Total solver time: 4.242802e-02 >= 4.000000e-02.)
+
+
+Solver Summary (v 2.1.0-eigen-(3.3.9)-lapack-suitesparse-(5.7.1)-cxsparse-(3.2.0)-eigensparse-no_openmp)
+
+                                     Original                  Reduced
+Parameter blocks                          136                      135
+Parameters                                296                      289
+Effective parameters                      284                      278
+Residual blocks                           842                      842
+Residuals                                1881                     1881
+
+Minimizer                        TRUST_REGION
+
+Dense linear algebra library            EIGEN
+Trust region strategy     LEVENBERG_MARQUARDT
+
+                                        Given                     Used
+Linear solver           DENSE_NORMAL_CHOLESKY    DENSE_NORMAL_CHOLESKY
+Threads                                     1                        1
+Linear solver ordering              AUTOMATIC                      135
+
+Cost:
+Initial                          3.656395e+03
+Final                            3.602329e+03
+Change                           5.406579e+01
+
+Minimizer iterations                        6
+Successful steps                            6
+Unsuccessful steps                          0
+
+Time (in seconds):
+Preprocessor                         0.000055
+
+  Residual only evaluation           0.000922 (5)
+  Jacobian & residual evaluation     0.003110 (6)
+  Linear solver                      0.041209 (5)
+Minimizer                            0.048674
+
+Postprocessor                        0.000012
+Total                                0.048741
+
+Termination:                   NO_CONVERGENCE (Maximum solver time reached. Total solver time: 4.872417e-02 >= 4.000000e-02.)
+
+
+Solver Summary (v 2.1.0-eigen-(3.3.9)-lapack-suitesparse-(5.7.1)-cxsparse-(3.2.0)-eigensparse-no_openmp)
+
+                                     Original                  Reduced
+Parameter blocks                          136                      135
+Parameters                                296                      289
+Effective parameters                      284                      278
+Residual blocks                           841                      841
+Residuals                                1879                     1879
+
+Minimizer                        TRUST_REGION
+
+Dense linear algebra library            EIGEN
+Trust region strategy     LEVENBERG_MARQUARDT
+
+                                        Given                     Used
+Linear solver           DENSE_NORMAL_CHOLESKY    DENSE_NORMAL_CHOLESKY
+Threads                                     1                        1
+Linear solver ordering              AUTOMATIC                      135
+
+Cost:
+Initial                          3.670652e+03
+Final                            3.623282e+03
+Change                           4.736986e+01
+
+Minimizer iterations                        5
+Successful steps                            5
+Unsuccessful steps                          0
+
+Time (in seconds):
+Preprocessor                         0.000054
+
+  Residual only evaluation           0.000808 (4)
+  Jacobian & residual evaluation     0.002631 (5)
+  Linear solver                      0.033374 (4)
+Minimizer                            0.039797
+
+Postprocessor                        0.000014
+Total                                0.039865
+
+Termination:                   NO_CONVERGENCE (Maximum solver time reached. Total solver time: 3.984618e-02 >= 3.200000e-02.)
+
+marg old: marg_feature_count=77
+
+Solver Summary (v 2.1.0-eigen-(3.3.9)-lapack-suitesparse-(5.7.1)-cxsparse-(3.2.0)-eigensparse-no_openmp)
+
+                                     Original                  Reduced
+Parameter blocks                          130                      129
+Parameters                                290                      283
+Effective parameters                      278                      272
+Residual blocks                           862                      862
+Residuals                                1927                     1927
+
+Minimizer                        TRUST_REGION
+
+Dense linear algebra library            EIGEN
+Trust region strategy     LEVENBERG_MARQUARDT
+
+                                        Given                     Used
+Linear solver           DENSE_NORMAL_CHOLESKY    DENSE_NORMAL_CHOLESKY
+Threads                                     1                        1
+Linear solver ordering              AUTOMATIC                      129
+
+Cost:
+Initial                          4.032563e+03
+Final                            3.949712e+03
+Change                           8.285089e+01
+
+Minimizer iterations                        6
+Successful steps                            6
+Unsuccessful steps                          0
+
+Time (in seconds):
+Preprocessor                         0.000056
+
+  Residual only evaluation           0.000890 (5)
+  Jacobian & residual evaluation     0.003061 (6)
+  Linear solver                      0.042007 (5)
+Minimizer                            0.049631
+
+Postprocessor                        0.000013
+Total                                0.049700
+
+Termination:                   NO_CONVERGENCE (Maximum solver time reached. Total solver time: 4.968214e-02 >= 4.000000e-02.)
+
+
+Solver Summary (v 2.1.0-eigen-(3.3.9)-lapack-suitesparse-(5.7.1)-cxsparse-(3.2.0)-eigensparse-no_openmp)
+
+                                     Original                  Reduced
+Parameter blocks                          125                      124
+Parameters                                285                      278
+Effective parameters                      273                      267
+Residual blocks                           846                      846
+Residuals                                1889                     1889
+
+Minimizer                        TRUST_REGION
+
+Dense linear algebra library            EIGEN
+Trust region strategy     LEVENBERG_MARQUARDT
+
+                                        Given                     Used
+Linear solver           DENSE_NORMAL_CHOLESKY    DENSE_NORMAL_CHOLESKY
+Threads                                     1                        1
+Linear solver ordering              AUTOMATIC                      124
+
+Cost:
+Initial                          3.945218e+03
+Final                            3.901025e+03
+Change                           4.419259e+01
+
+Minimizer iterations                        6
+Successful steps                            6
+Unsuccessful steps                          0
+
+Time (in seconds):
+Preprocessor                         0.000049
+
+  Residual only evaluation           0.000973 (5)
+  Jacobian & residual evaluation     0.003212 (6)
+  Linear solver                      0.039112 (5)
+Minimizer                            0.046718
+
+Postprocessor                        0.000012
+Total                                0.046779
+
+Termination:                   NO_CONVERGENCE (Maximum solver time reached. Total solver time: 4.676294e-02 >= 4.000000e-02.)
+
+
+Solver Summary (v 2.1.0-eigen-(3.3.9)-lapack-suitesparse-(5.7.1)-cxsparse-(3.2.0)-eigensparse-no_openmp)
+
+                                     Original                  Reduced
+Parameter blocks                          124                      123
+Parameters                                284                      277
+Effective parameters                      272                      266
+Residual blocks                           835                      835
+Residuals                                1867                     1867
+
+Minimizer                        TRUST_REGION
+
+Dense linear algebra library            EIGEN
+Trust region strategy     LEVENBERG_MARQUARDT
+
+                                        Given                     Used
+Linear solver           DENSE_NORMAL_CHOLESKY    DENSE_NORMAL_CHOLESKY
+Threads                                     1                        1
+Linear solver ordering              AUTOMATIC                      123
+
+Cost:
+Initial                          3.919260e+03
+Final                            3.876104e+03
+Change                           4.315568e+01
+
+Minimizer iterations                        6
+Successful steps                            6
+Unsuccessful steps                          0
+
+Time (in seconds):
+Preprocessor                         0.000047
+
+  Residual only evaluation           0.000857 (5)
+  Jacobian & residual evaluation     0.002992 (6)
+  Linear solver                      0.037243 (5)
+Minimizer                            0.044408
+
+Postprocessor                        0.000012
+Total                                0.044467
+
+Termination:                   NO_CONVERGENCE (Maximum solver time reached. Total solver time: 4.445004e-02 >= 4.000000e-02.)
+
+
+Solver Summary (v 2.1.0-eigen-(3.3.9)-lapack-suitesparse-(5.7.1)-cxsparse-(3.2.0)-eigensparse-no_openmp)
+
+                                     Original                  Reduced
+Parameter blocks                          124                      123
+Parameters                                284                      277
+Effective parameters                      272                      266
+Residual blocks                           830                      830
+Residuals                                1857                     1857
+
+Minimizer                        TRUST_REGION
+
+Dense linear algebra library            EIGEN
+Trust region strategy     LEVENBERG_MARQUARDT
+
+                                        Given                     Used
+Linear solver           DENSE_NORMAL_CHOLESKY    DENSE_NORMAL_CHOLESKY
+Threads                                     1                        1
+Linear solver ordering              AUTOMATIC                      123
+
+Cost:
+Initial                          3.906807e+03
+Final                            3.878053e+03
+Change                           2.875441e+01
+
+Minimizer iterations                        5
+Successful steps                            5
+Unsuccessful steps                          0
+
+Time (in seconds):
+Preprocessor                         0.000054
+
+  Residual only evaluation           0.000694 (4)
+  Jacobian & residual evaluation     0.002498 (5)
+  Linear solver                      0.029943 (4)
+Minimizer                            0.035930
+
+Postprocessor                        0.000014
+Total                                0.035998
+
+Termination:                   NO_CONVERGENCE (Maximum solver time reached. Total solver time: 3.597784e-02 >= 3.200000e-02.)
+
+marg old: marg_feature_count=70
+
+Solver Summary (v 2.1.0-eigen-(3.3.9)-lapack-suitesparse-(5.7.1)-cxsparse-(3.2.0)-eigensparse-no_openmp)
+
+                                     Original                  Reduced
+Parameter blocks                          149                      148
+Parameters                                309                      302
+Effective parameters                      297                      291
+Residual blocks                           906                      906
+Residuals                                2015                     2015
+
+Minimizer                        TRUST_REGION
+
+Dense linear algebra library            EIGEN
+Trust region strategy     LEVENBERG_MARQUARDT
+
+                                        Given                     Used
+Linear solver           DENSE_NORMAL_CHOLESKY    DENSE_NORMAL_CHOLESKY
+Threads                                     1                        1
+Linear solver ordering              AUTOMATIC                      148
+
+Cost:
+Initial                          3.983365e+03
+Final                            3.933530e+03
+Change                           4.983452e+01
+
+Minimizer iterations                        4
+Successful steps                            4
+Unsuccessful steps                          0
+
+Time (in seconds):
+Preprocessor                         0.000059
+
+  Residual only evaluation           0.000603 (3)
+  Jacobian & residual evaluation     0.002502 (4)
+  Linear solver                      0.029678 (3)
+Minimizer                            0.036056
+
+Postprocessor                        0.000012
+Total                                0.036127
+
+Termination:                   NO_CONVERGENCE (Maximum solver time reached. Total solver time: 3.610921e-02 >= 3.200000e-02.)
+
+marg old: marg_feature_count=77
+
+Solver Summary (v 2.1.0-eigen-(3.3.9)-lapack-suitesparse-(5.7.1)-cxsparse-(3.2.0)-eigensparse-no_openmp)
+
+                                     Original                  Reduced
+Parameter blocks                          153                      152
+Parameters                                313                      306
+Effective parameters                      301                      295
+Residual blocks                           897                      897
+Residuals                                1997                     1997
+
+Minimizer                        TRUST_REGION
+
+Dense linear algebra library            EIGEN
+Trust region strategy     LEVENBERG_MARQUARDT
+
+                                        Given                     Used
+Linear solver           DENSE_NORMAL_CHOLESKY    DENSE_NORMAL_CHOLESKY
+Threads                                     1                        1
+Linear solver ordering              AUTOMATIC                      152
+
+Cost:
+Initial                          3.959167e+03
+Final                            3.940028e+03
+Change                           1.913851e+01
+
+Minimizer iterations                        4
+Successful steps                            4
+Unsuccessful steps                          0
+
+Time (in seconds):
+Preprocessor                         0.000056
+
+  Residual only evaluation           0.000578 (3)
+  Jacobian & residual evaluation     0.002344 (4)
+  Linear solver                      0.030371 (3)
+Minimizer                            0.036200
+
+Postprocessor                        0.000013
+Total                                0.036269
+
+Termination:                   NO_CONVERGENCE (Maximum solver time reached. Total solver time: 3.625059e-02 >= 3.200000e-02.)
+
+marg old: marg_feature_count=78
+
+Solver Summary (v 2.1.0-eigen-(3.3.9)-lapack-suitesparse-(5.7.1)-cxsparse-(3.2.0)-eigensparse-no_openmp)
+
+                                     Original                  Reduced
+Parameter blocks                          149                      148
+Parameters                                309                      302
+Effective parameters                      297                      291
+Residual blocks                           871                      871
+Residuals                                1945                     1945
+
+Minimizer                        TRUST_REGION
+
+Dense linear algebra library            EIGEN
+Trust region strategy     LEVENBERG_MARQUARDT
+
+                                        Given                     Used
+Linear solver           DENSE_NORMAL_CHOLESKY    DENSE_NORMAL_CHOLESKY
+Threads                                     1                        1
+Linear solver ordering              AUTOMATIC                      148
+
+Cost:
+Initial                          3.964622e+03
+Final                            3.946415e+03
+Change                           1.820748e+01
+
+Minimizer iterations                        4
+Successful steps                            4
+Unsuccessful steps                          0
+
+Time (in seconds):
+Preprocessor                         0.000059
+
+  Residual only evaluation           0.000571 (3)
+  Jacobian & residual evaluation     0.002305 (4)
+  Linear solver                      0.028338 (3)
+Minimizer                            0.034050
+
+Postprocessor                        0.000013
+Total                                0.034122
+
+Termination:                   NO_CONVERGENCE (Maximum solver time reached. Total solver time: 3.410411e-02 >= 3.200000e-02.)
+
+marg old: marg_feature_count=82
+
+Solver Summary (v 2.1.0-eigen-(3.3.9)-lapack-suitesparse-(5.7.1)-cxsparse-(3.2.0)-eigensparse-no_openmp)
+
+                                     Original                  Reduced
+Parameter blocks                          151                      150
+Parameters                                311                      304
+Effective parameters                      299                      293
+Residual blocks                           859                      859
+Residuals                                1921                     1921
+
+Minimizer                        TRUST_REGION
+
+Dense linear algebra library            EIGEN
+Trust region strategy     LEVENBERG_MARQUARDT
+
+                                        Given                     Used
+Linear solver           DENSE_NORMAL_CHOLESKY    DENSE_NORMAL_CHOLESKY
+Threads                                     1                        1
+Linear solver ordering              AUTOMATIC                      150
+
+Cost:
+Initial                          4.021495e+03
+Final                            3.999616e+03
+Change                           2.187867e+01
+
+Minimizer iterations                        4
+Successful steps                            4
+Unsuccessful steps                          0
+
+Time (in seconds):
+Preprocessor                         0.000054
+
+  Residual only evaluation           0.000667 (3)
+  Jacobian & residual evaluation     0.002215 (4)
+  Linear solver                      0.027954 (3)
+Minimizer                            0.033763
+
+Postprocessor                        0.000014
+Total                                0.033831
+
+Termination:                   NO_CONVERGENCE (Maximum solver time reached. Total solver time: 3.381300e-02 >= 3.200000e-02.)
+
+marg old: marg_feature_count=79
+
+Solver Summary (v 2.1.0-eigen-(3.3.9)-lapack-suitesparse-(5.7.1)-cxsparse-(3.2.0)-eigensparse-no_openmp)
+
+                                     Original                  Reduced
+Parameter blocks                          163                      162
+Parameters                                323                      316
+Effective parameters                      311                      305
+Residual blocks                           862                      862
+Residuals                                1927                     1927
+
+Minimizer                        TRUST_REGION
+
+Dense linear algebra library            EIGEN
+Trust region strategy     LEVENBERG_MARQUARDT
+
+                                        Given                     Used
+Linear solver           DENSE_NORMAL_CHOLESKY    DENSE_NORMAL_CHOLESKY
+Threads                                     1                        1
+Linear solver ordering              AUTOMATIC                      162
+
+Cost:
+Initial                          4.031428e+03
+Final                            4.008876e+03
+Change                           2.255195e+01
+
+Minimizer iterations                        4
+Successful steps                            4
+Unsuccessful steps                          0
+
+Time (in seconds):
+Preprocessor                         0.000057
+
+  Residual only evaluation           0.000561 (3)
+  Jacobian & residual evaluation     0.002193 (4)
+  Linear solver                      0.030460 (3)
+Minimizer                            0.035962
+
+Postprocessor                        0.000012
+Total                                0.036031
+
+Termination:                   NO_CONVERGENCE (Maximum solver time reached. Total solver time: 3.601408e-02 >= 3.200000e-02.)
+
+marg old: marg_feature_count=81
+
+Solver Summary (v 2.1.0-eigen-(3.3.9)-lapack-suitesparse-(5.7.1)-cxsparse-(3.2.0)-eigensparse-no_openmp)
+
+                                     Original                  Reduced
+Parameter blocks                          173                      172
+Parameters                                333                      326
+Effective parameters                      321                      315
+Residual blocks                           863                      863
+Residuals                                1929                     1929
+
+Minimizer                        TRUST_REGION
+
+Dense linear algebra library            EIGEN
+Trust region strategy     LEVENBERG_MARQUARDT
+
+                                        Given                     Used
+Linear solver           DENSE_NORMAL_CHOLESKY    DENSE_NORMAL_CHOLESKY
+Threads                                     1                        1
+Linear solver ordering              AUTOMATIC                      172
+
+Cost:
+Initial                          4.110794e+03
+Final                            4.086336e+03
+Change                           2.445750e+01
+
+Minimizer iterations                        4
+Successful steps                            4
+Unsuccessful steps                          0
+
+Time (in seconds):
+Preprocessor                         0.000079
+
+  Residual only evaluation           0.000586 (3)
+  Jacobian & residual evaluation     0.002360 (4)
+  Linear solver                      0.034814 (3)
+Minimizer                            0.041341
+
+Postprocessor                        0.000014
+Total                                0.041434
+
+Termination:                   NO_CONVERGENCE (Maximum solver time reached. Total solver time: 4.141307e-02 >= 3.200000e-02.)
+
+marg old: marg_feature_count=82
+
+Solver Summary (v 2.1.0-eigen-(3.3.9)-lapack-suitesparse-(5.7.1)-cxsparse-(3.2.0)-eigensparse-no_openmp)
+
+                                     Original                  Reduced
+Parameter blocks                          182                      181
+Parameters                                342                      335
+Effective parameters                      330                      324
+Residual blocks                           866                      866
+Residuals                                1935                     1935
+
+Minimizer                        TRUST_REGION
+
+Dense linear algebra library            EIGEN
+Trust region strategy     LEVENBERG_MARQUARDT
+
+                                        Given                     Used
+Linear solver           DENSE_NORMAL_CHOLESKY    DENSE_NORMAL_CHOLESKY
+Threads                                     1                        1
+Linear solver ordering              AUTOMATIC                      181
+
+Cost:
+Initial                          4.296043e+03
+Final                            4.263441e+03
+Change                           3.260211e+01
+
+Minimizer iterations                        4
+Successful steps                            4
+Unsuccessful steps                          0
+
+Time (in seconds):
+Preprocessor                         0.000056
+
+  Residual only evaluation           0.000562 (3)
+  Jacobian & residual evaluation     0.002217 (4)
+  Linear solver                      0.033818 (3)
+Minimizer                            0.039414
+
+Postprocessor                        0.000014
+Total                                0.039484
+
+Termination:                   NO_CONVERGENCE (Maximum solver time reached. Total solver time: 3.946400e-02 >= 3.200000e-02.)
+
+marg old: marg_feature_count=77
+
+Solver Summary (v 2.1.0-eigen-(3.3.9)-lapack-suitesparse-(5.7.1)-cxsparse-(3.2.0)-eigensparse-no_openmp)
+
+                                     Original                  Reduced
+Parameter blocks                          197                      196
+Parameters                                357                      350
+Effective parameters                      345                      339
+Residual blocks                           900                      900
+Residuals                                2003                     2003
+
+Minimizer                        TRUST_REGION
+
+Dense linear algebra library            EIGEN
+Trust region strategy     LEVENBERG_MARQUARDT
+
+                                        Given                     Used
+Linear solver           DENSE_NORMAL_CHOLESKY    DENSE_NORMAL_CHOLESKY
+Threads                                     1                        1
+Linear solver ordering              AUTOMATIC                      196
+
+Cost:
+Initial                          4.369265e+03
+Final                            4.303662e+03
+Change                           6.560322e+01
+
+Minimizer iterations                        4
+Successful steps                            4
+Unsuccessful steps                          0
+
+Time (in seconds):
+Preprocessor                         0.000057
+
+  Residual only evaluation           0.000560 (3)
+  Jacobian & residual evaluation     0.002442 (4)
+  Linear solver                      0.040807 (3)
+Minimizer                            0.047741
+
+Postprocessor                        0.000015
+Total                                0.047813
+
+Termination:                   NO_CONVERGENCE (Maximum solver time reached. Total solver time: 4.779315e-02 >= 3.200000e-02.)
+
+marg old: marg_feature_count=99
+
+Solver Summary (v 2.1.0-eigen-(3.3.9)-lapack-suitesparse-(5.7.1)-cxsparse-(3.2.0)-eigensparse-no_openmp)
+
+                                     Original                  Reduced
+Parameter blocks                          204                      203
+Parameters                                364                      357
+Effective parameters                      352                      346
+Residual blocks                           929                      929
+Residuals                                2061                     2061
+
+Minimizer                        TRUST_REGION
+
+Dense linear algebra library            EIGEN
+Trust region strategy     LEVENBERG_MARQUARDT
+
+                                        Given                     Used
+Linear solver           DENSE_NORMAL_CHOLESKY    DENSE_NORMAL_CHOLESKY
+Threads                                     1                        1
+Linear solver ordering              AUTOMATIC                      203
+
+Cost:
+Initial                          4.495605e+03
+Final                            4.376631e+03
+Change                           1.189739e+02
+
+Minimizer iterations                        3
+Successful steps                            3
+Unsuccessful steps                          0
+
+Time (in seconds):
+Preprocessor                         0.000064
+
+  Residual only evaluation           0.000382 (2)
+  Jacobian & residual evaluation     0.001940 (3)
+  Linear solver                      0.027924 (2)
+Minimizer                            0.033176
+
+Postprocessor                        0.000015
+Total                                0.033255
+
+Termination:                   NO_CONVERGENCE (Maximum solver time reached. Total solver time: 3.323388e-02 >= 3.200000e-02.)
+
+marg old: marg_feature_count=98
+
+Solver Summary (v 2.1.0-eigen-(3.3.9)-lapack-suitesparse-(5.7.1)-cxsparse-(3.2.0)-eigensparse-no_openmp)
+
+                                     Original                  Reduced
+Parameter blocks                          209                      208
+Parameters                                369                      362
+Effective parameters                      357                      351
+Residual blocks                           948                      948
+Residuals                                2099                     2099
+
+Minimizer                        TRUST_REGION
+
+Dense linear algebra library            EIGEN
+Trust region strategy     LEVENBERG_MARQUARDT
+
+                                        Given                     Used
+Linear solver           DENSE_NORMAL_CHOLESKY    DENSE_NORMAL_CHOLESKY
+Threads                                     1                        1
+Linear solver ordering              AUTOMATIC                      208
+
+Cost:
+Initial                          4.732203e+03
+Final                            4.675862e+03
+Change                           5.634026e+01
+
+Minimizer iterations                        3
+Successful steps                            3
+Unsuccessful steps                          0
+
+Time (in seconds):
+Preprocessor                         0.000076
+
+  Residual only evaluation           0.000403 (2)
+  Jacobian & residual evaluation     0.001894 (3)
+  Linear solver                      0.029736 (2)
+Minimizer                            0.034867
+
+Postprocessor                        0.000013
+Total                                0.034957
+
+Termination:                   NO_CONVERGENCE (Maximum solver time reached. Total solver time: 3.493619e-02 >= 3.200000e-02.)
+
+marg old: marg_feature_count=90
+
+Solver Summary (v 2.1.0-eigen-(3.3.9)-lapack-suitesparse-(5.7.1)-cxsparse-(3.2.0)-eigensparse-no_openmp)
+
+                                     Original                  Reduced
+Parameter blocks                          195                      194
+Parameters                                355                      348
+Effective parameters                      343                      337
+Residual blocks                           953                      953
+Residuals                                2109                     2109
+
+Minimizer                        TRUST_REGION
+
+Dense linear algebra library            EIGEN
+Trust region strategy     LEVENBERG_MARQUARDT
+
+                                        Given                     Used
+Linear solver           DENSE_NORMAL_CHOLESKY    DENSE_NORMAL_CHOLESKY
+Threads                                     1                        1
+Linear solver ordering              AUTOMATIC                      194
+
+Cost:
+Initial                          5.053591e+03
+Final                            4.981963e+03
+Change                           7.162764e+01
+
+Minimizer iterations                        3
+Successful steps                            3
+Unsuccessful steps                          0
+
+Time (in seconds):
+Preprocessor                         0.000061
+
+  Residual only evaluation           0.000380 (2)
+  Jacobian & residual evaluation     0.001831 (3)
+  Linear solver                      0.027300 (2)
+Minimizer                            0.032702
+
+Postprocessor                        0.000015
+Total                                0.032778
+
+Termination:                   NO_CONVERGENCE (Maximum solver time reached. Total solver time: 3.275800e-02 >= 3.200000e-02.)
+
+marg old: marg_feature_count=84
+
+Solver Summary (v 2.1.0-eigen-(3.3.9)-lapack-suitesparse-(5.7.1)-cxsparse-(3.2.0)-eigensparse-no_openmp)
+
+                                     Original                  Reduced
+Parameter blocks                          171                      170
+Parameters                                331                      324
+Effective parameters                      319                      313
+Residual blocks                           922                      922
+Residuals                                2047                     2047
+
+Minimizer                        TRUST_REGION
+
+Dense linear algebra library            EIGEN
+Trust region strategy     LEVENBERG_MARQUARDT
+
+                                        Given                     Used
+Linear solver           DENSE_NORMAL_CHOLESKY    DENSE_NORMAL_CHOLESKY
+Threads                                     1                        1
+Linear solver ordering              AUTOMATIC                      170
+
+Cost:
+Initial                          5.224948e+03
+Final                            5.178663e+03
+Change                           4.628505e+01
+
+Minimizer iterations                        4
+Successful steps                            4
+Unsuccessful steps                          0
+
+Time (in seconds):
+Preprocessor                         0.000060
+
+  Residual only evaluation           0.000588 (3)
+  Jacobian & residual evaluation     0.002343 (4)
+  Linear solver                      0.036540 (3)
+Minimizer                            0.042628
+
+Postprocessor                        0.000012
+Total                                0.042700
+
+Termination:                   NO_CONVERGENCE (Maximum solver time reached. Total solver time: 4.268408e-02 >= 3.200000e-02.)
+
+marg old: marg_feature_count=83
+
+Solver Summary (v 2.1.0-eigen-(3.3.9)-lapack-suitesparse-(5.7.1)-cxsparse-(3.2.0)-eigensparse-no_openmp)
+
+                                     Original                  Reduced
+Parameter blocks                          167                      166
+Parameters                                327                      320
+Effective parameters                      315                      309
+Residual blocks                           915                      915
+Residuals                                2033                     2033
+
+Minimizer                        TRUST_REGION
+
+Dense linear algebra library            EIGEN
+Trust region strategy     LEVENBERG_MARQUARDT
+
+                                        Given                     Used
+Linear solver           DENSE_NORMAL_CHOLESKY    DENSE_NORMAL_CHOLESKY
+Threads                                     1                        1
+Linear solver ordering              AUTOMATIC                      166
+
+Cost:
+Initial                          5.422851e+03
+Final                            5.373694e+03
+Change                           4.915724e+01
+
+Minimizer iterations                        4
+Successful steps                            4
+Unsuccessful steps                          0
+
+Time (in seconds):
+Preprocessor                         0.000056
+
+  Residual only evaluation           0.000615 (3)
+  Jacobian & residual evaluation     0.002410 (4)
+  Linear solver                      0.061059 (3)
+Minimizer                            0.067496
+
+Postprocessor                        0.000014
+Total                                0.067566
+
+Termination:                   NO_CONVERGENCE (Maximum solver time reached. Total solver time: 6.754494e-02 >= 3.200000e-02.)
+
+marg old: marg_feature_count=83
+
+Solver Summary (v 2.1.0-eigen-(3.3.9)-lapack-suitesparse-(5.7.1)-cxsparse-(3.2.0)-eigensparse-no_openmp)
+
+                                     Original                  Reduced
+Parameter blocks                          159                      158
+Parameters                                319                      312
+Effective parameters                      307                      301
+Residual blocks                           909                      909
+Residuals                                2021                     2021
+
+Minimizer                        TRUST_REGION
+
+Dense linear algebra library            EIGEN
+Trust region strategy     LEVENBERG_MARQUARDT
+
+                                        Given                     Used
+Linear solver           DENSE_NORMAL_CHOLESKY    DENSE_NORMAL_CHOLESKY
+Threads                                     1                        1
+Linear solver ordering              AUTOMATIC                      158
+
+Cost:
+Initial                          5.599860e+03
+Final                            5.534922e+03
+Change                           6.493711e+01
+
+Minimizer iterations                        4
+Successful steps                            4
+Unsuccessful steps                          0
+
+Time (in seconds):
+Preprocessor                         0.000059
+
+  Residual only evaluation           0.000571 (3)
+  Jacobian & residual evaluation     0.002364 (4)
+  Linear solver                      0.031645 (3)
+Minimizer                            0.037591
+
+Postprocessor                        0.000012
+Total                                0.037662
+
+Termination:                   NO_CONVERGENCE (Maximum solver time reached. Total solver time: 3.764510e-02 >= 3.200000e-02.)
+
+marg old: marg_feature_count=87
+
+Solver Summary (v 2.1.0-eigen-(3.3.9)-lapack-suitesparse-(5.7.1)-cxsparse-(3.2.0)-eigensparse-no_openmp)
+
+                                     Original                  Reduced
+Parameter blocks                          155                      154
+Parameters                                315                      308
+Effective parameters                      303                      297
+Residual blocks                           867                      867
+Residuals                                1937                     1937
+
+Minimizer                        TRUST_REGION
+
+Dense linear algebra library            EIGEN
+Trust region strategy     LEVENBERG_MARQUARDT
+
+                                        Given                     Used
+Linear solver           DENSE_NORMAL_CHOLESKY    DENSE_NORMAL_CHOLESKY
+Threads                                     1                        1
+Linear solver ordering              AUTOMATIC                      154
+
+Cost:
+Initial                          5.676074e+03
+Final                            5.595466e+03
+Change                           8.060800e+01
+
+Minimizer iterations                        4
+Successful steps                            4
+Unsuccessful steps                          0
+
+Time (in seconds):
+Preprocessor                         0.000051
+
+  Residual only evaluation           0.000555 (3)
+  Jacobian & residual evaluation     0.002564 (4)
+  Linear solver                      0.058413 (3)
+Minimizer                            0.064796
+
+Postprocessor                        0.000012
+Total                                0.064859
+
+Termination:                   NO_CONVERGENCE (Maximum solver time reached. Total solver time: 6.484103e-02 >= 3.200000e-02.)
+
+marg old: marg_feature_count=86
+
+Solver Summary (v 2.1.0-eigen-(3.3.9)-lapack-suitesparse-(5.7.1)-cxsparse-(3.2.0)-eigensparse-no_openmp)
+
+                                     Original                  Reduced
+Parameter blocks                          143                      142
+Parameters                                303                      296
+Effective parameters                      291                      285
+Residual blocks                           824                      824
+Residuals                                1851                     1851
+
+Minimizer                        TRUST_REGION
+
+Dense linear algebra library            EIGEN
+Trust region strategy     LEVENBERG_MARQUARDT
+
+                                        Given                     Used
+Linear solver           DENSE_NORMAL_CHOLESKY    DENSE_NORMAL_CHOLESKY
+Threads                                     1                        1
+Linear solver ordering              AUTOMATIC                      142
+
+Cost:
+Initial                          5.681525e+03
+Final                            5.601223e+03
+Change                           8.030255e+01
+
+Minimizer iterations                        5
+Successful steps                            5
+Unsuccessful steps                          0
+
+Time (in seconds):
+Preprocessor                         0.000054
+
+  Residual only evaluation           0.000732 (4)
+  Jacobian & residual evaluation     0.002642 (5)
+  Linear solver                      0.034987 (4)
+Minimizer                            0.041537
+
+Postprocessor                        0.000015
+Total                                0.041606
+
+Termination:                   NO_CONVERGENCE (Maximum solver time reached. Total solver time: 4.158592e-02 >= 3.200000e-02.)
+
+marg old: marg_feature_count=91
+
+Solver Summary (v 2.1.0-eigen-(3.3.9)-lapack-suitesparse-(5.7.1)-cxsparse-(3.2.0)-eigensparse-no_openmp)
+
+                                     Original                  Reduced
+Parameter blocks                          143                      142
+Parameters                                303                      296
+Effective parameters                      291                      285
+Residual blocks                           756                      756
+Residuals                                1715                     1715
+
+Minimizer                        TRUST_REGION
+
+Dense linear algebra library            EIGEN
+Trust region strategy     LEVENBERG_MARQUARDT
+
+                                        Given                     Used
+Linear solver           DENSE_NORMAL_CHOLESKY    DENSE_NORMAL_CHOLESKY
+Threads                                     1                        1
+Linear solver ordering              AUTOMATIC                      142
+
+Cost:
+Initial                          5.579019e+03
+Final                            5.487913e+03
+Change                           9.110653e+01
+
+Minimizer iterations                        5
+Successful steps                            5
+Unsuccessful steps                          0
+
+Time (in seconds):
+Preprocessor                         0.000053
+
+  Residual only evaluation           0.000762 (4)
+  Jacobian & residual evaluation     0.002506 (5)
+  Linear solver                      0.053456 (4)
+Minimizer                            0.060143
+
+Postprocessor                        0.000014
+Total                                0.060210
+
+Termination:                   NO_CONVERGENCE (Maximum solver time reached. Total solver time: 6.018901e-02 >= 4.000000e-02.)
+
+
+Solver Summary (v 2.1.0-eigen-(3.3.9)-lapack-suitesparse-(5.7.1)-cxsparse-(3.2.0)-eigensparse-no_openmp)
+
+                                     Original                  Reduced
+Parameter blocks                          113                      112
+Parameters                                273                      266
+Effective parameters                      261                      255
+Residual blocks                           606                      606
+Residuals                                1409                     1409
+
+Minimizer                        TRUST_REGION
+
+Dense linear algebra library            EIGEN
+Trust region strategy     LEVENBERG_MARQUARDT
+
+                                        Given                     Used
+Linear solver           DENSE_NORMAL_CHOLESKY    DENSE_NORMAL_CHOLESKY
+Threads                                     1                        1
+Linear solver ordering              AUTOMATIC                      112
+
+Cost:
+Initial                          5.021443e+03
+Final                            4.980759e+03
+Change                           4.068421e+01
+
+Minimizer iterations                        7
+Successful steps                            7
+Unsuccessful steps                          0
+
+Time (in seconds):
+Preprocessor                         0.000063
+
+  Residual only evaluation           0.000907 (6)
+  Jacobian & residual evaluation     0.002716 (7)
+  Linear solver                      0.034113 (6)
+Minimizer                            0.040536
+
+Postprocessor                        0.000011
+Total                                0.040610
+
+Termination:                   NO_CONVERGENCE (Maximum solver time reached. Total solver time: 4.059410e-02 >= 4.000000e-02.)
+
+
+Solver Summary (v 2.1.0-eigen-(3.3.9)-lapack-suitesparse-(5.7.1)-cxsparse-(3.2.0)-eigensparse-no_openmp)
+
+                                     Original                  Reduced
+Parameter blocks                          113                      112
+Parameters                                273                      266
+Effective parameters                      261                      255
+Residual blocks                           606                      606
+Residuals                                1409                     1409
+
+Minimizer                        TRUST_REGION
+
+Dense linear algebra library            EIGEN
+Trust region strategy     LEVENBERG_MARQUARDT
+
+                                        Given                     Used
+Linear solver           DENSE_NORMAL_CHOLESKY    DENSE_NORMAL_CHOLESKY
+Threads                                     1                        1
+Linear solver ordering              AUTOMATIC                      112
+
+Cost:
+Initial                          4.991771e+03
+Final                            4.974629e+03
+Change                           1.714175e+01
+
+Minimizer iterations                        6
+Successful steps                            6
+Unsuccessful steps                          0
+
+Time (in seconds):
+Preprocessor                         0.000042
+
+  Residual only evaluation           0.000711 (5)
+  Jacobian & residual evaluation     0.002363 (6)
+  Linear solver                      0.027140 (5)
+Minimizer                            0.032510
+
+Postprocessor                        0.000011
+Total                                0.032563
+
+Termination:                   NO_CONVERGENCE (Maximum solver time reached. Total solver time: 3.254819e-02 >= 3.200000e-02.)
+
+marg old: marg_feature_count=57
+
+Solver Summary (v 2.1.0-eigen-(3.3.9)-lapack-suitesparse-(5.7.1)-cxsparse-(3.2.0)-eigensparse-no_openmp)
+
+                                     Original                  Reduced
+Parameter blocks                          128                      127
+Parameters                                288                      281
+Effective parameters                      276                      270
+Residual blocks                           658                      658
+Residuals                                1519                     1519
+
+Minimizer                        TRUST_REGION
+
+Dense linear algebra library            EIGEN
+Trust region strategy     LEVENBERG_MARQUARDT
+
+                                        Given                     Used
+Linear solver           DENSE_NORMAL_CHOLESKY    DENSE_NORMAL_CHOLESKY
+Threads                                     1                        1
+Linear solver ordering              AUTOMATIC                      127
+
+Cost:
+Initial                          5.246042e+03
+Final                            5.158661e+03
+Change                           8.738190e+01
+
+Minimizer iterations                        7
+Successful steps                            7
+Unsuccessful steps                          0
+
+Time (in seconds):
+Preprocessor                         0.000043
+
+  Residual only evaluation           0.000908 (6)
+  Jacobian & residual evaluation     0.002916 (7)
+  Linear solver                      0.040828 (6)
+Minimizer                            0.047738
+
+Postprocessor                        0.000010
+Total                                0.047791
+
+Termination:                   NO_CONVERGENCE (Maximum solver time reached. Total solver time: 4.777598e-02 >= 4.000000e-02.)
+
+
+Solver Summary (v 2.1.0-eigen-(3.3.9)-lapack-suitesparse-(5.7.1)-cxsparse-(3.2.0)-eigensparse-no_openmp)
+
+                                     Original                  Reduced
+Parameter blocks                          119                      118
+Parameters                                279                      272
+Effective parameters                      267                      261
+Residual blocks                           602                      602
+Residuals                                1401                     1401
+
+Minimizer                        TRUST_REGION
+
+Dense linear algebra library            EIGEN
+Trust region strategy     LEVENBERG_MARQUARDT
+
+                                        Given                     Used
+Linear solver           DENSE_NORMAL_CHOLESKY    DENSE_NORMAL_CHOLESKY
+Threads                                     1                        1
+Linear solver ordering              AUTOMATIC                      118
+
+Cost:
+Initial                          5.001413e+03
+Final                            4.958241e+03
+Change                           4.317231e+01
+
+Minimizer iterations                        7
+Successful steps                            7
+Unsuccessful steps                          0
+
+Time (in seconds):
+Preprocessor                         0.000049
+
+  Residual only evaluation           0.000809 (6)
+  Jacobian & residual evaluation     0.002535 (7)
+  Linear solver                      0.037660 (6)
+Minimizer                            0.043873
+
+Postprocessor                        0.000012
+Total                                0.043934
+
+Termination:                   NO_CONVERGENCE (Maximum solver time reached. Total solver time: 4.391694e-02 >= 4.000000e-02.)
+
+
+Solver Summary (v 2.1.0-eigen-(3.3.9)-lapack-suitesparse-(5.7.1)-cxsparse-(3.2.0)-eigensparse-no_openmp)
+
+                                     Original                  Reduced
+Parameter blocks                          119                      118
+Parameters                                279                      272
+Effective parameters                      267                      261
+Residual blocks                           602                      602
+Residuals                                1401                     1401
+
+Minimizer                        TRUST_REGION
+
+Dense linear algebra library            EIGEN
+Trust region strategy     LEVENBERG_MARQUARDT
+
+                                        Given                     Used
+Linear solver           DENSE_NORMAL_CHOLESKY    DENSE_NORMAL_CHOLESKY
+Threads                                     1                        1
+Linear solver ordering              AUTOMATIC                      118
+
+Cost:
+Initial                          4.969449e+03
+Final                            4.952493e+03
+Change                           1.695539e+01
+
+Minimizer iterations                        6
+Successful steps                            6
+Unsuccessful steps                          0
+
+Time (in seconds):
+Preprocessor                         0.000044
+
+  Residual only evaluation           0.000722 (5)
+  Jacobian & residual evaluation     0.002814 (6)
+  Linear solver                      0.028298 (5)
+Minimizer                            0.034639
+
+Postprocessor                        0.000011
+Total                                0.034694
+
+Termination:                   NO_CONVERGENCE (Maximum solver time reached. Total solver time: 3.467774e-02 >= 3.200000e-02.)
+
+marg old: marg_feature_count=50
