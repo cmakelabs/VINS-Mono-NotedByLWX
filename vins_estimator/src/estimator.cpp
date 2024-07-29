@@ -1491,7 +1491,7 @@ inline sym::optimizer_params_t OptimizerParams() {
   return params;
 }
 
-inline sym::optimizer_params_t RobotLocalizationOptimizerParams() {
+inline sym::optimizer_params_t RobotLocalizationOptimizerParams1() {
   sym::optimizer_params_t params = sym::DefaultOptimizerParams();
   // 迭代次数少了，就是不行
   params.iterations = 16;//50;//8;
@@ -1505,6 +1505,24 @@ inline sym::optimizer_params_t RobotLocalizationOptimizerParams() {
 //   params.lambda_down_factor = 1 / 2.;
   params.lambda_up_factor = 10.0;
   params.lambda_down_factor = 1 / 10.0;
+  params.use_unit_damping = true;
+  params.use_diagonal_damping = true;
+  params.keep_max_diagonal_damping = true;
+  return params;
+}
+
+inline sym::optimizer_params_t RobotLocalizationOptimizerParams() {
+  sym::optimizer_params_t params = sym::DefaultOptimizerParams();
+  params.iterations = 50;
+  params.verbose = true;
+  params.debug_stats = false;
+  params.initial_lambda = 1;
+  params.lambda_update_type = sym::lambda_update_type_t::DYNAMIC;
+  params.lambda_lower_bound = 1.0e-10;
+  params.lambda_upper_bound = 1.0e6;
+  params.lambda_up_factor = 10.0;
+  params.lambda_down_factor = 1 / 10.0;
+  params.early_exit_min_reduction = 1.0e-6;
   params.use_unit_damping = true;
   params.use_diagonal_damping = true;
   params.keep_max_diagonal_damping = true;
@@ -2244,7 +2262,7 @@ void Estimator::symOptimization() // use symforce to optimize.
     // 总之，symforce的LM迭代，和SparseCholesky或者DenseCholesky分解对于求解后是否能够收敛，就没有那么好的效果
 
     // sym::Optimizer<double> optimizer(params, factors);
-    // sym::Optimizer<double> optimizer(RobotLocalizationOptimizerParams(), factors); // ok
+    sym::Optimizer<double> optimizer(RobotLocalizationOptimizerParams(), factors); // test 2024-7-27
     // constexpr double epsilon = 1e-10;
     // sym::Optimizer<double> optimizer(RobotLocalizationOptimizerParams(), factors, "BAOptimizer", {}, epsilon); // sym::kDefaultEpsilon<double>
     // sym::Optimizer<double> optimizer(RobotLocalizationOptimizerParams(), factors); // test on 2024-7-26
@@ -2252,7 +2270,7 @@ void Estimator::symOptimization() // use symforce to optimize.
     // DenseOptimizer<double> optimizer(params, factors); // dense optimizer better. 2024-7-15.
     // DenseOptimizer<double> optimizer(params2, factors); // dense optimizer better. 2024-7-15.
     // DenseOptimizer<double> optimizer(RobotLocalizationOptimizerParams(), factors); // dense optimizer better. 2024-7-15.
-    DenseOptimizer<double> optimizer(RobotLocalizationOptimizerParams(), factors);//, "BAOptimizer", {}, epsilon); // test on 2024-7-26
+    // DenseOptimizer<double> optimizer(RobotLocalizationOptimizerParams(), factors);//, "BAOptimizer", {}, epsilon); // test on 2024-7-26
     /*
     sym::Optimizerd optimizer(optimizer_params, factors, "BundleAdjustmentOptimizer", optimized_keys,
                             params.epsilon);

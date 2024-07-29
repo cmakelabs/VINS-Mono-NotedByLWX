@@ -1,0 +1,286 @@
+[0m[ INFO] [1722050047.079214962]: init begins[0m
+i=0 para_Pose addr=94518451286152
+i=0 para_SpeedBias addr=94518451286768
+i=1 para_Pose addr=94518451286208
+i=1 para_SpeedBias addr=94518451286840
+i=2 para_Pose addr=94518451286264
+i=2 para_SpeedBias addr=94518451286912
+i=3 para_Pose addr=94518451286320
+i=3 para_SpeedBias addr=94518451286984
+i=4 para_Pose addr=94518451286376
+i=4 para_SpeedBias addr=94518451287056
+i=5 para_Pose addr=94518451286432
+i=5 para_SpeedBias addr=94518451287128
+i=6 para_Pose addr=94518451286488
+i=6 para_SpeedBias addr=94518451287200
+i=7 para_Pose addr=94518451286544
+i=7 para_SpeedBias addr=94518451287272
+i=8 para_Pose addr=94518451286600
+i=8 para_SpeedBias addr=94518451287344
+i=9 para_Pose addr=94518451286656
+i=9 para_SpeedBias addr=94518451287416
+i=10 para_Pose addr=94518451286712
+i=10 para_SpeedBias addr=94518451287488
+para_Ex_Pose addr=94518451295560[0m[ INFO] [1722050047.086097215]: Loaded config_file: /root/dev/vins-mono_ws/src/VINS-Mono-NotedByLWX/feature_tracker/../config/euroc/euroc_config.yaml[0m
+result path /home/shaozu/output//vins_result_no_loop.csv
+[0m[ INFO] [1722050047.086805250]: ROW: 480.000000 COL: 752.000000 [0m
+[0m[ INFO] [1722050047.086898490]: Extrinsic_R : 
+ 0.0148655  -0.999881  0.0041403
+  0.999557  0.0149672  0.0257155
+-0.0257744 0.00375619   0.999661[0m
+[0m[ INFO] [1722050047.086917171]: Extrinsic_T : 
+-0.0216401  -0.064677 0.00981073[0m
+[0m[ INFO] [1722050047.086923576]: Synchronized sensors, fix time offset: 0[0m
+[0m[ INFO] [1722050057.335569715]: Not enough features or parallax; Move device around[0m
+[0m[ INFO] [1722050057.526803716]: IMU excitation not enouth![0m
+[0m[ INFO] [1722050057.526927190]: Not enough features or parallax; Move device around[0m
+[0m[ INFO] [1722050057.739682817]: IMU excitation not enouth![0m
+[0m[ INFO] [1722050057.739910525]: Not enough features or parallax; Move device around[0m
+[0m[ INFO] [1722050057.828440733]: IMU excitation not enouth![0m
+[0m[ INFO] [1722050057.828607809]: Not enough features or parallax; Move device around[0m
+[0m[ INFO] [1722050058.028249703]: IMU excitation not enouth![0m
+[0m[ INFO] [1722050058.028374871]: Not enough features or parallax; Move device around[0m
+[0m[ INFO] [1722050058.227243777]: IMU excitation not enouth![0m
+[0m[ INFO] [1722050058.227361736]: Not enough features or parallax; Move device around[0m
+[0m[ INFO] [1722050058.365712736]: IMU excitation not enouth![0m
+[0m[ INFO] [1722050058.365829621]: Not enough features or parallax; Move device around[0m
+[0m[ INFO] [1722050058.523018228]: Not enough features or parallax; Move device around[0m
+[0m[ INFO] [1722050058.734235817]: IMU excitation not enouth![0m
+[0m[ INFO] [1722050058.734354872]: Not enough features or parallax; Move device around[0m
+[0m[ INFO] [1722050058.823479288]: IMU excitation not enouth![0m
+[0m[ INFO] [1722050058.823594056]: Not enough features or parallax; Move device around[0m
+[0m[ INFO] [1722050059.034924236]: IMU excitation not enouth![0m
+[0m[ INFO] [1722050059.035121094]: Not enough features or parallax; Move device around[0m
+[0m[ INFO] [1722050059.223634164]: IMU excitation not enouth![0m
+[0m[ INFO] [1722050059.223857513]: Not enough features or parallax; Move device around[0m
+[0m[ INFO] [1722050059.323263180]: IMU excitation not enouth![0m
+[0m[ INFO] [1722050059.323458751]: Not enough features or parallax; Move device around[0m
+[0m[ INFO] [1722050059.540900855]: IMU excitation not enouth![0m
+[0m[ INFO] [1722050059.541196241]: Not enough features or parallax; Move device around[0m
+[0m[ INFO] [1722050059.725010434]: IMU excitation not enouth![0m
+[0m[ INFO] [1722050059.725177555]: Not enough features or parallax; Move device around[0m
+[0m[ INFO] [1722050059.824125061]: IMU excitation not enouth![0m
+[0m[ INFO] [1722050059.824231866]: Not enough features or parallax; Move device around[0m
+[0m[ INFO] [1722050060.030244995]: IMU excitation not enouth![0m
+[0m[ INFO] [1722050060.030439867]: Not enough features or parallax; Move device around[0m
+last_marginalization_info addr = 0
+[2024-07-27 11:14:20.417] [info] LM<sym::Optimize> [iter    0] lambda: 1.000e+00, error prev/linear/new: 4.786e+05/4.880e+04/4.730e+04, rel reduction: 9.01186e-01, gain ratio: 1.00350e+00
+[2024-07-27 11:14:20.420] [info] LM<sym::Optimize> [iter    1] lambda: 3.333e-01, error prev/linear/new: 4.730e+04/2.993e+03/2.978e+03, rel reduction: 9.37040e-01, gain ratio: 1.00034e+00
+[2024-07-27 11:14:20.424] [info] LM<sym::Optimize> [iter    2] lambda: 1.111e-01, error prev/linear/new: 2.978e+03/8.496e+02/8.530e+02, rel reduction: 7.13554e-01, gain ratio: 9.98398e-01
+[2024-07-27 11:14:20.427] [info] LM<sym::Optimize> [iter    3] lambda: 3.704e-02, error prev/linear/new: 8.530e+02/5.330e+02/5.378e+02, rel reduction: 3.69538e-01, gain ratio: 9.85205e-01
+[2024-07-27 11:14:20.431] [info] LM<sym::Optimize> [iter    4] lambda: 1.235e-02, error prev/linear/new: 5.378e+02/3.983e+02/4.019e+02, rel reduction: 2.52676e-01, gain ratio: 9.73989e-01
+[2024-07-27 11:14:20.433] [info] LM<sym::Optimize> [iter    5] lambda: 4.115e-03, error prev/linear/new: 4.019e+02/2.736e+02/2.719e+02, rel reduction: 3.23529e-01, gain ratio: 1.01365e+00
+[2024-07-27 11:14:20.436] [info] LM<sym::Optimize> [iter    6] lambda: 1.372e-03, error prev/linear/new: 2.719e+02/2.156e+02/2.119e+02, rel reduction: 2.20585e-01, gain ratio: 1.06575e+00
+[2024-07-27 11:14:20.439] [info] LM<sym::Optimize> [iter    7] lambda: 4.572e-04, error prev/linear/new: 2.119e+02/2.018e+02/2.010e+02, rel reduction: 5.14883e-02, gain ratio: 1.07851e+00
+[2024-07-27 11:14:20.442] [info] LM<sym::Optimize> [iter    8] lambda: 1.524e-04, error prev/linear/new: 2.010e+02/1.999e+02/1.999e+02, rel reduction: 5.49815e-03, gain ratio: 1.00233e+00
+[2024-07-27 11:14:20.444] [info] LM<sym::Optimize> [iter    9] lambda: 5.081e-05, error prev/linear/new: 1.999e+02/1.993e+02/1.997e+02, rel reduction: 8.60814e-04, gain ratio: 3.24876e-01
+[2024-07-27 11:14:20.447] [info] LM<sym::Optimize> [iter   10] lambda: 5.299e-05, error prev/linear/new: 1.997e+02/1.993e+02/1.999e+02, rel reduction: -1.14891e-03, gain ratio: -5.03526e-01
+[2024-07-27 11:14:20.450] [info] LM<sym::Optimize> [iter   11] lambda: 1.060e-04, error prev/linear/new: 1.997e+02/1.993e+02/2.001e+02, rel reduction: -1.82443e-03, gain ratio: -1.00109e+00
+[2024-07-27 11:14:20.453] [info] LM<sym::Optimize> [iter   12] lambda: 4.239e-04, error prev/linear/new: 1.997e+02/1.994e+02/2.002e+02, rel reduction: -2.68738e-03, gain ratio: -1.94033e+00
+[2024-07-27 11:14:20.456] [info] LM<sym::Optimize> [iter   13] lambda: 3.391e-03, error prev/linear/new: 1.997e+02/1.995e+02/2.004e+02, rel reduction: -3.71806e-03, gain ratio: -3.31021e+00
+[2024-07-27 11:14:20.459] [info] LM<sym::Optimize> [iter   14] lambda: 5.426e-02, error prev/linear/new: 1.997e+02/1.996e+02/2.005e+02, rel reduction: -4.22053e-03, gain ratio: -5.51812e+00
+[2024-07-27 11:14:20.461] [info] LM<sym::Optimize> [iter   15] lambda: 1.736e+00, error prev/linear/new: 1.997e+02/1.997e+02/1.999e+02, rel reduction: -9.01284e-04, gain ratio: -7.01681e+00
+[2024-07-27 11:14:20.464] [info] LM<sym::Optimize> [iter   16] lambda: 1.111e+02, error prev/linear/new: 1.997e+02/1.997e+02/1.997e+02, rel reduction: -1.85371e-05, gain ratio: -6.41480e+00
+[2024-07-27 11:14:20.467] [info] LM<sym::Optimize> [iter   17] lambda: 1.422e+04, error prev/linear/new: 1.997e+02/1.997e+02/1.997e+02, rel reduction: -1.45628e-07, gain ratio: -6.38750e+00
+[2024-07-27 11:14:20.469] [info] LM<sym::Optimize> [iter   18] lambda: 1.000e+06, error prev/linear/new: 1.997e+02/1.997e+02/1.997e+02, rel reduction: -2.07147e-09, gain ratio: -6.38723e+00
+[2024-07-27 11:14:20.469] [warning] LM<sym::Optimize> Optimization finished with status: FAILED, reason: LAMBDA_OUT_OF_BOUNDS
+[2024-07-27 11:14:20.469] [info] Iterations: 18
+[2024-07-27 11:14:20.469] [info] Lambda: 1000000
+[2024-07-27 11:14:20.469] [info] Initial error: 478635.25434332935
+[2024-07-27 11:14:20.469] [info] Final error: 199.70587304301478
+[2024-07-27 11:14:20.469] [info] Status: FAILED
+marg old: marg_feature_count=150
+[0m[ INFO] [1722050060.511676998]: Initialization finish![0m
+last_marginalization_info addr = 140620586815168
+[2024-07-27 11:14:20.517] [info] LM<sym::Optimize> [iter    0] lambda: 1.000e+00, error prev/linear/new: 2.283e+02/2.281e+02/2.281e+02, rel reduction: 6.15124e-04, gain ratio: 8.43730e-01
+[2024-07-27 11:14:20.520] [info] LM<sym::Optimize> [iter    1] lambda: 6.751e-01, error prev/linear/new: 2.281e+02/2.280e+02/2.281e+02, rel reduction: 3.57407e-04, gain ratio: 5.35892e-01
+[2024-07-27 11:14:20.523] [info] LM<sym::Optimize> [iter    2] lambda: 6.749e-01, error prev/linear/new: 2.281e+02/2.279e+02/2.280e+02, rel reduction: 1.01063e-04, gain ratio: 1.94246e-01
+[2024-07-27 11:14:20.525] [info] LM<sym::Optimize> [iter    3] lambda: 8.292e-01, error prev/linear/new: 2.280e+02/2.279e+02/2.280e+02, rel reduction: -4.73472e-05, gain ratio: -1.21480e-01
+[2024-07-27 11:14:20.544] [info] LM<sym::Optimize> [iter    4] lambda: 1.658e+00, error prev/linear/new: 2.280e+02/2.280e+02/2.280e+02, rel reduction: -3.10685e-05, gain ratio: -1.34698e-01
+[2024-07-27 11:14:20.547] [info] LM<sym::Optimize> [iter    5] lambda: 6.633e+00, error prev/linear/new: 2.280e+02/2.280e+02/2.280e+02, rel reduction: -9.07073e-06, gain ratio: -1.33222e-01
+[2024-07-27 11:14:20.551] [info] LM<sym::Optimize> [iter    6] lambda: 5.307e+01, error prev/linear/new: 2.280e+02/2.280e+02/2.280e+02, rel reduction: -1.19497e-06, gain ratio: -1.31722e-01
+[2024-07-27 11:14:20.554] [info] LM<sym::Optimize> [iter    7] lambda: 8.491e+02, error prev/linear/new: 2.280e+02/2.280e+02/2.280e+02, rel reduction: -7.53181e-08, gain ratio: -1.31561e-01
+[2024-07-27 11:14:20.554] [info] LM<sym::Optimize> Optimization finished with status: SUCCESS
+[2024-07-27 11:14:20.554] [info] Iterations: 7
+[2024-07-27 11:14:20.554] [info] Lambda: 849.0742842241899
+[2024-07-27 11:14:20.554] [info] Initial error: 228.27826827739563
+[2024-07-27 11:14:20.554] [info] Final error: 228.03326268621254
+[2024-07-27 11:14:20.554] [info] Status: SUCCESS
+marg old: marg_feature_count=148
+last_marginalization_info addr = 140620586877392
+[2024-07-27 11:14:20.569] [info] LM<sym::Optimize> [iter    0] lambda: 1.000e+00, error prev/linear/new: 2.376e+02/2.372e+02/2.372e+02, rel reduction: 1.63760e-03, gain ratio: 1.00249e+00
+[2024-07-27 11:14:20.573] [info] LM<sym::Optimize> [iter    1] lambda: 3.333e-01, error prev/linear/new: 2.372e+02/2.368e+02/2.367e+02, rel reduction: 2.09451e-03, gain ratio: 1.05395e+00
+[2024-07-27 11:14:20.575] [info] LM<sym::Optimize> [iter    2] lambda: 1.111e-01, error prev/linear/new: 2.367e+02/2.363e+02/2.363e+02, rel reduction: 2.01918e-03, gain ratio: 1.04942e+00
+[2024-07-27 11:14:20.578] [info] LM<sym::Optimize> [iter    3] lambda: 3.704e-02, error prev/linear/new: 2.363e+02/2.359e+02/2.359e+02, rel reduction: 1.40260e-03, gain ratio: 7.94800e-01
+[2024-07-27 11:14:20.580] [info] LM<sym::Optimize> [iter    4] lambda: 2.945e-02, error prev/linear/new: 2.359e+02/2.356e+02/2.360e+02, rel reduction: -9.78296e-05, gain ratio: -6.89111e-02
+[2024-07-27 11:14:20.582] [info] LM<sym::Optimize> [iter    5] lambda: 5.889e-02, error prev/linear/new: 2.359e+02/2.356e+02/2.360e+02, rel reduction: -3.44074e-04, gain ratio: -2.80484e-01
+[2024-07-27 11:14:20.584] [info] LM<sym::Optimize> [iter    6] lambda: 2.356e-01, error prev/linear/new: 2.359e+02/2.358e+02/2.361e+02, rel reduction: -5.72611e-04, gain ratio: -7.50320e-01
+[2024-07-27 11:14:20.587] [info] LM<sym::Optimize> [iter    7] lambda: 1.885e+00, error prev/linear/new: 2.359e+02/2.359e+02/2.360e+02, rel reduction: -2.76827e-04, gain ratio: -1.29619e+00
+[2024-07-27 11:14:20.589] [info] LM<sym::Optimize> [iter    8] lambda: 3.015e+01, error prev/linear/new: 2.359e+02/2.359e+02/2.359e+02, rel reduction: -2.89059e-05, gain ratio: -1.50401e+00
+[2024-07-27 11:14:20.591] [info] LM<sym::Optimize> [iter    9] lambda: 9.649e+02, error prev/linear/new: 2.359e+02/2.359e+02/2.359e+02, rel reduction: -9.48697e-07, gain ratio: -1.51517e+00
+[2024-07-27 11:14:20.593] [info] LM<sym::Optimize> [iter   10] lambda: 6.175e+04, error prev/linear/new: 2.359e+02/2.359e+02/2.359e+02, rel reduction: -1.48473e-08, gain ratio: -1.51549e+00
+[2024-07-27 11:14:20.593] [info] LM<sym::Optimize> Optimization finished with status: SUCCESS
+[2024-07-27 11:14:20.593] [info] Iterations: 10
+[2024-07-27 11:14:20.593] [info] Lambda: 61752.492051212444
+[2024-07-27 11:14:20.593] [info] Initial error: 237.6329213183608
+[2024-07-27 11:14:20.593] [info] Final error: 235.93743945986998
+[2024-07-27 11:14:20.593] [info] Status: SUCCESS
+marg old: marg_feature_count=148
+last_marginalization_info addr = 140620586876688
+[2024-07-27 11:14:20.633] [info] LM<sym::Optimize> [iter    0] lambda: 1.000e+00, error prev/linear/new: 2.540e+02/2.536e+02/2.537e+02, rel reduction: 1.46661e-03, gain ratio: 8.14872e-01
+[2024-07-27 11:14:20.635] [info] LM<sym::Optimize> [iter    1] lambda: 7.503e-01, error prev/linear/new: 2.537e+02/2.533e+02/2.534e+02, rel reduction: 1.04885e-03, gain ratio: 7.22090e-01
+[2024-07-27 11:14:20.638] [info] LM<sym::Optimize> [iter    2] lambda: 6.845e-01, error prev/linear/new: 2.534e+02/2.531e+02/2.533e+02, rel reduction: 5.72193e-04, gain ratio: 5.03442e-01
+[2024-07-27 11:14:20.640] [info] LM<sym::Optimize> [iter    3] lambda: 6.845e-01, error prev/linear/new: 2.533e+02/2.530e+02/2.532e+02, rel reduction: 1.74150e-04, gain ratio: 1.91138e-01
+[2024-07-27 11:14:20.642] [info] LM<sym::Optimize> [iter    4] lambda: 8.459e-01, error prev/linear/new: 2.532e+02/2.530e+02/2.533e+02, rel reduction: -1.49123e-04, gain ratio: -2.20964e-01
+[2024-07-27 11:14:20.645] [info] LM<sym::Optimize> [iter    5] lambda: 1.692e+00, error prev/linear/new: 2.532e+02/2.531e+02/2.533e+02, rel reduction: -1.76512e-04, gain ratio: -4.32762e-01
+[2024-07-27 11:14:20.647] [info] LM<sym::Optimize> [iter    6] lambda: 6.767e+00, error prev/linear/new: 2.532e+02/2.532e+02/2.532e+02, rel reduction: -9.21882e-05, gain ratio: -7.35541e-01
+[2024-07-27 11:14:20.649] [info] LM<sym::Optimize> [iter    7] lambda: 5.413e+01, error prev/linear/new: 2.532e+02/2.532e+02/2.532e+02, rel reduction: -1.51405e-05, gain ratio: -8.82912e-01
+[2024-07-27 11:14:20.651] [info] LM<sym::Optimize> [iter    8] lambda: 8.662e+02, error prev/linear/new: 2.532e+02/2.532e+02/2.532e+02, rel reduction: -9.85461e-07, gain ratio: -9.06240e-01
+[2024-07-27 11:14:20.654] [info] LM<sym::Optimize> [iter    9] lambda: 2.772e+04, error prev/linear/new: 2.532e+02/2.532e+02/2.532e+02, rel reduction: -3.08778e-08, gain ratio: -9.07785e-01
+[2024-07-27 11:14:20.654] [info] LM<sym::Optimize> Optimization finished with status: SUCCESS
+[2024-07-27 11:14:20.654] [info] Iterations: 9
+[2024-07-27 11:14:20.654] [info] Lambda: 27716.98721416653
+[2024-07-27 11:14:20.654] [info] Initial error: 254.04262527149038
+[2024-07-27 11:14:20.654] [info] Final error: 253.21488083083858
+[2024-07-27 11:14:20.654] [info] Status: SUCCESS
+marg old: marg_feature_count=148
+last_marginalization_info addr = 140620586877392
+[2024-07-27 11:14:20.734] [info] LM<sym::Optimize> [iter    0] lambda: 1.000e+00, error prev/linear/new: 2.817e+02/2.809e+02/2.813e+02, rel reduction: 1.22590e-03, gain ratio: 4.42931e-01
+[2024-07-27 11:14:20.736] [info] LM<sym::Optimize> [iter    1] lambda: 1.001e+00, error prev/linear/new: 2.813e+02/2.808e+02/2.813e+02, rel reduction: -6.28671e-05, gain ratio: -3.61722e-02
+[2024-07-27 11:14:20.739] [info] LM<sym::Optimize> [iter    2] lambda: 2.003e+00, error prev/linear/new: 2.813e+02/2.810e+02/2.814e+02, rel reduction: -1.20330e-04, gain ratio: -1.14905e-01
+[2024-07-27 11:14:20.741] [info] LM<sym::Optimize> [iter    3] lambda: 8.012e+00, error prev/linear/new: 2.813e+02/2.812e+02/2.813e+02, rel reduction: -7.14457e-05, gain ratio: -2.29322e-01
+[2024-07-27 11:14:20.744] [info] LM<sym::Optimize> [iter    4] lambda: 6.410e+01, error prev/linear/new: 2.813e+02/2.813e+02/2.813e+02, rel reduction: -1.18966e-05, gain ratio: -2.87592e-01
+[2024-07-27 11:14:20.746] [info] LM<sym::Optimize> [iter    5] lambda: 1.026e+03, error prev/linear/new: 2.813e+02/2.813e+02/2.813e+02, rel reduction: -7.74832e-07, gain ratio: -2.97128e-01
+[2024-07-27 11:14:20.749] [info] LM<sym::Optimize> [iter    6] lambda: 3.282e+04, error prev/linear/new: 2.813e+02/2.813e+02/2.813e+02, rel reduction: -2.42788e-08, gain ratio: -2.97761e-01
+[2024-07-27 11:14:20.749] [info] LM<sym::Optimize> Optimization finished with status: SUCCESS
+[2024-07-27 11:14:20.749] [info] Iterations: 6
+[2024-07-27 11:14:20.749] [info] Lambda: 32816.72285526827
+[2024-07-27 11:14:20.749] [info] Initial error: 281.67261120811054
+[2024-07-27 11:14:20.749] [info] Final error: 281.3273090966263
+[2024-07-27 11:14:20.749] [info] Status: SUCCESS
+marg old: marg_feature_count=148
+last_marginalization_info addr = 140620586876688
+[2024-07-27 11:14:20.834] [info] LM<sym::Optimize> [iter    0] lambda: 1.000e+00, error prev/linear/new: 2.947e+02/2.937e+02/2.944e+02, rel reduction: 1.12643e-03, gain ratio: 3.09689e-01
+[2024-07-27 11:14:20.837] [info] LM<sym::Optimize> [iter    1] lambda: 1.055e+00, error prev/linear/new: 2.944e+02/2.938e+02/2.946e+02, rel reduction: -8.09942e-04, gain ratio: -3.93776e-01
+[2024-07-27 11:14:20.840] [info] LM<sym::Optimize> [iter    2] lambda: 2.110e+00, error prev/linear/new: 2.944e+02/2.940e+02/2.945e+02, rel reduction: -4.61599e-04, gain ratio: -3.73781e-01
+[2024-07-27 11:14:20.843] [info] LM<sym::Optimize> [iter    3] lambda: 8.441e+00, error prev/linear/new: 2.944e+02/2.943e+02/2.944e+02, rel reduction: -1.31587e-04, gain ratio: -3.59751e-01
+[2024-07-27 11:14:20.846] [info] LM<sym::Optimize> [iter    4] lambda: 6.753e+01, error prev/linear/new: 2.944e+02/2.944e+02/2.944e+02, rel reduction: -1.72117e-05, gain ratio: -3.54867e-01
+[2024-07-27 11:14:20.848] [info] LM<sym::Optimize> [iter    5] lambda: 1.080e+03, error prev/linear/new: 2.944e+02/2.944e+02/2.944e+02, rel reduction: -1.08243e-06, gain ratio: -3.54070e-01
+[2024-07-27 11:14:20.851] [info] LM<sym::Optimize> [iter    6] lambda: 3.457e+04, error prev/linear/new: 2.944e+02/2.944e+02/2.944e+02, rel reduction: -3.38395e-08, gain ratio: -3.54017e-01
+[2024-07-27 11:14:20.851] [info] LM<sym::Optimize> Optimization finished with status: SUCCESS
+[2024-07-27 11:14:20.851] [info] Iterations: 6
+[2024-07-27 11:14:20.851] [info] Lambda: 34574.89926005949
+[2024-07-27 11:14:20.851] [info] Initial error: 294.7350318348383
+[2024-07-27 11:14:20.851] [info] Final error: 294.4030333134939
+[2024-07-27 11:14:20.851] [info] Status: SUCCESS
+marg old: marg_feature_count=148
+last_marginalization_info addr = 140620586877392
+[2024-07-27 11:14:20.945] [info] LM<sym::Optimize> [iter    0] lambda: 1.000e+00, error prev/linear/new: 2.988e+02/2.977e+02/2.984e+02, rel reduction: 1.53183e-03, gain ratio: 4.13463e-01
+[2024-07-27 11:14:20.947] [info] LM<sym::Optimize> [iter    1] lambda: 1.005e+00, error prev/linear/new: 2.984e+02/2.977e+02/2.985e+02, rel reduction: -3.66341e-04, gain ratio: -1.61569e-01
+[2024-07-27 11:14:20.950] [info] LM<sym::Optimize> [iter    2] lambda: 2.010e+00, error prev/linear/new: 2.984e+02/2.980e+02/2.984e+02, rel reduction: -1.41143e-04, gain ratio: -1.04710e-01
+[2024-07-27 11:14:20.953] [info] LM<sym::Optimize> [iter    3] lambda: 8.041e+00, error prev/linear/new: 2.984e+02/2.982e+02/2.984e+02, rel reduction: -2.24120e-05, gain ratio: -5.65270e-02
+[2024-07-27 11:14:20.955] [info] LM<sym::Optimize> [iter    4] lambda: 6.433e+01, error prev/linear/new: 2.984e+02/2.984e+02/2.984e+02, rel reduction: -2.28323e-06, gain ratio: -4.35326e-02
+[2024-07-27 11:14:20.958] [info] LM<sym::Optimize> [iter    5] lambda: 1.029e+03, error prev/linear/new: 2.984e+02/2.984e+02/2.984e+02, rel reduction: -1.38514e-07, gain ratio: -4.19142e-02
+[2024-07-27 11:14:20.961] [info] LM<sym::Optimize> [iter    6] lambda: 3.294e+04, error prev/linear/new: 2.984e+02/2.984e+02/2.984e+02, rel reduction: -4.32021e-09, gain ratio: -4.18111e-02
+[2024-07-27 11:14:20.961] [info] LM<sym::Optimize> Optimization finished with status: SUCCESS
+[2024-07-27 11:14:20.961] [info] Iterations: 6
+[2024-07-27 11:14:20.961] [info] Lambda: 32937.88024744702
+[2024-07-27 11:14:20.961] [info] Initial error: 298.8260112712654
+[2024-07-27 11:14:20.961] [info] Final error: 298.36826203122143
+[2024-07-27 11:14:20.961] [info] Status: SUCCESS
+marg old: marg_feature_count=148
+last_marginalization_info addr = 140620586876688
+[2024-07-27 11:14:21.044] [info] LM<sym::Optimize> [iter    0] lambda: 1.000e+00, error prev/linear/new: 3.035e+02/2.815e+02/2.816e+02, rel reduction: 7.20658e-02, gain ratio: 9.95918e-01
+[2024-07-27 11:14:21.046] [info] LM<sym::Optimize> [iter    1] lambda: 3.333e-01, error prev/linear/new: 2.816e+02/2.744e+02/2.744e+02, rel reduction: 2.56184e-02, gain ratio: 9.96583e-01
+[2024-07-27 11:14:21.049] [info] LM<sym::Optimize> [iter    2] lambda: 1.111e-01, error prev/linear/new: 2.744e+02/2.734e+02/2.733e+02, rel reduction: 3.76935e-03, gain ratio: 1.07252e+00
+[2024-07-27 11:14:21.051] [info] LM<sym::Optimize> [iter    3] lambda: 3.704e-02, error prev/linear/new: 2.733e+02/2.728e+02/2.727e+02, rel reduction: 2.35741e-03, gain ratio: 1.27670e+00
+[2024-07-27 11:14:21.053] [info] LM<sym::Optimize> [iter    4] lambda: 1.235e-02, error prev/linear/new: 2.727e+02/2.722e+02/2.720e+02, rel reduction: 2.55846e-03, gain ratio: 1.32705e+00
+[2024-07-27 11:14:21.056] [info] LM<sym::Optimize> [iter    5] lambda: 4.115e-03, error prev/linear/new: 2.720e+02/2.714e+02/2.712e+02, rel reduction: 2.80808e-03, gain ratio: 1.34403e+00
+[2024-07-27 11:14:21.058] [info] LM<sym::Optimize> [iter    6] lambda: 1.372e-03, error prev/linear/new: 2.712e+02/2.706e+02/2.704e+02, rel reduction: 3.06078e-03, gain ratio: 1.32698e+00
+[2024-07-27 11:14:21.061] [info] LM<sym::Optimize> [iter    7] lambda: 4.572e-04, error prev/linear/new: 2.704e+02/2.693e+02/2.691e+02, rel reduction: 4.79620e-03, gain ratio: 1.16082e+00
+[2024-07-27 11:14:21.063] [info] LM<sym::Optimize> [iter    8] lambda: 1.524e-04, error prev/linear/new: 2.691e+02/2.670e+02/2.669e+02, rel reduction: 8.32392e-03, gain ratio: 1.07637e+00
+[2024-07-27 11:14:21.065] [info] LM<sym::Optimize> [iter    9] lambda: 5.081e-05, error prev/linear/new: 2.669e+02/2.647e+02/2.646e+02, rel reduction: 8.61547e-03, gain ratio: 1.07801e+00
+[2024-07-27 11:14:21.068] [info] LM<sym::Optimize> [iter   10] lambda: 1.694e-05, error prev/linear/new: 2.646e+02/2.638e+02/2.637e+02, rel reduction: 3.44906e-03, gain ratio: 1.20268e+00
+[2024-07-27 11:14:21.071] [info] LM<sym::Optimize> [iter   11] lambda: 5.645e-06, error prev/linear/new: 2.637e+02/2.636e+02/2.634e+02, rel reduction: 8.29234e-04, gain ratio: 3.19604e+00
+[2024-07-27 11:14:21.074] [info] LM<sym::Optimize> [iter   12] lambda: 1.882e-06, error prev/linear/new: 2.634e+02/2.634e+02/2.633e+02, rel reduction: 6.09431e-04, gain ratio: 4.15201e+01
+[2024-07-27 11:14:21.076] [info] LM<sym::Optimize> [iter   13] lambda: 6.272e-07, error prev/linear/new: 2.633e+02/2.633e+02/2.631e+02, rel reduction: 5.97853e-04, gain ratio: 7.34867e+01
+[2024-07-27 11:14:21.079] [info] LM<sym::Optimize> [iter   14] lambda: 2.091e-07, error prev/linear/new: 2.631e+02/2.631e+02/2.630e+02, rel reduction: 5.89760e-04, gain ratio: 7.64566e+01
+[2024-07-27 11:14:21.081] [info] LM<sym::Optimize> [iter   15] lambda: 6.969e-08, error prev/linear/new: 2.630e+02/2.630e+02/2.628e+02, rel reduction: 5.89264e-04, gain ratio: 7.65247e+01
+[2024-07-27 11:14:21.085] [info] LM<sym::Optimize> [iter   16] lambda: 2.323e-08, error prev/linear/new: 2.628e+02/2.628e+02/2.627e+02, rel reduction: 6.01535e-04, gain ratio: 7.66199e+01
+[2024-07-27 11:14:21.088] [info] LM<sym::Optimize> [iter   17] lambda: 7.744e-09, error prev/linear/new: 2.627e+02/2.627e+02/2.625e+02, rel reduction: 6.34942e-04, gain ratio: 7.78173e+01
+[2024-07-27 11:14:21.091] [info] LM<sym::Optimize> [iter   18] lambda: 2.581e-09, error prev/linear/new: 2.625e+02/2.625e+02/2.623e+02, rel reduction: 6.88143e-04, gain ratio: 8.11855e+01
+[2024-07-27 11:14:21.094] [info] LM<sym::Optimize> [iter   19] lambda: 8.604e-10, error prev/linear/new: 2.623e+02/2.623e+02/2.621e+02, rel reduction: 7.37051e-04, gain ratio: 8.55456e+01
+[2024-07-27 11:14:21.097] [info] LM<sym::Optimize> [iter   20] lambda: 2.868e-10, error prev/linear/new: 2.621e+02/2.621e+02/2.619e+02, rel reduction: 7.65656e-04, gain ratio: 8.84520e+01
+[2024-07-27 11:14:21.099] [info] LM<sym::Optimize> [iter   21] lambda: 9.560e-11, error prev/linear/new: 2.619e+02/2.619e+02/2.617e+02, rel reduction: 7.79579e-04, gain ratio: 8.99347e+01
+[2024-07-27 11:14:21.102] [info] LM<sym::Optimize> [iter   22] lambda: 3.187e-11, error prev/linear/new: 2.617e+02/2.617e+02/2.615e+02, rel reduction: 7.86024e-04, gain ratio: 9.06894e+01
+[2024-07-27 11:14:21.105] [info] LM<sym::Optimize> [iter   23] lambda: 1.062e-11, error prev/linear/new: 2.615e+02/2.615e+02/2.613e+02, rel reduction: 7.89066e-04, gain ratio: 9.10678e+01
+[2024-07-27 11:14:21.107] [info] LM<sym::Optimize> [iter   24] lambda: 3.541e-12, error prev/linear/new: 2.613e+02/2.613e+02/2.611e+02, rel reduction: 7.90986e-04, gain ratio: 9.12946e+01
+[2024-07-27 11:14:21.110] [info] LM<sym::Optimize> [iter   25] lambda: 1.180e-12, error prev/linear/new: 2.611e+02/2.611e+02/2.609e+02, rel reduction: 7.93204e-04, gain ratio: 9.15325e+01
+[2024-07-27 11:14:21.112] [info] LM<sym::Optimize> [iter   26] lambda: 3.934e-13, error prev/linear/new: 2.609e+02/2.609e+02/2.607e+02, rel reduction: 7.96666e-04, gain ratio: 9.19148e+01
+[2024-07-27 11:14:21.115] [info] LM<sym::Optimize> [iter   27] lambda: 1.311e-13, error prev/linear/new: 2.607e+02/2.607e+02/2.605e+02, rel reduction: 8.00677e-04, gain ratio: 9.23858e+01
+[2024-07-27 11:14:21.118] [info] LM<sym::Optimize> [iter   28] lambda: 4.371e-14, error prev/linear/new: 2.605e+02/2.605e+02/2.603e+02, rel reduction: 8.03568e-04, gain ratio: 9.27490e+01
+[2024-07-27 11:14:21.123] [info] LM<sym::Optimize> [iter   29] lambda: 1.457e-14, error prev/linear/new: 2.603e+02/2.603e+02/2.600e+02, rel reduction: 8.05192e-04, gain ratio: 9.29720e+01
+[2024-07-27 11:14:21.126] [info] LM<sym::Optimize> [iter   30] lambda: 4.857e-15, error prev/linear/new: 2.600e+02/2.600e+02/2.598e+02, rel reduction: 8.06171e-04, gain ratio: 9.31216e+01
+[2024-07-27 11:14:21.130] [info] LM<sym::Optimize> [iter   31] lambda: 1.619e-15, error prev/linear/new: 2.598e+02/2.598e+02/2.596e+02, rel reduction: 8.06904e-04, gain ratio: 9.32428e+01
+[2024-07-27 11:14:21.133] [info] LM<sym::Optimize> [iter   32] lambda: 5.397e-16, error prev/linear/new: 2.596e+02/2.596e+02/2.594e+02, rel reduction: 8.07541e-04, gain ratio: 9.33534e+01
+[2024-07-27 11:14:21.136] [info] LM<sym::Optimize> [iter   33] lambda: 1.799e-16, error prev/linear/new: 2.594e+02/2.594e+02/2.592e+02, rel reduction: 8.08153e-04, gain ratio: 9.34611e+01
+[2024-07-27 11:14:21.140] [info] LM<sym::Optimize> [iter   34] lambda: 1.000e-16, error prev/linear/new: 2.592e+02/2.592e+02/2.590e+02, rel reduction: 8.08747e-04, gain ratio: 9.35669e+01
+[2024-07-27 11:14:21.142] [info] LM<sym::Optimize> [iter   35] lambda: 1.000e-16, error prev/linear/new: 2.590e+02/2.590e+02/2.588e+02, rel reduction: 8.09335e-04, gain ratio: 9.36723e+01
+[2024-07-27 11:14:21.145] [info] LM<sym::Optimize> [iter   36] lambda: 1.000e-16, error prev/linear/new: 2.588e+02/2.588e+02/2.586e+02, rel reduction: 8.09920e-04, gain ratio: 9.37774e+01
+[2024-07-27 11:14:21.147] [info] LM<sym::Optimize> [iter   37] lambda: 1.000e-16, error prev/linear/new: 2.586e+02/2.586e+02/2.584e+02, rel reduction: 8.10508e-04, gain ratio: 9.38830e+01
+[2024-07-27 11:14:21.150] [info] LM<sym::Optimize> [iter   38] lambda: 1.000e-16, error prev/linear/new: 2.584e+02/2.584e+02/2.582e+02, rel reduction: 8.11084e-04, gain ratio: 9.39874e+01
+[2024-07-27 11:14:21.154] [info] LM<sym::Optimize> [iter   39] lambda: 1.000e-16, error prev/linear/new: 2.582e+02/2.582e+02/2.580e+02, rel reduction: 8.11658e-04, gain ratio: 9.40918e+01
+[2024-07-27 11:14:21.157] [info] LM<sym::Optimize> [iter   40] lambda: 1.000e-16, error prev/linear/new: 2.580e+02/2.579e+02/2.577e+02, rel reduction: 8.12253e-04, gain ratio: 9.41988e+01
+[2024-07-27 11:14:21.160] [info] LM<sym::Optimize> [iter   41] lambda: 1.000e-16, error prev/linear/new: 2.577e+02/2.577e+02/2.575e+02, rel reduction: 8.12811e-04, gain ratio: 9.43017e+01
+[2024-07-27 11:14:21.163] [info] LM<sym::Optimize> [iter   42] lambda: 1.000e-16, error prev/linear/new: 2.575e+02/2.575e+02/2.573e+02, rel reduction: 8.13378e-04, gain ratio: 9.44057e+01
+[2024-07-27 11:14:21.166] [info] LM<sym::Optimize> [iter   43] lambda: 1.000e-16, error prev/linear/new: 2.573e+02/2.573e+02/2.571e+02, rel reduction: 8.13946e-04, gain ratio: 9.45102e+01
+[2024-07-27 11:14:21.169] [info] LM<sym::Optimize> [iter   44] lambda: 1.000e-16, error prev/linear/new: 2.571e+02/2.571e+02/2.569e+02, rel reduction: 8.14443e-04, gain ratio: 9.46064e+01
+[2024-07-27 11:14:21.174] [info] LM<sym::Optimize> [iter   45] lambda: 1.000e-16, error prev/linear/new: 2.569e+02/2.569e+02/2.567e+02, rel reduction: 8.15047e-04, gain ratio: 9.47152e+01
+[2024-07-27 11:14:21.176] [info] LM<sym::Optimize> [iter   46] lambda: 1.000e-16, error prev/linear/new: 2.567e+02/2.567e+02/2.565e+02, rel reduction: 8.15623e-04, gain ratio: 9.48210e+01
+[2024-07-27 11:14:21.179] [info] LM<sym::Optimize> [iter   47] lambda: 1.000e-16, error prev/linear/new: 2.565e+02/2.565e+02/2.563e+02, rel reduction: 8.16159e-04, gain ratio: 9.49224e+01
+[2024-07-27 11:14:21.182] [info] LM<sym::Optimize> [iter   48] lambda: 1.000e-16, error prev/linear/new: 2.563e+02/2.563e+02/2.561e+02, rel reduction: 8.16710e-04, gain ratio: 9.50257e+01
+[2024-07-27 11:14:21.185] [info] LM<sym::Optimize> [iter   49] lambda: 1.000e-16, error prev/linear/new: 2.561e+02/2.561e+02/2.559e+02, rel reduction: 8.17246e-04, gain ratio: 9.51273e+01
+[2024-07-27 11:14:21.185] [warning] LM<sym::Optimize> Optimization finished with status: HIT_ITERATION_LIMIT
+[2024-07-27 11:14:21.185] [info] Iterations: 49
+[2024-07-27 11:14:21.185] [info] Lambda: 1e-16
+[2024-07-27 11:14:21.185] [info] Initial error: 303.4615379191756
+[2024-07-27 11:14:21.185] [info] Final error: 255.85752161165098
+[2024-07-27 11:14:21.185] [info] Status: HIT_ITERATION_LIMIT
+marg old: marg_feature_count=113
+last_marginalization_info addr = 140620586877392
+[2024-07-27 11:14:21.198] [info] LM<sym::Optimize> [iter    0] lambda: 1.000e+00, error prev/linear/new: 2.431e+02/2.431e+02/2.430e+02, rel reduction: 2.86254e-04, gain ratio: 5.13957e+01
+[2024-07-27 11:14:21.201] [info] LM<sym::Optimize> [iter    1] lambda: 3.333e-01, error prev/linear/new: 2.430e+02/2.430e+02/2.429e+02, rel reduction: 4.23704e-04, gain ratio: 5.83307e+01
+[2024-07-27 11:14:21.203] [info] LM<sym::Optimize> [iter    2] lambda: 1.111e-01, error prev/linear/new: 2.429e+02/2.429e+02/2.428e+02, rel reduction: 5.22242e-04, gain ratio: 6.55017e+01
+[2024-07-27 11:14:21.206] [info] LM<sym::Optimize> [iter    3] lambda: 3.704e-02, error prev/linear/new: 2.428e+02/2.428e+02/2.427e+02, rel reduction: 5.78519e-04, gain ratio: 7.07894e+01
+[2024-07-27 11:14:21.208] [info] LM<sym::Optimize> [iter    4] lambda: 1.235e-02, error prev/linear/new: 2.427e+02/2.426e+02/2.425e+02, rel reduction: 6.05776e-04, gain ratio: 7.37717e+01
+[2024-07-27 11:14:21.210] [info] LM<sym::Optimize> [iter    5] lambda: 4.115e-03, error prev/linear/new: 2.425e+02/2.425e+02/2.424e+02, rel reduction: 6.17119e-04, gain ratio: 7.51184e+01
+[2024-07-27 11:14:21.212] [info] LM<sym::Optimize> [iter    6] lambda: 1.372e-03, error prev/linear/new: 2.424e+02/2.424e+02/2.422e+02, rel reduction: 6.21355e-04, gain ratio: 7.56163e+01
+[2024-07-27 11:14:21.214] [info] LM<sym::Optimize> [iter    7] lambda: 4.572e-04, error prev/linear/new: 2.422e+02/2.422e+02/2.421e+02, rel reduction: 6.23456e-04, gain ratio: 7.57667e+01
+[2024-07-27 11:14:21.217] [info] LM<sym::Optimize> [iter    8] lambda: 1.524e-04, error prev/linear/new: 2.421e+02/2.421e+02/2.419e+02, rel reduction: 6.27493e-04, gain ratio: 7.59201e+01
+[2024-07-27 11:14:21.219] [info] LM<sym::Optimize> [iter    9] lambda: 5.081e-05, error prev/linear/new: 2.419e+02/2.419e+02/2.417e+02, rel reduction: 6.39613e-04, gain ratio: 7.65843e+01
+[2024-07-27 11:14:21.222] [info] LM<sym::Optimize> [iter   10] lambda: 1.694e-05, error prev/linear/new: 2.417e+02/2.417e+02/2.416e+02, rel reduction: 6.66433e-04, gain ratio: 7.84389e+01
+[2024-07-27 11:14:21.224] [info] LM<sym::Optimize> [iter   11] lambda: 5.645e-06, error prev/linear/new: 2.416e+02/2.416e+02/2.414e+02, rel reduction: 7.03900e-04, gain ratio: 8.14816e+01
+[2024-07-27 11:14:21.227] [info] LM<sym::Optimize> [iter   12] lambda: 1.882e-06, error prev/linear/new: 2.414e+02/2.414e+02/2.412e+02, rel reduction: 7.37460e-04, gain ratio: 8.45563e+01
+[2024-07-27 11:14:21.229] [info] LM<sym::Optimize> [iter   13] lambda: 6.272e-07, error prev/linear/new: 2.412e+02/2.412e+02/2.411e+02, rel reduction: 7.58382e-04, gain ratio: 8.66955e+01
+[2024-07-27 11:14:21.233] [info] LM<sym::Optimize> [iter   14] lambda: 2.091e-07, error prev/linear/new: 2.411e+02/2.411e+02/2.409e+02, rel reduction: 7.68114e-04, gain ratio: 8.77867e+01
+[2024-07-27 11:14:21.235] [info] LM<sym::Optimize> [iter   15] lambda: 6.969e-08, error prev/linear/new: 2.409e+02/2.409e+02/2.407e+02, rel reduction: 7.71944e-04, gain ratio: 8.82505e+01
+[2024-07-27 11:14:21.238] [info] LM<sym::Optimize> [iter   16] lambda: 2.323e-08, error prev/linear/new: 2.407e+02/2.407e+02/2.405e+02, rel reduction: 7.73417e-04, gain ratio: 8.84509e+01
+[2024-07-27 11:14:21.241] [info] LM<sym::Optimize> [iter   17] lambda: 7.744e-09, error prev/linear/new: 2.405e+02/2.405e+02/2.403e+02, rel reduction: 7.74064e-04, gain ratio: 8.85563e+01
+[2024-07-27 11:14:21.243] [info] LM<sym::Optimize> [iter   18] lambda: 2.581e-09, error prev/linear/new: 2.403e+02/2.403e+02/2.401e+02, rel reduction: 7.74458e-04, gain ratio: 8.86295e+01
+[2024-07-27 11:14:21.245] [info] LM<sym::Optimize> [iter   19] lambda: 8.604e-10, error prev/linear/new: 2.401e+02/2.401e+02/2.399e+02, rel reduction: 7.74858e-04, gain ratio: 8.86936e+01
+[2024-07-27 11:14:21.248] [info] LM<sym::Optimize> [iter   20] lambda: 2.868e-10, error prev/linear/new: 2.399e+02/2.399e+02/2.398e+02, rel reduction: 7.75512e-04, gain ratio: 8.87633e+01
+[2024-07-27 11:14:21.250] [info] LM<sym::Optimize> [iter   21] lambda: 9.560e-11, error prev/linear/new: 2.398e+02/2.398e+02/2.396e+02, rel reduction: 7.76895e-04, gain ratio: 8.88771e+01
+[2024-07-27 11:14:21.253] [info] LM<sym::Optimize> [iter   22] lambda: 3.187e-11, error prev/linear/new: 2.396e+02/2.396e+02/2.394e+02, rel reduction: 7.79859e-04, gain ratio: 8.91383e+01
+[2024-07-27 11:14:21.255] [info] LM<sym::Optimize> [iter   23] lambda: 1.062e-11, error prev/linear/new: 2.394e+02/2.394e+02/2.392e+02, rel reduction: 7.84869e-04, gain ratio: 8.96344e+01
+[2024-07-27 11:14:21.258] [info] LM<sym::Optimize> [iter   24] lambda: 3.541e-12, error prev/linear/new: 2.392e+02/2.392e+02/2.390e+02, rel reduction: 7.90108e-04, gain ratio: 9.02006e+01
+[2024-07-27 11:14:21.260] [info] LM<sym::Optimize> [iter   25] lambda: 1.180e-12, error prev/linear/new: 2.390e+02/2.390e+02/2.388e+02, rel reduction: 7.93527e-04, gain ratio: 9.05899e+01
+[2024-07-27 11:14:21.262] [info] LM<sym::Optimize> [iter   26] lambda: 3.934e-13, error prev/linear/new: 2.388e+02/2.388e+02/2.386e+02, rel reduction: 7.95588e-04, gain ratio: 9.08087e+01
+[2024-07-27 11:14:21.265] [info] LM<sym::Optimize> [iter   27] lambda: 1.311e-13, error prev/linear/new: 2.386e+02/2.386e+02/2.384e+02, rel reduction: 7.97624e-04, gain ratio: 9.09857e+01
+[2024-07-27 11:14:21.267] [info] LM<sym::Optimize> [iter   28] lambda: 4.371e-14, error prev/linear/new: 2.384e+02/2.384e+02/2.382e+02, rel reduction: 8.00333e-04, gain ratio: 9.12285e+01
+[2024-07-27 11:14:21.269] [info] LM<sym::Optimize> [iter   29] lambda: 1.457e-14, error prev/linear/new: 2.382e+02/2.382e+02/2.381e+02, rel reduction: 8.03268e-04, gain ratio: 9.15330e+01
+[2024-07-27 11:14:21.273] [info] LM<sym::Optimize> [iter   30] lambda: 4.857e-15, error prev/linear/new: 2.381e+02/2.380e+02/2.379e+02, rel reduction: 8.05450e-04, gain ratio: 9.17929e+01
+[2024-07-27 11:14:21.275] [info] LM<sym::Optimize> [iter   31] lambda: 1.619e-15, error prev/linear/new: 2.379e+02/2.379e+02/2.377e+02, rel reduction: 8.06617e-04, gain ratio: 9.19551e+01
+[2024-07-27 11:14:21.277] [info] LM<sym::Optimize> [iter   32] lambda: 5.397e-16, error prev/linear/new: 2.377e+02/2.377e+02/2.375e+02, rel reduction: 8.07136e-04, gain ratio: 9.20489e+01
+[2024-07-27 11:14:21.280] [info] LM<sym::Optimize> [iter   33] lambda: 1.799e-16, error prev/linear/new: 2.375e+02/2.375e+02/2.373e+02, rel reduction: 8.07453e-04, gain ratio: 9.21196e+01
+[2024-07-27 11:14:21.283] [info] LM<sym::Optimize> [iter   34] lambda: 1.000e-16, error prev/linear/new: 2.373e+02/2.373e+02/2.371e+02, rel reduction: 8.07523e-04, gain ratio: 9.21635e+01
+[2024-07-27 11:14:21.286] [info] LM<sym::Optimize> [iter   35] lambda: 1.000e-16, error prev/linear/new: 2.371e+02/2.371e+02/2.369e+02, rel reduction: 8.07715e-04, gain ratio: 9.22206e+01
